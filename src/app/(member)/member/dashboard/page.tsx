@@ -5,15 +5,15 @@ import { formatDaysRemaining } from '@/lib/members/status'
 
 function formatScheduledDate(isoString: string): { month: string; day: string; time: string } {
   const date = new Date(isoString)
-  const month = date.toLocaleString('en-US', { month: 'short' }).toUpperCase()
-  const day = String(date.getDate())
-  const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
+  const month = date.toLocaleString('en-US', { month: 'short', timeZone: 'America/Mexico_City' }).toUpperCase()
+  const day = date.toLocaleString('en-US', { day: 'numeric', timeZone: 'America/Mexico_City' })
+  const time = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/Mexico_City' })
   return { month, day, time }
 }
 
 function formatPaymentDate(dateString: string): string {
   const date = new Date(dateString)
-  return date.toLocaleString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
+  return date.toLocaleString('en-US', { month: 'short', day: '2-digit', year: 'numeric', timeZone: 'America/Mexico_City' })
 }
 
 function formatAmount(amount: number): string {
@@ -31,49 +31,51 @@ export default async function MemberDashboardPage() {
     redirect('/login')
   }
 
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('full_name')
-    .eq('id', user.id)
-    .single()
+  const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Mexico_City' })
+  const nowMX = new Date().toLocaleString('sv', { timeZone: 'America/Mexico_City' }).replace(' ', 'T')
 
-  const today = new Date().toISOString().slice(0, 10)
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: activeMembership } = await (supabase as any)
-    .from('member_memberships')
-    .select(`
-      end_date,
-      membership_plans ( name )
-    `)
-    .eq('member_id', user.id)
-    .gte('end_date', today)
-    .order('end_date', { ascending: false })
-    .limit(1)
-    .maybeSingle()
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: upcomingEnrollments } = await (supabase as any)
-    .from('class_enrollments')
-    .select(`
-      classes (
-        name,
-        scheduled_at,
-        trainers ( full_name )
-      )
-    `)
-    .eq('member_id', user.id)
-    .eq('status', 'active')
-    .gt('classes.scheduled_at', new Date().toISOString())
-    .order('classes(scheduled_at)', { ascending: true })
-    .limit(3)
-
-  const { data: recentPayments } = await supabase
-    .from('payments')
-    .select('concept, payment_date, amount, status')
-    .eq('member_id', user.id)
-    .order('payment_date', { ascending: false })
-    .limit(2)
+  const [
+    { data: profile },
+    { data: activeMembership },
+    { data: upcomingEnrollments },
+    { data: recentPayments },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ] = await Promise.all([
+    supabase.from('profiles').select('full_name').eq('id', user.id).single(),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (supabase as any)
+      .from('member_memberships')
+      .select(`
+        end_date,
+        membership_plans ( name )
+      `)
+      .eq('member_id', user.id)
+      .gte('end_date', today)
+      .order('end_date', { ascending: false })
+      .limit(1)
+      .maybeSingle(),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (supabase as any)
+      .from('class_enrollments')
+      .select(`
+        classes!inner (
+          name,
+          scheduled_at,
+          trainers ( full_name )
+        )
+      `)
+      .eq('member_id', user.id)
+      .eq('status', 'active')
+      .gt('classes.scheduled_at', nowMX)
+      .order('scheduled_at', { referencedTable: 'classes', ascending: true })
+      .limit(3),
+    supabase
+      .from('payments')
+      .select('concept, payment_date, amount, status')
+      .eq('member_id', user.id)
+      .order('payment_date', { ascending: false })
+      .limit(2),
+  ])
 
   const displayName = (profile?.full_name ?? '').toUpperCase() || 'MEMBER'
   const planName = activeMembership?.membership_plans?.name ?? null
