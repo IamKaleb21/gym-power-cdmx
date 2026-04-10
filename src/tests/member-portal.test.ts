@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { formatDaysRemaining } from '@/lib/members/status'
+import { updateMemberSchema } from '@/lib/validations/member.schema'
 
 function dateOffset(days: number): string {
   const d = new Date()
@@ -22,5 +23,27 @@ describe('formatDaysRemaining', () => {
 
   it('returns "Expired" for past dates', () => {
     expect(formatDaysRemaining(dateOffset(-3))).toBe('Expired')
+  })
+})
+
+describe('updateMemberProfile validation', () => {
+  it('accepts valid full_name and phone', () => {
+    const result = updateMemberSchema.safeParse({ full_name: 'Ana López', phone: '5551234567' })
+    expect(result.success).toBe(true)
+  })
+
+  it('rejects empty full_name when provided', () => {
+    const result = updateMemberSchema.safeParse({ full_name: '' })
+    expect(result.success).toBe(false)
+  })
+
+  it('accepts partial update (only phone)', () => {
+    const result = updateMemberSchema.safeParse({ phone: '5559876543' })
+    expect(result.success).toBe(true)
+  })
+
+  it('accepts empty object (no fields to update)', () => {
+    const result = updateMemberSchema.safeParse({})
+    expect(result.success).toBe(true)
   })
 })
