@@ -152,9 +152,9 @@ export default async function AdminClassesPage({
                 </div>
                 <div className="flex-grow flex flex-col md:flex-row md:items-center gap-6 min-w-0">
                   <div className="flex-grow min-w-0">
-                    <div className="flex items-center gap-3 mb-1 flex-wrap">
+                    <div className="flex items-center gap-3 mb-1 flex-wrap min-w-0">
                       <h3
-                        className={`text-2xl font-black font-headline uppercase tracking-tight ${titleClass}`}
+                        className={`text-2xl font-black font-headline uppercase tracking-tight min-w-0 truncate ${titleClass}`}
                       >
                         {cls.name}
                       </h3>
@@ -164,9 +164,9 @@ export default async function AdminClassesPage({
                         </span>
                       )}
                     </div>
-                    <p className="text-on-surface-variant text-sm flex items-center gap-2">
-                      <span className="material-symbols-outlined text-sm">person</span>
-                      {coachName}
+                    <p className="text-on-surface-variant text-sm flex items-center gap-2 min-w-0">
+                      <span className="material-symbols-outlined text-sm shrink-0">person</span>
+                      <span className="truncate">{coachName}</span>
                     </p>
                   </div>
                   <div className="md:w-48 w-full">

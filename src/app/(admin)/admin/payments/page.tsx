@@ -70,7 +70,7 @@ export default async function AdminPaymentsPage() {
   const unpaidCount = metrics.filter((p) => p.status === 'pending').length
 
   return (
-    <div className="mt-8 px-4 lg:px-8 max-w-7xl mx-auto pb-24 lg:pb-8">
+    <div className="mt-8 px-4 lg:px-8 max-w-7xl mx-auto pb-24 lg:pb-8 min-w-0 overflow-x-hidden">
       <section className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
         <div className="md:col-span-8 bg-surface-container-low p-8 rounded-lg relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#cafd00]/5 rounded-full blur-[100px] -mr-32 -mt-32" />

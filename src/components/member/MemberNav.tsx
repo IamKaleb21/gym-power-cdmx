@@ -28,8 +28,8 @@ export function MemberNav() {
             href={href}
             className={`flex flex-col items-center justify-center transition-colors active:scale-90 duration-200 ${
               isActive
-                ? 'text-[#CCFF00] bg-[#212121] rounded-xl px-3 py-1'
-                : 'text-gray-500 hover:text-gray-300 hover:bg-[#212121] px-3 py-1 rounded-xl'
+                ? 'text-[#CCFF00] bg-[#212121] rounded-xl px-2 py-1'
+                : 'text-gray-500 hover:text-gray-300 hover:bg-[#212121] px-2 py-1 rounded-xl'
             }`}
           >
             <span
@@ -38,7 +38,7 @@ export function MemberNav() {
             >
               {icon}
             </span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider mt-0.5 font-body">
+            <span className="text-[9px] font-semibold uppercase tracking-wider mt-0.5 font-body">
               {label}
             </span>
           </Link>
