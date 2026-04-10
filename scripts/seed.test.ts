@@ -13,7 +13,8 @@ describe("buildSeedBlueprint", () => {
 
     expect(blueprint.trainers).toHaveLength(4);
     expect(blueprint.availability).toHaveLength(8);
-    expect(blueprint.classes).toHaveLength(8);
+    expect(blueprint.classes).toHaveLength(14);
+    expect(blueprint.classes.filter((c) => c.dayOffset === 0)).toHaveLength(6);
     // 36 historical memberships spanning 12 months
     expect(blueprint.memberships.length).toBeGreaterThanOrEqual(36);
     // 36 paid + 3 pending = 39 payments

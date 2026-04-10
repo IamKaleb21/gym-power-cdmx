@@ -78,7 +78,7 @@ export default async function MemberClassesPage({
             (e) => e.member_id === user.id && e.status === 'active',
           )
           const spots = getAvailableSpots(enrollments, cls.max_capacity)
-          const coach = cls.trainers?.full_name ?? 'Coach'
+          const coach = cls.trainers?.full_name ?? 'Entrenador'
           const avatar = cls.trainers?.avatar_url as string | null | undefined
 
           return (
@@ -135,7 +135,7 @@ function ClassCard({
       {almost && (
         <div className="absolute top-0 right-0 p-4 z-10">
           <span className="bg-error-container text-on-error-container text-[8px] font-black uppercase px-2 py-0.5 rounded">
-            Almost Full
+            Casi lleno
           </span>
         </div>
       )}
@@ -163,7 +163,7 @@ function ClassCard({
             {isFull ? (
               <>
                 <span className="material-symbols-outlined text-[12px]">lock</span>
-                FULL
+                LLENO
               </>
             ) : (
               <>

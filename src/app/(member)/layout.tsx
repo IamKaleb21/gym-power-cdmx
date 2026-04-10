@@ -9,7 +9,7 @@ export default function MemberLayout({ children }: { children: React.ReactNode }
         <Link href="/member/dashboard" className="flex items-center gap-2 text-[#CCFF00]">
           <span className="material-symbols-outlined">fitness_center</span>
           <span className="font-headline font-bold tracking-widest text-xl uppercase">
-            GYM PORTAL
+            Portal miembro
           </span>
         </Link>
         <div className="flex items-center gap-4">

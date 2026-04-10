@@ -8,6 +8,8 @@ export type MonthlyPoint = {
   month: string
   new: number
   active: number
+  /** Membresías que terminan en ese mes (baja), antes de `today`. */
+  churn: number
 }
 
 export type RetentionMetrics = {
@@ -16,6 +18,18 @@ export type RetentionMetrics = {
   churnCount: number
   retentionRate: number
   monthlySeries: MonthlyPoint[]
+}
+
+/** Valores intermedios para auditoría / scripts (misma lógica que el dashboard). */
+export type RetentionBreakdown = RetentionMetrics & {
+  startDate: string
+  endDate: string
+  today: string
+  activeAtStart: number
+  activeAtEnd: number
+  newMembershipsActiveAtEnd: number
+  /** Miembros activos al cierre que ya estaban antes del inicio del rango (cohorte retenida). */
+  retainedCount: number
 }
 
 function day(s: string): string {
@@ -59,30 +73,34 @@ function* eachMonthInRange(startDate: string, endDate: string): Generator<{ y: n
 }
 
 /**
- * ((members_end - new_members) / members_start) * 100
+ * Retención de la cohorte inicial: ((members_end - nuevas_que_siguen_activas) / members_start) * 100
+ *
+ * `newMembersStillActiveAtEnd` = altas con inicio en el período que siguen cubriendo el último día
+ * del rango (no confundir con el total de altas del período: muchas ya dieron de baja y no están en members_end).
+ *
  * Retorna 0 si members_start === 0 o si no hay retención positiva.
  */
 export function calculateRetentionRate(
   membersStart: number,
-  newMembers: number,
+  newMembersStillActiveAtEnd: number,
   membersEnd: number,
 ): number {
   if (membersStart === 0) return 0
-  const retained = membersEnd - newMembers
+  const retained = membersEnd - newMembersStillActiveAtEnd
   if (retained <= 0) return 0
   return (retained / membersStart) * 100
 }
 
 /**
- * Métricas de retención para rango [startDate, endDate] (YYYY-MM-DD, comparación lexicográfica).
- * `today` opcional para tests (YYYY-MM-DD).
+ * Desglose completo de retención (misma lógica que `getRetentionMetrics`).
+ * `today` opcional para tests (YYYY-MM-DD CDMX).
  */
-export function getRetentionMetrics(
+export function getRetentionBreakdown(
   memberships: MembershipRow[],
   startDate: string,
   endDate: string,
   today: string = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Mexico_City' }),
-): RetentionMetrics {
+): RetentionBreakdown {
   const start = day(startDate)
   const end = day(endDate)
 
@@ -100,12 +118,19 @@ export function getRetentionMetrics(
     return s <= end && e >= end
   }).length
 
+  const newMembershipsActiveAtEnd = memberships.filter((m) => {
+    const s = day(m.start_date)
+    const e = day(m.end_date)
+    return betweenInclusive(s, start, end) && e >= end
+  }).length
+
   const churnCount = memberships.filter((m) => {
     const e = day(m.end_date)
     return e >= start && e <= end && e < today
   }).length
 
-  const retentionRate = calculateRetentionRate(activeAtStart, newCount, activeAtEnd)
+  const retainedCount = activeAtEnd - newMembershipsActiveAtEnd
+  const retentionRate = calculateRetentionRate(activeAtStart, newMembershipsActiveAtEnd, activeAtEnd)
 
   const monthlySeries: MonthlyPoint[] = []
   for (const { y, m } of eachMonthInRange(start, end)) {
@@ -120,18 +145,110 @@ export function getRetentionMetrics(
       return s <= monthEnd && e >= monthStart
     }).length
 
+    const monthChurn = memberships.filter((row) => {
+      const e = day(row.end_date)
+      return e >= monthStart && e <= monthEnd && e < today
+    }).length
+
     monthlySeries.push({
       month: monthLabelUTC(y, m),
       new: monthNew,
       active: monthActive,
+      churn: monthChurn,
     })
   }
 
   return {
+    startDate: start,
+    endDate: end,
+    today,
+    activeAtStart,
+    activeAtEnd,
+    newMembershipsActiveAtEnd,
+    retainedCount,
     activeCount: activeAtEnd,
     newCount,
     churnCount,
     retentionRate,
     monthlySeries,
   }
+}
+
+/**
+ * Métricas de retención para rango [startDate, endDate] (YYYY-MM-DD, comparación lexicográfica).
+ * `today` opcional para tests (YYYY-MM-DD).
+ */
+export function getRetentionMetrics(
+  memberships: MembershipRow[],
+  startDate: string,
+  endDate: string,
+  today?: string,
+): RetentionMetrics {
+  const b = getRetentionBreakdown(memberships, startDate, endDate, today)
+  return {
+    activeCount: b.activeCount,
+    newCount: b.newCount,
+    churnCount: b.churnCount,
+    retentionRate: b.retentionRate,
+    monthlySeries: b.monthlySeries,
+  }
+}
+
+export type PaymentRow = {
+  amount: number
+  status: string
+  payment_date: string | null
+  created_at: string
+}
+
+export type RevenueMonthPoint = { month: string; revenue: number }
+
+export function getPaymentAnalytics(
+  payments: PaymentRow[],
+  startDate: string,
+  endDate: string,
+): {
+  monthlyRevenue: RevenueMonthPoint[]
+  totalPaidInRange: number
+  pendingTotal: number
+  pendingCount: number
+} {
+  const start = day(startDate)
+  const end = day(endDate)
+
+  function effectivePaidDate(p: PaymentRow): string | null {
+    if (p.status !== 'paid') return null
+    if (p.payment_date) return day(p.payment_date)
+    return day(p.created_at)
+  }
+
+  const pendingRows = payments.filter((p) => p.status === 'pending')
+  const pendingTotal = Math.round(pendingRows.reduce((s, p) => s + Number(p.amount), 0) * 100) / 100
+  const pendingCount = pendingRows.length
+
+  let totalPaidInRange = 0
+  for (const p of payments) {
+    const d = effectivePaidDate(p)
+    if (!d) continue
+    if (d >= start && d <= end) totalPaidInRange += Number(p.amount)
+  }
+  totalPaidInRange = Math.round(totalPaidInRange * 100) / 100
+
+  const monthlyRevenue: RevenueMonthPoint[] = []
+  for (const { y, m } of eachMonthInRange(start, end)) {
+    const monthStart = `${y}-${String(m).padStart(2, '0')}-01`
+    const monthEnd = lastDayOfCalendarMonth(y, m)
+    let rev = 0
+    for (const p of payments) {
+      const d = effectivePaidDate(p)
+      if (!d) continue
+      if (betweenInclusive(d, monthStart, monthEnd)) rev += Number(p.amount)
+    }
+    monthlyRevenue.push({
+      month: monthLabelUTC(y, m),
+      revenue: Math.round(rev * 100) / 100,
+    })
+  }
+
+  return { monthlyRevenue, totalPaidInRange, pendingTotal, pendingCount }
 }

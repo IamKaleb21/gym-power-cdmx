@@ -2,9 +2,9 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 
 function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('en-US', {
-    month: 'short',
+  return new Date(dateStr).toLocaleDateString('es-MX', {
     day: '2-digit',
+    month: 'short',
     year: 'numeric',
     timeZone: 'America/Mexico_City',
   })
@@ -37,22 +37,22 @@ export default async function MemberPaymentsPage() {
         <div className="absolute top-0 right-0 p-4 opacity-10">
           <span className="material-symbols-outlined text-8xl">receipt_long</span>
         </div>
-        <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Current Balance</p>
+        <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Saldo pendiente</p>
         <h2 className="text-4xl font-black font-headline text-[#CCFF00] tracking-tighter mb-4">
           ${balance.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN
         </h2>
         <div className="flex gap-4">
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase text-gray-400">Next Payment</span>
+            <span className="text-[10px] uppercase text-gray-400">Próximo pago</span>
             <span className="text-sm font-bold">
               {nextDue ? formatDate(nextDue.due_date!) : '—'}
             </span>
           </div>
           <div className="w-px h-8 bg-gray-800" />
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase text-gray-400">Status</span>
+            <span className="text-[10px] uppercase text-gray-400">Estado</span>
             <span className={`text-sm font-bold ${isAllClear ? 'text-[#CCFF00]' : 'text-orange-500'}`}>
-              {isAllClear ? 'ALL CLEAR' : 'BALANCE DUE'}
+              {isAllClear ? 'AL CORRIENTE' : 'PENDIENTE'}
             </span>
           </div>
         </div>
@@ -60,12 +60,12 @@ export default async function MemberPaymentsPage() {
 
       {/* Transaction History header */}
       <div className="flex items-center justify-between mb-6">
-        <h3 className="font-headline font-bold text-lg uppercase tracking-tight">Transaction History</h3>
+        <h3 className="font-headline font-bold text-lg uppercase tracking-tight">Historial de pagos</h3>
         <span className="material-symbols-outlined text-gray-600">filter_list</span>
       </div>
 
       {!payments?.length ? (
-        <p className="text-on-surface-variant text-sm">No transactions found.</p>
+        <p className="text-on-surface-variant text-sm">No hay movimientos registrados.</p>
       ) : (
         <div className="space-y-4">
           {payments.map((payment) => {
@@ -91,7 +91,7 @@ export default async function MemberPaymentsPage() {
                       className={`text-xs uppercase font-semibold ${isPaid ? 'text-gray-500' : 'text-[#CCFF00]'}`}
                     >
                       {payment.payment_date ? formatDate(payment.payment_date) : ''}
-                      {!isPaid && ' • Pending Authorization'}
+                      {!isPaid && ' · Pendiente de autorización'}
                     </p>
                   </div>
                 </div>
@@ -106,7 +106,7 @@ export default async function MemberPaymentsPage() {
                     <span
                       className={`text-[9px] font-black uppercase ${isPaid ? 'text-[#CCFF00]' : 'text-orange-500'}`}
                     >
-                      {isPaid ? 'Paid' : 'Pending'}
+                      {isPaid ? 'Pagado' : 'Pendiente'}
                     </span>
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default async function MemberPaymentsPage() {
         className="w-full mt-8 mb-8 bg-white text-black py-4 rounded-xl flex items-center justify-center gap-2 font-black uppercase tracking-tighter opacity-50 cursor-not-allowed"
       >
         <span className="material-symbols-outlined">file_download</span>
-        Download Full Statement (PDF)
+        Descargar estado de cuenta (PDF)
       </button>
     </main>
   )

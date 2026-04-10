@@ -5,19 +5,22 @@ import { formatDaysRemaining } from '@/lib/members/status'
 
 function formatScheduledDate(isoString: string): { month: string; day: string; time: string } {
   const date = new Date(isoString)
-  const month = date.toLocaleString('en-US', { month: 'short', timeZone: 'America/Mexico_City' }).toUpperCase()
-  const day = date.toLocaleString('en-US', { day: 'numeric', timeZone: 'America/Mexico_City' })
-  const time = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/Mexico_City' })
+  const month = date
+    .toLocaleString('es-MX', { month: 'short', timeZone: 'America/Mexico_City' })
+    .replace('.', '')
+    .toUpperCase()
+  const day = date.toLocaleString('es-MX', { day: 'numeric', timeZone: 'America/Mexico_City' })
+  const time = date.toLocaleString('es-MX', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/Mexico_City' })
   return { month, day, time }
 }
 
 function formatPaymentDate(dateString: string): string {
   const date = new Date(dateString)
-  return date.toLocaleString('en-US', { month: 'short', day: '2-digit', year: 'numeric', timeZone: 'America/Mexico_City' })
+  return date.toLocaleString('es-MX', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'America/Mexico_City' })
 }
 
 function formatAmount(amount: number): string {
-  return `$${amount.toLocaleString('en-US')} MXN`
+  return `$${amount.toLocaleString('es-MX')} MXN`
 }
 
 export default async function MemberDashboardPage() {
@@ -78,7 +81,7 @@ export default async function MemberDashboardPage() {
       .limit(2),
   ])
 
-  const displayName = (profile?.full_name ?? '').toUpperCase() || 'MEMBER'
+  const displayName = (profile?.full_name ?? '').toUpperCase() || 'MIEMBRO'
   const planName = activeMembership?.membership_plans?.name ?? null
   const expiryDisplay = activeMembership?.end_date
     ? formatDaysRemaining(activeMembership.end_date)
@@ -90,7 +93,7 @@ export default async function MemberDashboardPage() {
       <header className="relative overflow-hidden rounded-xl bg-surface-container p-6 border-l-4 border-[#CCFF00] min-w-0">
         <div className="relative z-10 min-w-0">
           <p className="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-1">
-            Welcome back,
+            Hola de nuevo,
           </p>
           <h1 className="font-headline text-4xl font-black text-[#CCFF00] leading-none mb-6 break-words">
             {displayName}
@@ -98,18 +101,18 @@ export default async function MemberDashboardPage() {
           <div className="grid grid-cols-2 gap-4 min-w-0">
             <div className="bg-surface-container-high p-4 rounded-lg min-w-0">
               <p className="font-label text-[10px] uppercase text-on-surface-variant mb-1">
-                Current Plan
+                Plan actual
               </p>
               <p className="font-headline font-bold text-sm text-on-surface truncate">
-                {planName ?? 'No active plan'}
+                {planName ?? 'Sin plan activo'}
               </p>
             </div>
             <div className="bg-[#CCFF00] p-4 rounded-lg min-w-0">
               <p className="font-label text-[10px] uppercase text-[#121212] font-bold mb-1">
-                Expiry
+                Vigencia
               </p>
               <p className="font-headline font-black text-sm text-[#121212] truncate">
-                {expiryDisplay ?? 'No active plan'}
+                {expiryDisplay ?? 'Sin plan activo'}
               </p>
             </div>
           </div>
@@ -122,13 +125,13 @@ export default async function MemberDashboardPage() {
       <section>
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-headline text-lg font-bold tracking-tight flex items-center gap-2 uppercase">
-            <span className="w-1.5 h-6 bg-[#CCFF00]" /> Next 3 Classes
+            <span className="w-1.5 h-6 bg-[#CCFF00]" /> Próximas 3 clases
           </h2>
           <Link
             href="/member/classes"
             className="text-[10px] font-label font-bold uppercase text-[#CCFF00] tracking-widest"
           >
-            View All
+            Ver todas
           </Link>
         </div>
         <div className="space-y-3">
@@ -138,9 +141,7 @@ export default async function MemberDashboardPage() {
               const cls = enrollment.classes
               if (!cls) return null
               const { month, day, time } = formatScheduledDate(cls.scheduled_at)
-              const trainerName = cls.trainers?.full_name
-                ? `Coach ${cls.trainers.full_name}`
-                : 'Coach TBD'
+              const trainerName = cls.trainers?.full_name ?? 'Por definir'
               return (
                 <div
                   key={enrollment.id}
@@ -171,7 +172,7 @@ export default async function MemberDashboardPage() {
               )
             })
           ) : (
-            <p className="text-on-surface-variant text-sm">No upcoming classes.</p>
+            <p className="text-on-surface-variant text-sm">No tienes clases próximas.</p>
           )}
         </div>
       </section>
@@ -180,7 +181,7 @@ export default async function MemberDashboardPage() {
       <section>
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-headline text-lg font-bold tracking-tight flex items-center gap-2 uppercase">
-            <span className="w-1.5 h-6 bg-[#CCFF00]" /> Recent Activity
+            <span className="w-1.5 h-6 bg-[#CCFF00]" /> Actividad reciente
           </h2>
         </div>
         <div className="bg-surface-container rounded-xl overflow-hidden">
@@ -209,14 +210,14 @@ export default async function MemberDashboardPage() {
                   </p>
                   {payment.status === 'paid' && (
                     <p className="text-[9px] font-bold uppercase text-emerald-400 bg-emerald-400/10 px-1.5 rounded inline-block">
-                      Paid
+                      Pagado
                     </p>
                   )}
                 </div>
               </div>
             ))
           ) : (
-            <p className="text-on-surface-variant text-sm p-4">No recent activity.</p>
+            <p className="text-on-surface-variant text-sm p-4">Sin movimientos recientes.</p>
           )}
         </div>
       </section>

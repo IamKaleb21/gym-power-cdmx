@@ -31,10 +31,10 @@ export function MemberProfileForm({ initialData }: Props) {
       {/* Page Title */}
       <div className="mb-8">
         <h2 className="font-headline text-3xl font-bold tracking-tighter uppercase text-white">
-          Edit Profile
+          Editar perfil
         </h2>
         <p className="text-on-surface-variant text-sm mt-1">
-          Update your personal information below.
+          Actualiza tu información personal.
         </p>
       </div>
 
@@ -45,7 +45,7 @@ export function MemberProfileForm({ initialData }: Props) {
             {initialData.avatar_url && !imgError ? (
               <img
                 src={initialData.avatar_url}
-                alt="Profile"
+                alt="Foto de perfil"
                 className="w-full h-full object-cover rounded-full"
                 onError={() => setImgError(true)}
               />
@@ -58,21 +58,21 @@ export function MemberProfileForm({ initialData }: Props) {
           <button
             type="button"
             disabled
-            title="Coming soon"
-            aria-label="Change photo (coming soon)"
+            title="Próximamente"
+            aria-label="Cambiar foto (próximamente)"
             className="absolute bottom-0 right-0 bg-[#CCFF00] text-[#121212] w-10 h-10 rounded-full flex items-center justify-center border-4 border-[#121212] shadow-lg cursor-not-allowed opacity-60"
           >
             <span className="material-symbols-outlined font-bold text-xl">photo_camera</span>
           </button>
         </div>
         <p className="font-headline font-bold text-[#CCFF00] text-xs uppercase tracking-widest mt-4">
-          Change Photo
+          Cambiar foto
         </p>
       </section>
 
       {/* Success / Error feedback */}
       {state?.success && (
-        <p className="mb-4 text-[#CCFF00] text-sm font-bold">Profile updated successfully.</p>
+        <p className="mb-4 text-[#CCFF00] text-sm font-bold">Perfil actualizado correctamente.</p>
       )}
       {state?.error && typeof state.error === 'string' && (
         <p className="mb-4 text-red-400 text-sm">{state.error}</p>
@@ -86,7 +86,7 @@ export function MemberProfileForm({ initialData }: Props) {
             htmlFor="full_name"
             className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
           >
-            Full Name
+            Nombre completo
           </label>
           <div className="relative">
             <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xl">
@@ -97,7 +97,7 @@ export function MemberProfileForm({ initialData }: Props) {
               name="full_name"
               type="text"
               defaultValue={initialData.full_name}
-              placeholder="Enter your name"
+              placeholder="Tu nombre"
               className="w-full bg-surface-container-highest border border-[#212121] rounded-xl py-4 pl-12 pr-4 text-white font-headline font-medium focus:border-[#CCFF00] transition-colors focus:outline-none"
             />
           </div>
@@ -112,7 +112,7 @@ export function MemberProfileForm({ initialData }: Props) {
             htmlFor="phone"
             className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
           >
-            Phone Number
+            Teléfono
           </label>
           <div className="relative">
             <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xl">
@@ -135,7 +135,7 @@ export function MemberProfileForm({ initialData }: Props) {
         {/* Location (read-only) */}
         <div className="space-y-2">
           <label className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">
-            Location
+            Ubicación
           </label>
           <div className="relative">
             <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xl">
@@ -145,12 +145,12 @@ export function MemberProfileForm({ initialData }: Props) {
               type="text"
               value="CDMX, MEXICO"
               readOnly
-              title="Location"
+              title="Ubicación"
               className="w-full bg-surface-container border border-[#212121] rounded-xl py-4 pl-12 pr-4 text-gray-400 font-headline font-medium cursor-not-allowed focus:outline-none"
             />
           </div>
           <p className="text-[10px] text-gray-600 px-1 italic">
-            Location is managed by gym branch assignment.
+            La sede la asigna el gimnasio; no editable aquí.
           </p>
         </div>
 
@@ -160,7 +160,7 @@ export function MemberProfileForm({ initialData }: Props) {
           disabled={isPending}
           className="w-full bg-[#CCFF00] text-[#121212] font-headline font-black py-5 rounded-xl uppercase tracking-widest mt-10 hover:opacity-90 active:scale-[0.98] transition-all shadow-[0_4px_20px_rgba(204,255,0,0.2)] disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {isPending ? 'Saving...' : 'Save Changes'}
+          {isPending ? 'Guardando…' : 'Guardar cambios'}
         </button>
       </form>
 
@@ -174,7 +174,7 @@ export function MemberProfileForm({ initialData }: Props) {
           <div className="flex items-center gap-3">
             <span className="material-symbols-outlined text-error">delete</span>
             <span className="font-headline text-sm font-bold text-error uppercase tracking-tighter">
-              Deactivate Membership
+              Dar de baja membresía
             </span>
           </div>
           <span className="material-symbols-outlined text-error/40">chevron_right</span>

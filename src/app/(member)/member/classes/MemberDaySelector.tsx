@@ -35,7 +35,7 @@ export default function MemberDaySelector({
           <h2 className="font-headline font-bold text-2xl tracking-tight text-white uppercase">
             {monthLabel}
           </h2>
-          <p className="text-on-surface-variant text-sm font-medium">CDMX Central Time</p>
+          <p className="text-on-surface-variant text-sm font-medium">Hora Ciudad de México</p>
         </div>
         <span className="material-symbols-outlined text-[#cafd00]">calendar_month</span>
       </div>

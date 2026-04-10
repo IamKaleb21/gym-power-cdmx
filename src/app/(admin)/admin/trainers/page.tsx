@@ -17,8 +17,8 @@ export default async function TrainersPage() {
   const slotsOpen = trainers?.reduce((sum: number, t: any) => sum + (t.trainer_availability?.length ?? 0), 0) ?? 0
 
   return (
-    <div className="px-8 py-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="w-full min-w-0 px-4 py-8 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
+      <div className="w-full min-w-0">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>

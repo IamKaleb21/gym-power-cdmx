@@ -10,8 +10,11 @@ export const createMemberSchema = z.object({
 });
 
 export const updateMemberSchema = z.object({
-  full_name: z.string().min(1).optional(),
-  phone: z.string().min(1).optional(),
+  full_name: z
+    .string()
+    .min(2, "El nombre debe tener al menos 2 caracteres")
+    .optional(),
+  phone: z.string().min(8, "Ingresa un teléfono válido").optional(),
 });
 
 export type CreateMemberInput = z.infer<typeof createMemberSchema>;

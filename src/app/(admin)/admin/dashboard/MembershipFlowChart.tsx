@@ -11,9 +11,9 @@ import {
   YAxis,
 } from 'recharts'
 
-export type MonthlyChartPoint = { month: string; new: number; active: number; churn?: number }
+export type FlowPoint = { month: string; new: number; churn: number }
 
-export default function RetentionChart({ data }: { data: MonthlyChartPoint[] }) {
+export default function MembershipFlowChart({ data }: { data: FlowPoint[] }) {
   return (
     <ResponsiveContainer width="100%" height={280}>
       <BarChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
@@ -41,8 +41,8 @@ export default function RetentionChart({ data }: { data: MonthlyChartPoint[] }) 
           cursor={{ fill: '#262626' }}
         />
         <Legend wrapperStyle={{ color: '#adaaaa', fontSize: '10px' }} />
-        <Bar dataKey="active" name="Activos" fill="#262626" radius={[2, 2, 0, 0]} />
         <Bar dataKey="new" name="Nuevas altas" fill="#cafd00" radius={[2, 2, 0, 0]} />
+        <Bar dataKey="churn" name="Bajas" fill="#f87171" radius={[2, 2, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   )

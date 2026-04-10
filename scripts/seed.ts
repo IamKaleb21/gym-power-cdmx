@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { addDays } from "date-fns";
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
@@ -17,7 +18,15 @@ type SeedBlueprint = {
   users: SeedUser[];
   trainers: { fullName: string; specialty: string; bio: string }[];
   availability: { trainerEmailKey: string; dayOfWeek: number; startTime: string; endTime: string }[];
-  classes: { name: string; description: string; trainerEmailKey: string; daysOffset: number; hour: number }[];
+  classes: {
+    name: string;
+    description: string;
+    trainerEmailKey: string;
+    /** Días desde hoy en calendario CDMX (0 = hoy) */
+    dayOffset: number;
+    /** Hora local en Ciudad de México (0–23) */
+    hourLocal: number;
+  }[];
   memberships: { memberIndex: number; startDaysOffset: number; planName: string }[];
   payments: { memberIndex: number; amount: number; concept: string; status: PaymentStatus; daysOffset: number }[];
   enrollments: { classIndex: number; memberIndex: number; status: EnrollmentStatus }[];
@@ -27,6 +36,22 @@ function isoDate(base: Date, daysOffset: number): string {
   const date = new Date(base);
   date.setUTCDate(date.getUTCDate() + daysOffset);
   return date.toISOString().slice(0, 10);
+}
+
+/** Inicio del día civil en CDMX (00:00) = 06:00 UTC ese mismo día calendario. */
+export function mexicoLocalToUtcIso(now: Date, dayOffset: number, hourLocal: number): string {
+  const s = now.toLocaleDateString("en-CA", { timeZone: "America/Mexico_City" });
+  const [y, m, d] = s.split("-").map(Number);
+  const anchorStart = new Date(Date.UTC(y, m - 1, d, 6, 0, 0));
+  const dayStart = addDays(anchorStart, dayOffset);
+  const ty = dayStart.getUTCFullYear();
+  const tm = dayStart.getUTCMonth() + 1;
+  const td = dayStart.getUTCDate();
+  const utcH = 6 + hourLocal;
+  if (utcH < 24) {
+    return new Date(Date.UTC(ty, tm - 1, td, utcH, 0, 0)).toISOString();
+  }
+  return new Date(Date.UTC(ty, tm - 1, td + 1, utcH - 24, 0, 0)).toISOString();
 }
 
 export function buildSeedBlueprint(now: Date): SeedBlueprint {
@@ -64,15 +89,23 @@ export function buildSeedBlueprint(now: Date): SeedBlueprint {
     { trainerEmailKey: "Carlos Vega", dayOfWeek: 6, startTime: "09:00", endTime: "12:00" },
   ];
 
+  /* Varias clases el mismo día (dayOffset 0) para que /admin/classes no arranque vacío.
+     scheduled_at encaja en el rango de getMexicoCityDayRangeUTC (06:00–06:00 UTC). */
   const classes = [
-    { name: "Cross Morning", description: "[SEED] Clase de fuerza", trainerEmailKey: "Sofia Rojas", daysOffset: 1, hour: 7 },
-    { name: "Cross Evening", description: "[SEED] Clase de fuerza", trainerEmailKey: "Sofia Rojas", daysOffset: 2, hour: 18 },
-    { name: "HIIT Blast", description: "[SEED] Cardio intenso", trainerEmailKey: "Diego Campos", daysOffset: 1, hour: 6 },
-    { name: "HIIT Sunset", description: "[SEED] Cardio intenso", trainerEmailKey: "Diego Campos", daysOffset: 3, hour: 19 },
-    { name: "Yoga Flow", description: "[SEED] Flexibilidad y core", trainerEmailKey: "Fernanda Luna", daysOffset: 2, hour: 8 },
-    { name: "Yoga Restore", description: "[SEED] Recuperacion", trainerEmailKey: "Fernanda Luna", daysOffset: 4, hour: 17 },
-    { name: "Box Basics", description: "[SEED] Tecnica base", trainerEmailKey: "Carlos Vega", daysOffset: 2, hour: 20 },
-    { name: "Box Conditioning", description: "[SEED] Acondicionamiento", trainerEmailKey: "Carlos Vega", daysOffset: 5, hour: 10 },
+    { name: "Cross Morning", description: "[SEED] Clase de fuerza", trainerEmailKey: "Sofia Rojas", dayOffset: 0, hourLocal: 7 },
+    { name: "HIIT Blast", description: "[SEED] Cardio intenso", trainerEmailKey: "Diego Campos", dayOffset: 0, hourLocal: 6 },
+    { name: "Yoga Flow", description: "[SEED] Flexibilidad y core", trainerEmailKey: "Fernanda Luna", dayOffset: 0, hourLocal: 9 },
+    { name: "Box Lunch", description: "[SEED] Tecnica base", trainerEmailKey: "Carlos Vega", dayOffset: 0, hourLocal: 12 },
+    { name: "HIIT Sunset", description: "[SEED] Cardio intenso", trainerEmailKey: "Diego Campos", dayOffset: 0, hourLocal: 18 },
+    { name: "Cross Evening", description: "[SEED] Clase de fuerza", trainerEmailKey: "Sofia Rojas", dayOffset: 0, hourLocal: 19 },
+    { name: "Cross Morning", description: "[SEED] Clase de fuerza", trainerEmailKey: "Sofia Rojas", dayOffset: 1, hourLocal: 7 },
+    { name: "HIIT Blast", description: "[SEED] Cardio intenso", trainerEmailKey: "Diego Campos", dayOffset: 1, hourLocal: 6 },
+    { name: "Yoga Flow", description: "[SEED] Flexibilidad y core", trainerEmailKey: "Fernanda Luna", dayOffset: 2, hourLocal: 8 },
+    { name: "Box Basics", description: "[SEED] Tecnica base", trainerEmailKey: "Carlos Vega", dayOffset: 2, hourLocal: 20 },
+    { name: "HIIT Sunset", description: "[SEED] Cardio intenso", trainerEmailKey: "Diego Campos", dayOffset: 3, hourLocal: 19 },
+    { name: "Yoga Restore", description: "[SEED] Recuperacion", trainerEmailKey: "Fernanda Luna", dayOffset: 4, hourLocal: 17 },
+    { name: "Box Conditioning", description: "[SEED] Acondicionamiento", trainerEmailKey: "Carlos Vega", dayOffset: 5, hourLocal: 10 },
+    { name: "Weekend HIIT", description: "[SEED] Cardio intenso", trainerEmailKey: "Diego Campos", dayOffset: 6, hourLocal: 9 },
   ];
 
   // memberIndex 1 = member.demo, 2 = member01, …, 36 = member35
@@ -178,8 +211,8 @@ export function buildSeedBlueprint(now: Date): SeedBlueprint {
     { memberIndex: 33, amount: 799,  concept: "[SEED] Renovación Mensual",    status: "pending", daysOffset: 10 },
   ];
 
-  const enrollments = Array.from({ length: 30 }, (_, i) => ({
-    classIndex: i % 8,
+  const enrollments = Array.from({ length: 40 }, (_, i) => ({
+    classIndex: i % classes.length,
     memberIndex: (i % 35) + 1,
     status: i % 5 === 0 ? "cancelled" : "active" as EnrollmentStatus,
   }));
@@ -290,19 +323,14 @@ export async function runSeed() {
   if (availabilityError) throw availabilityError;
 
   const now = new Date();
-  const classRows = blueprint.classes.map((c) => {
-    const scheduled = new Date(now);
-    scheduled.setUTCDate(scheduled.getUTCDate() + c.daysOffset);
-    scheduled.setUTCHours(c.hour, 0, 0, 0);
-    return {
-      name: c.name,
-      description: c.description,
-      trainer_id: trainerByName.get(c.trainerEmailKey) ?? null,
-      scheduled_at: scheduled.toISOString(),
-      duration_minutes: 60,
-      max_capacity: 20,
-    };
-  });
+  const classRows = blueprint.classes.map((c) => ({
+    name: c.name,
+    description: c.description,
+    trainer_id: trainerByName.get(c.trainerEmailKey) ?? null,
+    scheduled_at: mexicoLocalToUtcIso(now, c.dayOffset, c.hourLocal),
+    duration_minutes: 60,
+    max_capacity: 20,
+  }));
 
   const { data: classes, error: classError } = await supabase
     .from("classes")

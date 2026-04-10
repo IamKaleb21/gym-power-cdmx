@@ -9,20 +9,20 @@ function dateOffset(days: number): string {
 }
 
 describe('formatDaysRemaining', () => {
-  it('returns "X Days Remaining" for future dates', () => {
-    expect(formatDaysRemaining(dateOffset(22))).toBe('22 Days Remaining')
+  it('returns remaining days in Spanish for future dates', () => {
+    expect(formatDaysRemaining(dateOffset(22))).toBe('Quedan 22 días')
   })
 
-  it('returns "1 Day Remaining" (singular) for tomorrow', () => {
-    expect(formatDaysRemaining(dateOffset(1))).toBe('1 Day Remaining')
+  it('returns singular when one day left', () => {
+    expect(formatDaysRemaining(dateOffset(1))).toBe('Queda 1 día')
   })
 
-  it('returns "Today" when end_date is today', () => {
-    expect(formatDaysRemaining(dateOffset(0))).toBe('Today')
+  it('returns "Hoy" when end_date is today', () => {
+    expect(formatDaysRemaining(dateOffset(0))).toBe('Hoy')
   })
 
-  it('returns "Expired" for past dates', () => {
-    expect(formatDaysRemaining(dateOffset(-3))).toBe('Expired')
+  it('returns "Vencida" for past dates', () => {
+    expect(formatDaysRemaining(dateOffset(-3))).toBe('Vencida')
   })
 })
 

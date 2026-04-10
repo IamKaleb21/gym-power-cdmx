@@ -23,3 +23,13 @@ The UI elements feature a **subtle roundedness (1)**, creating a soft yet define
 ## Spacing
  
 The design adopts a **normal (2)** level of spacing. This balanced approach provides adequate whitespace for readability and visual comfort, preventing elements from feeling too cramped or excessively spread out.
+
+## Implementation tokens (codebase)
+
+Production UI often uses **`#cafd00`** for primary accents (lime) and **`#0e0e0e`** / surface tokens for admin backgrounds—slightly different hex labels than the palette above, but the same intent (dark shell + neon lime).
+
+## Admin shell (`/admin`)
+
+- **Desktop (`lg+`):** Fixed left sidebar with brand, vertical nav, and **Add Member** CTA. No duplicate top bar (brand lives in the sidebar).
+- **Mobile:** Top bar with **GYM POWER CDMX** only; **bottom navigation** shows the **same six sections** as desktop (Dashboard, Members, Classes, Trainers, Payments, Scan). Items use **equal flex columns** (`flex-1`) so the bar uses the **full viewport width**—no horizontal clustering or scroll.
+- **Admin content:** List and analytics views use **full width** of the main column (`w-full min-w-0`) with responsive horizontal padding (`lg` / `xl` / `2xl`), not a centered `max-w-*` column, so charts and tables can breathe on large monitors.

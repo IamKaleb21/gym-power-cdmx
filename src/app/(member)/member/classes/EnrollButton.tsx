@@ -24,7 +24,7 @@ export default function EnrollButton({
         disabled
         className="w-full py-3 bg-[#212121] text-on-surface-variant font-headline font-bold text-sm uppercase tracking-widest rounded cursor-not-allowed"
       >
-        Waiting List
+        Lista de espera
       </button>
     )
   }
@@ -34,7 +34,7 @@ export default function EnrollButton({
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-2 text-[10px] text-on-surface-variant italic">
           <span className="material-symbols-outlined text-sm">info</span>
-          Booked. Cancellations must be made 24h prior.
+          Inscrito. La cancelación debe hacerse con al menos 24 h de anticipación.
         </div>
         <button
           type="button"
@@ -51,7 +51,7 @@ export default function EnrollButton({
           }
           className="w-full py-3 bg-[#212121] text-[#ff7351] font-headline font-bold text-sm uppercase tracking-widest rounded border border-[#ff7351]/30 active:scale-95 transition-transform disabled:opacity-60"
         >
-          {pending ? '…' : 'Cancel Booking'}
+          {pending ? '…' : 'Cancelar inscripción'}
         </button>
       </div>
     )
@@ -73,7 +73,7 @@ export default function EnrollButton({
       }
       className="w-full py-3 bg-[#CCFF00] text-[#121212] font-headline font-bold text-sm uppercase tracking-widest rounded active:scale-95 transition-transform disabled:opacity-60"
     >
-      {pending ? '…' : 'Book Spot'}
+      {pending ? '…' : 'Reservar lugar'}
     </button>
   )
 }

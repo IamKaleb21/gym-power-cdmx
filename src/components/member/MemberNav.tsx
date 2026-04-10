@@ -9,11 +9,11 @@ type NavItem = {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { href: '/member/dashboard', icon: 'dashboard', label: 'Dashboard' },
-  { href: '/member/classes', icon: 'event_note', label: 'Classes' },
-  { href: '/member/payments', icon: 'payments', label: 'Payments' },
+  { href: '/member/dashboard', icon: 'dashboard', label: 'Inicio' },
+  { href: '/member/classes', icon: 'event_note', label: 'Clases' },
+  { href: '/member/payments', icon: 'payments', label: 'Pagos' },
   { href: '/member/qr', icon: 'qr_code_2', label: 'QR' },
-  { href: '/member/profile', icon: 'person', label: 'Profile' },
+  { href: '/member/profile', icon: 'person', label: 'Perfil' },
 ]
 
 export function MemberNav() {

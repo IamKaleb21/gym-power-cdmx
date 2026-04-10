@@ -88,8 +88,8 @@ export default async function AdminClassesPage({
   const classesToday = classes?.length ?? 0
 
   return (
-    <div className="px-6 lg:px-10 py-8 lg:py-10">
-      <div className="max-w-6xl mx-auto">
+    <div className="w-full min-w-0 px-4 py-8 sm:px-6 lg:px-10 xl:px-12 2xl:px-14 lg:py-10">
+      <div className="w-full min-w-0">
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <h1 className="text-5xl md:text-8xl font-black font-headline tracking-tighter uppercase leading-none mb-4 text-white">
@@ -102,7 +102,7 @@ export default async function AdminClassesPage({
           </div>
           <Link
             href="/admin/classes/new"
-            className="group flex items-center gap-2 bg-primary text-on-primary px-8 py-5 rounded-lg font-headline font-black uppercase tracking-tighter self-start hover:scale-[1.02] transition-transform"
+            className="group flex items-center gap-2 bg-[#cafd00] text-[#516700] px-8 py-5 rounded-lg font-headline font-black uppercase tracking-tighter self-start shadow-[0_0_20px_rgba(202,253,0,0.3)] hover:bg-[#f3ffca] hover:scale-[1.02] transition-transform"
           >
             <span className="material-symbols-outlined">add_circle</span>
             Create Class

@@ -9,7 +9,7 @@ export async function updateMemberProfile(formData: FormData) {
   const { data: { user }, error: authError } = await supabase.auth.getUser()
 
   if (authError || !user) {
-    return { error: 'Unauthorized' }
+    return { error: 'Sesión no válida' }
   }
 
   const raw = {

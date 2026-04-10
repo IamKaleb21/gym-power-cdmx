@@ -34,7 +34,7 @@ export default async function MembersPage() {
   const totalExpiringSoon = membersWithStatus.filter((m) => m.status === 'expiring_soon').length
 
   return (
-    <div className="px-4 lg:px-12 py-8">
+    <div className="w-full min-w-0 px-4 py-8 lg:px-10 xl:px-12 2xl:px-14">
       {/* Header Section */}
       <section className="mb-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">

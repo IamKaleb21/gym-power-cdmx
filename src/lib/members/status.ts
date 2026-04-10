@@ -22,8 +22,8 @@ export function formatDaysRemaining(endDate: string): string {
     (end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
   );
 
-  if (diff < 0) return "Expired";
-  if (diff === 0) return "Today";
-  if (diff === 1) return "1 Day Remaining";
-  return `${diff} Days Remaining`;
+  if (diff < 0) return "Vencida";
+  if (diff === 0) return "Hoy";
+  if (diff === 1) return "Queda 1 día";
+  return `Quedan ${diff} días`;
 }
