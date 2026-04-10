@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState } from 'react'
+import { useActionState, useState } from 'react'
 import { updateMemberProfile } from '@/app/actions/member-portal'
 
 type Props = {
@@ -14,9 +14,11 @@ type Props = {
 type ActionResult = Awaited<ReturnType<typeof updateMemberProfile>>
 
 export function MemberProfileForm({ initialData }: Props) {
-  const [state, formAction, isPending] = useActionState<ActionResult, FormData>(
+  const [imgError, setImgError] = useState(false)
+
+  const [state, formAction, isPending] = useActionState<ActionResult | null, FormData>(
     (_prevState, formData) => updateMemberProfile(formData),
-    { success: false },
+    null,
   )
 
   const fieldErrors =
@@ -40,11 +42,12 @@ export function MemberProfileForm({ initialData }: Props) {
       <section className="mb-10 flex flex-col items-center">
         <div className="relative group">
           <div className="w-32 h-32 rounded-full border-2 border-[#CCFF00] p-1 overflow-hidden">
-            {initialData.avatar_url ? (
+            {initialData.avatar_url && !imgError ? (
               <img
                 src={initialData.avatar_url}
                 alt="Profile"
                 className="w-full h-full object-cover rounded-full"
+                onError={() => setImgError(true)}
               />
             ) : (
               <div className="w-full h-full rounded-full bg-[#212121] flex items-center justify-center">
@@ -54,8 +57,10 @@ export function MemberProfileForm({ initialData }: Props) {
           </div>
           <button
             type="button"
-            className="absolute bottom-0 right-0 bg-[#CCFF00] text-[#121212] w-10 h-10 rounded-full flex items-center justify-center border-4 border-[#121212] shadow-lg active:scale-90 transition-transform"
-            aria-label="Change photo"
+            disabled
+            title="Coming soon"
+            aria-label="Change photo (coming soon)"
+            className="absolute bottom-0 right-0 bg-[#CCFF00] text-[#121212] w-10 h-10 rounded-full flex items-center justify-center border-4 border-[#121212] shadow-lg cursor-not-allowed opacity-60"
           >
             <span className="material-symbols-outlined font-bold text-xl">photo_camera</span>
           </button>
@@ -77,7 +82,10 @@ export function MemberProfileForm({ initialData }: Props) {
       <form action={formAction} className="space-y-6">
         {/* Full Name */}
         <div className="space-y-2">
-          <label className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">
+          <label
+            htmlFor="full_name"
+            className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
+          >
             Full Name
           </label>
           <div className="relative">
@@ -85,6 +93,7 @@ export function MemberProfileForm({ initialData }: Props) {
               person
             </span>
             <input
+              id="full_name"
               name="full_name"
               type="text"
               defaultValue={initialData.full_name}
@@ -99,7 +108,10 @@ export function MemberProfileForm({ initialData }: Props) {
 
         {/* Phone */}
         <div className="space-y-2">
-          <label className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">
+          <label
+            htmlFor="phone"
+            className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1"
+          >
             Phone Number
           </label>
           <div className="relative">
@@ -107,6 +119,7 @@ export function MemberProfileForm({ initialData }: Props) {
               phone_iphone
             </span>
             <input
+              id="phone"
               name="phone"
               type="tel"
               defaultValue={initialData.phone}
