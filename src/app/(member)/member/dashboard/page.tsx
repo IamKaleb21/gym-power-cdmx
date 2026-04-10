@@ -37,6 +37,8 @@ export default async function MemberDashboardPage() {
     .eq('id', user.id)
     .single()
 
+  const today = new Date().toISOString().slice(0, 10)
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: activeMembership } = await (supabase as any)
     .from('member_memberships')
@@ -45,7 +47,7 @@ export default async function MemberDashboardPage() {
       membership_plans ( name )
     `)
     .eq('member_id', user.id)
-    .eq('status', 'active')
+    .gte('end_date', today)
     .order('end_date', { ascending: false })
     .limit(1)
     .maybeSingle()
