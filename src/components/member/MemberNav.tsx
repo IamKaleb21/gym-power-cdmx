@@ -18,7 +18,7 @@ const NAV_ITEMS: NavItem[] = [
 export function MemberNav() {
   const pathname = usePathname()
   return (
-    <nav className="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-[#121212] border-t border-[#212121] rounded-t-lg shadow-[0_-4px_10px_rgba(0,0,0,0.5)]">
+    <nav className="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] bg-[#121212] border-t border-[#212121] rounded-t-lg shadow-[0_-4px_10px_rgba(0,0,0,0.5)]">
       {NAV_ITEMS.map(({ href, icon, label }) => {
         const isActive = pathname.startsWith(href)
         return (
