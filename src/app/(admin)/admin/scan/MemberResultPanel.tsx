@@ -57,13 +57,13 @@ export function MemberResultPanel({ loading, lastResult, onRefresh }: PanelProps
           type="button"
           className="py-4 border border-[#484847]/40 text-white text-[10px] font-bold uppercase tracking-widest hover:bg-[#262626] transition-all font-headline"
         >
-          Deny access
+          Denegar acceso
         </button>
         <button
           type="button"
           className="py-4 bg-[#cafd00] text-[#516700] text-[10px] font-bold uppercase tracking-widest hover:bg-[#f3ffca] transition-all font-headline"
         >
-          Grant access
+          Permitir acceso
         </button>
       </div>
     </section>
@@ -82,7 +82,7 @@ function ErrorState({
       ? { title: 'No encontrado', body: 'No hay un miembro con ese ID.' }
       : error === 'invalid_id'
         ? { title: 'ID no válido', body: 'El código no es un UUID de miembro válido.' }
-        : { title: 'Error', body: 'No se pudo validar. Intenta de nuevo.' }
+        : { title: 'Error al validar', body: 'No se pudo completar la validación. Intenta de nuevo.' }
 
   return (
     <div className="space-y-6">
@@ -108,7 +108,7 @@ function MemberCard({ member }: { member: MemberQRProfile }) {
     <div className="space-y-6">
       <div className="relative mb-8">
         <span className="absolute -top-4 -left-1 text-7xl font-black text-[#262626] font-headline select-none uppercase">
-          Member
+          Miembro
         </span>
         <div className="relative z-10 mt-8">
           <div className="w-40 h-40 bg-[#262626] rounded-lg overflow-hidden border-2 border-[#cafd00]/20 mx-auto lg:mx-0">
