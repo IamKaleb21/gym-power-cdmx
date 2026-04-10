@@ -18,13 +18,13 @@ type AdminClassRow = {
 
 function sessionLabel(d: Date): string {
   const h = Number(
-    d.toLocaleString('en-US', { timeZone: MX, hour: 'numeric', hour12: false }),
+    d.toLocaleString('es-MX', { timeZone: MX, hour: 'numeric', hour12: false }),
   )
-  return h < 12 ? 'AM Session' : 'PM Session'
+  return h < 12 ? 'Sesión matutina' : 'Sesión vespertina'
 }
 
 function formatTime(d: Date): string {
-  return d.toLocaleTimeString('en-US', {
+  return d.toLocaleTimeString('es-MX', {
     timeZone: MX,
     hour: '2-digit',
     minute: '2-digit',
@@ -96,8 +96,7 @@ export default async function AdminClassesPage({
               Agenda<span className="text-primary">.</span>
             </h1>
             <p className="text-on-surface-variant font-body max-w-md">
-              Manage the weekly kinetic flow. Control capacities, schedule elite sessions, and monitor
-              attendance metrics.
+              Agenda semanal de clases: cupos, horarios y métricas de ocupación.
             </p>
           </div>
           <Link
@@ -105,7 +104,7 @@ export default async function AdminClassesPage({
             className="group flex items-center gap-2 bg-[#cafd00] text-[#516700] px-8 py-5 rounded-lg font-headline font-black uppercase tracking-tighter self-start shadow-[0_0_20px_rgba(202,253,0,0.3)] hover:bg-[#f3ffca] hover:scale-[1.02] transition-transform"
           >
             <span className="material-symbols-outlined">add_circle</span>
-            Create Class
+            Nueva clase
           </Link>
         </header>
 
@@ -139,7 +138,7 @@ export default async function AdminClassesPage({
               >
                 {isFull && (
                   <div className="absolute -right-4 top-1/2 -translate-y-1/2 rotate-90 text-[#ff7351] font-black font-headline uppercase tracking-[1em] opacity-10 text-6xl pointer-events-none">
-                    FULL
+                    LLENO
                   </div>
                 )}
                 <div className="md:w-32 text-center md:text-left shrink-0">
@@ -160,7 +159,7 @@ export default async function AdminClassesPage({
                       </h3>
                       {isFull && (
                         <span className="bg-[#ff7351] text-[10px] font-black uppercase px-2 py-0.5 rounded-sm text-[#450900]">
-                          FULL
+                          LLENO
                         </span>
                       )}
                     </div>
@@ -172,7 +171,7 @@ export default async function AdminClassesPage({
                   <div className="md:w-48 w-full">
                     <div className="flex justify-between items-end mb-2">
                       <span className="text-[10px] uppercase font-bold tracking-widest text-on-surface">
-                        Capacity
+                        Cupo
                       </span>
                       <span
                         className={`text-sm font-bold ${
@@ -208,7 +207,7 @@ export default async function AdminClassesPage({
                 {avgPct}%
               </h4>
               <p className="font-headline uppercase text-xs font-bold text-[#4a5e00] tracking-widest">
-                Average Weekly Attendance
+                Ocupación semanal media
               </p>
             </div>
           </div>
@@ -217,7 +216,7 @@ export default async function AdminClassesPage({
               {classesToday}
             </h4>
             <p className="font-headline uppercase text-xs font-bold text-on-surface-variant tracking-widest">
-              Classes Today
+              Clases hoy
             </p>
           </div>
           <div className="bg-[#131313] p-8 rounded-lg relative">
@@ -233,7 +232,7 @@ export default async function AdminClassesPage({
               +{newBookings ?? 0}
             </h4>
             <p className="font-headline uppercase text-xs font-bold text-on-surface-variant tracking-widest">
-              New Bookings (Last 24h)
+              Nuevas inscripciones (24 h)
             </p>
           </div>
         </section>
