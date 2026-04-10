@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GYM POWER CDMX | The Kinetic Monolith</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#ffffff",
+                        "primary": "#f3ffca",
+                        "surface-container-lowest": "#000000",
+                        "secondary": "#e5e2e1",
+                        "surface-tint": "#f3ffca",
+                        "error": "#ff7351",
+                        "secondary-container": "#474746",
+                        "on-surface": "#ffffff",
+                        "outline": "#767575",
+                        "surface": "#0e0e0e",
+                        "error-dim": "#d53d18",
+                        "surface-container": "#1a1a1a",
+                        "on-error-container": "#ffd2c8",
+                        "on-tertiary-fixed-variant": "#685900",
+                        "primary-container": "#cafd00",
+                        "tertiary-fixed-dim": "#edd13a",
+                        "on-primary-fixed-variant": "#526900",
+                        "tertiary-dim": "#edd13a",
+                        "on-tertiary": "#665800",
+                        "tertiary": "#ffeea5",
+                        "on-tertiary-fixed": "#483d00",
+                        "primary-fixed-dim": "#beee00",
+                        "on-secondary-container": "#d2d0cf",
+                        "surface-variant": "#262626",
+                        "secondary-fixed": "#e5e2e1",
+                        "secondary-fixed-dim": "#d6d4d3",
+                        "surface-dim": "#0e0e0e",
+                        "surface-container-low": "#131313",
+                        "inverse-on-surface": "#565555",
+                        "on-tertiary-container": "#5d5000",
+                        "on-primary-fixed": "#3a4a00",
+                        "surface-bright": "#2c2c2c",
+                        "outline-variant": "#484847",
+                        "surface-container-highest": "#262626",
+                        "inverse-surface": "#fcf9f8",
+                        "secondary-dim": "#d6d4d3",
+                        "on-primary": "#516700",
+                        "primary-dim": "#beee00",
+                        "error-container": "#b92902",
+                        "on-secondary": "#525151",
+                        "on-surface-variant": "#adaaaa",
+                        "tertiary-container": "#fce047",
+                        "surface-container-high": "#20201f",
+                        "tertiary-fixed": "#fce047",
+                        "on-primary-container": "#4a5e00",
+                        "on-secondary-fixed": "#403f3f",
+                        "background": "#0e0e0e",
+                        "inverse-primary": "#516700",
+                        "primary-fixed": "#cafd00",
+                        "on-error": "#450900",
+                        "on-secondary-fixed-variant": "#5c5b5b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0e0e0e;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .editorial-shadow {
+            text-shadow: 2px 2px 0px #cafd00;
+        }
+        .glass-panel {
+            background: rgba(14, 14, 14, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#0e0e0e]/70 backdrop-blur-xl border-b border-[#484847]/15 transition-all duration-300">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black text-[#f3ffca] tracking-tighter font-['Space_Grotesk'] uppercase italic">GYM POWER CDMX</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-['Space_Grotesk'] font-bold text-[#cafd00] uppercase text-xs tracking-widest hover:opacity-80 transition-all" href="#">Classes</a>
+<a class="font-['Space_Grotesk'] font-bold text-white uppercase text-xs tracking-widest hover:opacity-80 transition-all" href="#">Trainers</a>
+<a class="font-['Space_Grotesk'] font-bold text-white uppercase text-xs tracking-widest hover:opacity-80 transition-all" href="#">Experience</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="bg-surface-container-highest border-none text-[10px] py-1.5 pl-10 pr-4 w-48 font-['Space_Grotesk'] tracking-widest focus:ring-1 focus:ring-primary-container placeholder:text-outline" placeholder="EXPLORE..." type="text"/>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-1.5 font-['Space_Grotesk'] font-black text-[10px] uppercase tracking-widest hover:scale-95 active:scale-90 transition-all">Member Login</button>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-white hover:text-[#cafd00] cursor-pointer transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-white hover:text-[#cafd00] cursor-pointer transition-colors" data-icon="settings">settings</span>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex items-center justify-start overflow-hidden bg-surface-container-lowest">
+<div class="absolute inset-0 z-0">
+<img alt="" class="w-full h-full object-cover opacity-50 grayscale contrast-125 scale-110" data-alt="high-contrast low-key photography of a muscular athlete in a dark industrial gym setting with dramatic neon lime accent lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8mAXV_h4BqbIOdtkFYqFtpu9UuualvflTEe9o-FVDlJVvOOYEc-aIGhOuukB7ZntRqRzJoube-S6u23YFsfmWq8XxpMmbARxontTI0GuwpuJpzVpISyXFtvyZeiu-j2cYbfxuUiiAT-HuP2rJbDyA0qBlSMN_z1Z_DTVABUB8cb5SV-1KHPcQiW2crcLiYh3PifHb8zjiI9OtxtOXDQsyvWWeaIJe8G1H4tOqqE5910RxmV21boS-Dbmx-RwSv3aT_uch53_yZKFS"/>
+<div class="absolute inset-0 bg-gradient-to-r from-[#0e0e0e] via-[#0e0e0e]/40 to-transparent"></div>
+</div>
+<div class="relative z-10 px-6 md:px-20 max-w-5xl">
+<div class="mb-2">
+<span class="bg-primary text-on-primary text-[10px] font-black uppercase tracking-[0.3em] px-3 py-1">The Kinetic Monolith</span>
+</div>
+<h1 class="font-headline text-6xl md:text-9xl font-black text-white leading-[0.85] tracking-tighter uppercase mb-8">
+                UNLEASH <br/> <span class="text-primary-container italic">RAW POWER</span>
+</h1>
+<p class="font-body text-secondary text-lg md:text-xl max-w-xl mb-10 leading-relaxed border-l-2 border-primary-container pl-6">
+                Mexico City's definitive third space. Where high-velocity elite performance meets brutalist precision. This is not a gym. This is a sanctuary for the obsessed.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-[#cafd00] text-[#0e0e0e] px-10 py-5 font-headline font-black text-lg uppercase tracking-tighter hover:bg-[#f3ffca] transition-all flex items-center justify-between group">
+                    Join the Tribe
+                    <span class="material-symbols-outlined ml-4 group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</button>
+<button class="border border-white/20 text-white px-10 py-5 font-headline font-black text-lg uppercase tracking-tighter hover:bg-white hover:text-black transition-all">
+                    Explore Experience
+                </button>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+<span class="text-[10px] font-black uppercase tracking-widest vertical-text">Scroll</span>
+<div class="w-[1px] h-12 bg-white/30 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-primary-container animate-pulse"></div>
+</div>
+</div>
+</section>
+<!-- The Third Space Section (Asymmetric Bento Grid) -->
+<section class="py-24 bg-surface px-6 md:px-20">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-full">
+<div class="md:col-span-8 flex flex-col justify-end p-12 bg-surface-container-low min-h-[400px] relative overflow-hidden group">
+<img alt="" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:scale-105 transition-transform duration-700" data-alt="architectural interior shot of a high-end brutalist gym with raw concrete walls and sleek modern lighting equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARStwFkuMQ5xExZFOEUtQpagmIkDA6D35Ak6flSdwIDTpOd7c-iOyuPnV6AiALYuQ8XEtviGq8qf4bhtYkw8-N4tVdjqNoFHRizgwnwHAnsht3y_r97w6WjezFyEeEpSiMUQPbU8BZQMVcE3KmdZ8FCUsQ2ZTtIeFSd45z2eFCWcQseJ-MDZiyKu2sH4MbayQE7jHKqFKjVREa0XP4i4_QxjCqlqECK-r3dMigtEn7XlWurbPFsgQJhiH_DdMmd7J6xH24RtgWQoHF"/>
+<div class="relative z-10">
+<h2 class="font-headline text-5xl font-black text-primary-container mb-4 uppercase">The Third Space</h2>
+<p class="font-body text-secondary max-w-md">Beyond work and home, we provide the architectural foundation for your transformation. A community of elite mindset and physical mastery.</p>
+</div>
+</div>
+<div class="md:col-span-4 flex flex-col justify-center items-center p-8 bg-primary-container text-on-primary-container min-h-[400px]">
+<span class="font-headline text-8xl font-black opacity-20 select-none">01</span>
+<h3 class="font-headline text-3xl font-black uppercase text-center mt-[-40px]">Precision Recovery</h3>
+<p class="text-center mt-4 font-body font-medium">Cryotherapy, Infrared Saunas, and Hyperbaric chambers designed for the 1%.</p>
+<button class="mt-8 border-b-2 border-on-primary-container font-black uppercase text-xs tracking-widest pb-1 hover:opacity-70 transition-all">Book Session</button>
+</div>
+<div class="md:col-span-4 bg-surface-container-highest p-12 flex flex-col justify-between group">
+<span class="material-symbols-outlined text-primary-container text-5xl" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<div>
+<h3 class="font-headline text-2xl font-black text-white uppercase mb-2">Elite Arsenal</h3>
+<p class="font-body text-on-surface-variant text-sm">Hand-picked equipment from across the globe. Calibrated for maximum hypertrophy.</p>
+</div>
+</div>
+<div class="md:col-span-8 bg-surface-container-low relative overflow-hidden group min-h-[300px]">
+<img alt="" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" data-alt="candid lifestyle shot of athletic members interacting in a high-end social lounge of a luxury gym in Mexico City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrSNPe3VegrM4VKOjfmO5D5-lL15qV4CotrH-_MK76ImxvzazMYkZurW8-1errYg5_kr9xgG89zRABPiKiQ7w2snq6wQaMJ6mZVok9wz1kpZCY5E3fnO8naA3R7GEdKzhNguGTNLs_m43pvNiysv2Psu0ci1SOHWSw-9r5K_kbkBc9hnoC3ndxh4k6SxtlUc7qxPswZ2gpoEKLQaxIhX8fC5HvR6sru5rkV0W23dGKaBHFWBED5rZbvMMgF-2_zoFW0lJv8kyVQ75Y"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-12 flex flex-col justify-end">
+<h3 class="font-headline text-3xl font-black text-white uppercase">The Tribe</h3>
+<p class="font-body text-secondary max-w-sm mt-2">Access exclusive networking events, metabolic workshops, and performance seminars.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Class Previews -->
+<section class="py-24 bg-surface-container-lowest overflow-hidden">
+<div class="px-6 md:px-20 mb-12 flex justify-between items-end">
+<div>
+<span class="text-primary-container font-black text-xs uppercase tracking-[0.4em]">Live Sessions</span>
+<h2 class="font-headline text-6xl font-black text-white uppercase mt-2">Class Previews</h2>
+</div>
+<a class="font-headline text-[#cafd00] font-black uppercase tracking-widest border-b-2 border-[#cafd00] pb-1 hover:text-white hover:border-white transition-all" href="#">View All Classes</a>
+</div>
+<div class="flex gap-6 overflow-x-auto pb-12 px-6 md:px-20 no-scrollbar">
+<!-- Class Card 1 -->
+<div class="flex-shrink-0 w-[350px] bg-surface-container-low group">
+<div class="h-[450px] relative overflow-hidden">
+<img alt="" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" data-alt="intense HIIT class with athletes in motion, blurred lights and sweating faces in a dark studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDX_4i1eDb8aJhk_SQRUWhZW70hHvu05wzZ7DE3nW_HqIplENzJcee851cTiGtIBShfwpA4-_L3QIT83rUOIvrqb1U-rqcZxqgvOx4fknos94S75qgxqYzQLiIYBQaWCeIO8dEpvwDaNvG8yXEnX4yATJiFVo-jXO3BZdxr7AHKtsp-v-g9iqSC_s1Zg1Mb9ZTm8uC4wkQbU8FIPIWNnphGU3q5JDgt0HT-XgMwhgfr-df2LBIfFuICeL_NsVzuMI6ThSwMTWAmbUS"/>
+<div class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 text-[10px] font-black uppercase tracking-widest">Live Now</div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent"></div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-center mb-2">
+<span class="text-on-surface-variant font-label text-[10px] uppercase tracking-widest">60 MIN • High Intensity</span>
+<span class="text-primary-container material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<h3 class="font-headline text-2xl font-black text-white uppercase group-hover:text-primary-container transition-colors">METABOLIC PEAK</h3>
+<p class="font-body text-on-surface-variant text-sm mt-2">The ultimate fat-burning protocol. Designed to spike your heart rate and push your VO2 Max.</p>
+</div>
+</div>
+<!-- Class Card 2 -->
+<div class="flex-shrink-0 w-[350px] bg-surface-container-low group">
+<div class="h-[450px] relative overflow-hidden">
+<img alt="" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" data-alt="serene and dark yoga studio with subtle lime green backlighting, person in advanced pose on a mat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8WI03jBa3HN3ZNM7N-OfXxUhOjDNN2a538k7wExk4HECqVAYIuPfvBUkdhRFm5j9cFjQEMkT0LrQykIDry48DTVidOmj6DZEIcRFADf0u6k2Qk7GoFHXGIAv1i5YWxm6-HmWx5RW3PRCZndpQsb84yakXjgD4sHI_Mg_zbirZjvbuxjpMJ-uyOLo7PDzguZUsmkxp-TjGlIck7OJ3WnxJdRNFwOO3cdJcBid9SqKvIBVndSjYsdlV0TebmQIT0mbL4s20B-g47XaY"/>
+<div class="absolute top-4 left-4 bg-white/10 backdrop-blur-md text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest">Starts in 20m</div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent"></div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-center mb-2">
+<span class="text-on-surface-variant font-label text-[10px] uppercase tracking-widest">75 MIN • Mobility</span>
+<span class="text-primary-container material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">self_improvement</span>
+</div>
+<h3 class="font-headline text-2xl font-black text-white uppercase group-hover:text-primary-container transition-colors">ZEN ARCHITECTURE</h3>
+<p class="font-body text-on-surface-variant text-sm mt-2">Dynamic structural mobility focusing on spinal decompression and nervous system regulation.</p>
+</div>
+</div>
+<!-- Class Card 3 -->
+<div class="flex-shrink-0 w-[350px] bg-surface-container-low group">
+<div class="h-[450px] relative overflow-hidden">
+<img alt="" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" data-alt="heavy boxing bag in a dark industrial gym setting with steam and low-key lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXxh8LBSBWmOAglfPGyuASS4UFnJn0y7pzaVfKOEB1Jkips9LwGSDJfCJwLip4d6bhKR-ZcTDOTfdrsRTU9OO_F9neMDq4Uhr5NjkHv1-VRwUT7jwLC7zze4b7xNdn6MOrfSBqfC2FIWW1UBmLxpvsVUk_c07PqoERM4yjLedY5LuNBHaFF3DpzfFE5lUXaZFIraRj6ZMCMa2nQ03p9pNS8PdJqlPIaLIu3uLhgayBeHUlT3fzHDNNXXjKpgLJjx4u7v_wJrBSqrh8"/>
+<div class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 text-[10px] font-black uppercase tracking-widest">Full Capacity</div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent"></div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-center mb-2">
+<span class="text-on-surface-variant font-label text-[10px] uppercase tracking-widest">50 MIN • Combat</span>
+<span class="text-primary-container material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">sports_kabaddi</span>
+</div>
+<h3 class="font-headline text-2xl font-black text-white uppercase group-hover:text-primary-container transition-colors">STRIKE LAB</h3>
+<p class="font-body text-on-surface-variant text-sm mt-2">Technical boxing meets high-power anaerobic conditioning. Sharpen your edge.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Membership CTA Section -->
+<section class="py-32 relative overflow-hidden bg-primary-container">
+<div class="absolute inset-0 opacity-10 pointer-events-none overflow-hidden select-none">
+<div class="text-[20rem] font-black font-headline text-on-primary-container leading-none -rotate-12 translate-x-[-10%] translate-y-[20%] uppercase">POWER</div>
+</div>
+<div class="relative z-10 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-12">
+<div class="max-w-2xl">
+<h2 class="font-headline text-7xl md:text-8xl font-black text-on-primary-container uppercase leading-[0.9] mb-8">Ready to <br/> Evolve?</h2>
+<p class="font-body text-on-primary-container text-xl font-medium leading-relaxed opacity-80 mb-8">
+                    Stop exercising. Start training. Join the collective of high-performers in the heart of CDMX.
+                </p>
+<div class="flex flex-wrap gap-4">
+<div class="flex items-center gap-2 bg-on-primary-container/10 px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-on-primary-container text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[10px] font-black uppercase tracking-widest">All Access Pass</span>
+</div>
+<div class="flex items-center gap-2 bg-on-primary-container/10 px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-on-primary-container text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Precision Biometrics</span>
+</div>
+<div class="flex items-center gap-2 bg-on-primary-container/10 px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-on-primary-container text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Guest Lounge Access</span>
+</div>
+</div>
+</div>
+<div class="w-full md:w-[400px] bg-[#0e0e0e] p-10 flex flex-col gap-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+<h3 class="font-headline text-3xl font-black text-white uppercase text-center">Elite Tier</h3>
+<div class="text-center">
+<span class="text-primary-container font-black text-5xl">$2,499</span>
+<span class="text-on-surface-variant font-label text-sm">/ MXN MONTH</span>
+</div>
+<div class="space-y-4 py-6 border-y border-white/10">
+<p class="text-white text-sm font-medium flex items-center justify-between">Unlimited HIIT &amp; Yoga <span class="material-symbols-outlined text-primary-container">done</span></p>
+<p class="text-white text-sm font-medium flex items-center justify-between">Personal Training Intro <span class="material-symbols-outlined text-primary-container">done</span></p>
+<p class="text-white text-sm font-medium flex items-center justify-between">Sauna &amp; Cold Plunge <span class="material-symbols-outlined text-primary-container">done</span></p>
+</div>
+<button class="bg-primary-container text-on-primary-container w-full py-4 font-headline font-black uppercase tracking-widest hover:scale-[1.02] transition-all">Claim Membership</button>
+<p class="text-[10px] text-center text-on-surface-variant uppercase tracking-widest">Limited slots available for Q3</p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest pt-20 pb-10 px-6 md:px-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<div class="col-span-1 md:col-span-1">
+<span class="text-2xl font-black text-[#cafd00] italic font-headline uppercase">GYM POWER</span>
+<p class="text-on-surface-variant text-xs mt-6 leading-relaxed max-w-xs">
+                    Mexico City's premium destination for physical and mental peak performance.
+                </p>
+<div class="flex gap-4 mt-8">
+<span class="material-symbols-outlined text-white hover:text-primary-container cursor-pointer">public</span>
+<span class="material-symbols-outlined text-white hover:text-primary-container cursor-pointer">chat</span>
+<span class="material-symbols-outlined text-white hover:text-primary-container cursor-pointer">camera</span>
+</div>
+</div>
+<div>
+<h4 class="font-headline text-white font-black uppercase tracking-widest mb-6">Navigation</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant text-xs hover:text-primary-container transition-colors uppercase font-label tracking-widest" href="#">The Space</a></li>
+<li><a class="text-on-surface-variant text-xs hover:text-primary-container transition-colors uppercase font-label tracking-widest" href="#">Performance Arsenal</a></li>
+<li><a class="text-on-surface-variant text-xs hover:text-primary-container transition-colors uppercase font-label tracking-widest" href="#">Pricing Tiers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline text-white font-black uppercase tracking-widest mb-6">Support</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant text-xs hover:text-primary-container transition-colors uppercase font-label tracking-widest" href="#">Contact Us</a></li>
+<li><a class="text-on-surface-variant text-xs hover:text-primary-container transition-colors uppercase font-label tracking-widest" href="#">Member Portal</a></li>
+<li><a class="text-on-surface-variant text-xs hover:text-primary-container transition-colors uppercase font-label tracking-widest" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline text-white font-black uppercase tracking-widest mb-6">Location</h4>
+<p class="text-on-surface-variant text-xs leading-relaxed uppercase tracking-widest">
+                    Av. Paseo de la Reforma 296,<br/>
+                    Juárez, Cuauhtémoc,<br/>
+                    06600 Ciudad de México, CDMX
+                </p>
+<div class="mt-4 flex items-center gap-2 text-primary-container">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Open 24/7 Elite Access</span>
+</div>
+</div>
+</div>
+<div class="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center">
+<span class="text-[10px] text-on-surface-variant font-label uppercase tracking-[0.3em]">© 2024 GYM POWER MEXICO CITY. NO EXCUSES.</span>
+<span class="text-[10px] text-white font-black font-headline uppercase tracking-[0.2em] mt-4 md:mt-0 italic">Built for the Obsessed</span>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pb-safe pt-2 bg-[#0e0e0e]/80 backdrop-blur-lg shadow-[0_-10px_40px_rgba(0,0,0,0.4)]">
+<div class="flex flex-col items-center justify-center text-gray-400 opacity-50 font-['Space_Grotesk'] text-[10px] uppercase tracking-widest py-2">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="mt-1">Profile</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#cafd00] bg-[#262626] rounded-sm px-6 py-2 font-['Space_Grotesk'] text-[10px] uppercase tracking-widest">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="mt-1">Classes</span>
+</div>
+<div class="flex flex-col items-center justify-center text-gray-400 opacity-50 font-['Space_Grotesk'] text-[10px] uppercase tracking-widest py-2">
+<span class="material-symbols-outlined" data-icon="qr_code">qr_code</span>
+<span class="mt-1">Access</span>
+</div>
+</nav>
+</body></html>

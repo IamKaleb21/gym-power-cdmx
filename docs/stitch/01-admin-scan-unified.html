@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GYM POWER - Admin Scan &amp; Access</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#ffffff",
+                    "primary": "#f3ffca",
+                    "surface-container-lowest": "#000000",
+                    "secondary": "#e5e2e1",
+                    "surface-tint": "#f3ffca",
+                    "error": "#ff7351",
+                    "secondary-container": "#474746",
+                    "on-surface": "#ffffff",
+                    "outline": "#767575",
+                    "surface": "#0e0e0e",
+                    "error-dim": "#d53d18",
+                    "surface-container": "#1a1a1a",
+                    "on-error-container": "#ffd2c8",
+                    "on-tertiary-fixed-variant": "#685900",
+                    "primary-container": "#cafd00",
+                    "tertiary-fixed-dim": "#edd13a",
+                    "on-primary-fixed-variant": "#526900",
+                    "tertiary-dim": "#edd13a",
+                    "on-tertiary": "#665800",
+                    "tertiary": "#ffeea5",
+                    "on-tertiary-fixed": "#483d00",
+                    "primary-fixed-dim": "#beee00",
+                    "on-secondary-container": "#d2d0cf",
+                    "surface-variant": "#262626",
+                    "secondary-fixed": "#e5e2e1",
+                    "secondary-fixed-dim": "#d6d4d3",
+                    "surface-dim": "#0e0e0e",
+                    "surface-container-low": "#131313",
+                    "inverse-on-surface": "#565555",
+                    "on-tertiary-container": "#5d5000",
+                    "on-primary-fixed": "#3a4a00",
+                    "surface-bright": "#2c2c2c",
+                    "outline-variant": "#484847",
+                    "surface-container-highest": "#262626",
+                    "inverse-surface": "#fcf9f8",
+                    "secondary-dim": "#d6d4d3",
+                    "on-primary": "#516700",
+                    "primary-dim": "#beee00",
+                    "error-container": "#b92902",
+                    "on-secondary": "#525151",
+                    "on-surface-variant": "#adaaaa",
+                    "tertiary-container": "#fce047",
+                    "surface-container-high": "#20201f",
+                    "tertiary-fixed": "#fce047",
+                    "on-primary-container": "#4a5e00",
+                    "on-secondary-fixed": "#403f3f",
+                    "background": "#0e0e0e",
+                    "inverse-primary": "#516700",
+                    "primary-fixed": "#cafd00",
+                    "on-error": "#450900",
+                    "on-secondary-fixed-variant": "#5c5b5b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scanner-frame::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 40px; height: 40px;
+            border-top: 4px solid #cafd00;
+            border-left: 4px solid #cafd00;
+        }
+        .scanner-frame::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; width: 40px; height: 40px;
+            border-top: 4px solid #cafd00;
+            border-right: 4px solid #cafd00;
+        }
+        .scanner-frame-bottom::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 40px; height: 40px;
+            border-bottom: 4px solid #cafd00;
+            border-left: 4px solid #cafd00;
+        }
+        .scanner-frame-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0; width: 40px; height: 40px;
+            border-bottom: 4px solid #cafd00;
+            border-right: 4px solid #cafd00;
+        }
+        @keyframes scan {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
+        }
+        .scan-line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #cafd00;
+            box-shadow: 0 0 15px #cafd00;
+            animation: scan 4s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- Unified SideNavBar Component -->
+<aside class="flex flex-col h-full py-8 px-4 bg-[#0e0e0e] h-screen w-64 border-r-0 font-['Space_Grotesk'] tracking-tight shrink-0 uppercase">
+<div class="px-2 mb-12">
+<h1 class="text-2xl font-black tracking-tighter text-[#cafd00] italic">GYM POWER</h1>
+<p class="text-[10px] tracking-[0.3em] text-outline mt-1 uppercase">ADMIN PORTAL</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-4 py-4 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 group active:scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="dashboard">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center px-4 py-4 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 group active:scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="group">group</span>
+<span class="text-sm">Members</span>
+</a>
+<a class="flex items-center px-4 py-4 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 group active:scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="calendar_today">calendar_today</span>
+<span class="text-sm">Classes</span>
+</a>
+<a class="flex items-center px-4 py-4 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 group active:scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="fitness_center">fitness_center</span>
+<span class="text-sm">Trainers</span>
+</a>
+<a class="flex items-center px-4 py-4 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 group active:scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="payments">payments</span>
+<span class="text-sm">Payments</span>
+</a>
+<a class="flex items-center px-4 py-4 text-[#cafd00] font-bold border-l-4 border-[#cafd00] bg-[#262626] transition-colors duration-200 group active:scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="text-sm">Scan</span>
+</a>
+</nav>
+<div class="px-2 pt-6 border-t border-outline-variant/10">
+<div class="flex items-center space-x-3">
+<img alt="Gym Power CDMX Admin Logo" class="w-10 h-10 rounded-lg grayscale hover:grayscale-0 transition-all duration-300" data-alt="Close-up professional portrait of a fitness club administrator in a modern dark studio setting with soft industrial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_9CVU9h0kmQ1K4FnzeH0IafJbFVN1fT-N84wFIZj2O_DLWqDnXxzPEQ-nba4DqT30aUHIKQezo10NBC7zfeeaJ-UFyyWgteYxSDoQLI3njiOYQRfwP0GsH_3_WZw2vjZqm6OPegaSlMKnBKuDmY6UQ3MNjlMQhz1OlbSSOGk021JM2KY118PIMGkFwURQ4yzg34muvrwKQJw9N4hGbi9fmPI3RdFnprAzrkIUGGJhYonftgOT1YmXgS8_dBBTfwcRH0iOGAQ8YT90"/>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-bold truncate">MARCUS V.</p>
+<p class="text-[10px] text-outline truncate">HEAD OPERATOR</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col md:flex-row bg-surface overflow-hidden">
+<!-- Left Panel: Scanner Interface -->
+<section class="flex-1 relative flex flex-col items-center justify-center p-8 bg-surface">
+<div class="absolute top-8 left-8 z-10">
+<h2 class="font-headline text-4xl font-black text-on-surface leading-none uppercase -ml-1">
+                    ACCESS <br/> <span class="text-primary-container">SCANNER</span>
+</h2>
+<p class="mt-2 text-xs font-label tracking-widest text-outline uppercase">Terminal ID: GP-CDMX-04</p>
+</div>
+<div class="relative w-full max-w-2xl aspect-square md:aspect-video bg-surface-container-low overflow-hidden rounded-lg shadow-2xl">
+<!-- Camera Feed Placeholder -->
+<div class="absolute inset-0 opacity-40 grayscale group overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Interior of a dark high-end industrial gym with heavy iron weights and neon accents in the background blurred" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyNtcQDLc8MyBbDStYW09B1AmuEf1T2RkODGInuSHBHHhbd5WAJrWg4VrLfsQWrcPCfrl76JRVlGTdwBOKD-_EWU9GEY1dnpSsBTvAJ9mZb5elwqpmMzfCT9FyyAfmqPGPKtmv4DsQc6Sdv4iS0K-F_Wq0TzxMbr3k81wgWALXEDYx9df16O4FEdRChpKEWG1ML_lFsJMNIGghHSQUhvgo4TkOlgMxtH-t9a9nkIkkx2AnMkYQ9XsJHH1PJTSo7OvG2oqhnmGSHc_8"/>
+</div>
+<!-- Scanner UI Overlays -->
+<div class="absolute inset-12 flex flex-col justify-between">
+<div class="scanner-frame absolute inset-0"></div>
+<div class="scanner-frame-bottom absolute inset-0"></div>
+<div class="scan-line"></div>
+<!-- HUD Elements -->
+<div class="absolute top-4 left-4 flex items-center space-x-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-[10px] font-mono text-primary uppercase tracking-tighter">Live Feed - 60 FPS</span>
+</div>
+<div class="absolute bottom-4 right-4 flex items-center space-x-2">
+<span class="text-[10px] font-mono text-outline uppercase">41.72N, 10.32W</span>
+</div>
+</div>
+<!-- Centered Target -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-32 h-32 border border-primary/20 rounded-full flex items-center justify-center">
+<div class="w-24 h-24 border border-primary/40 rounded-full animate-ping"></div>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="mt-12 w-full max-w-2xl flex items-center justify-between gap-4">
+<button class="flex-1 py-4 bg-surface-container-highest text-white font-headline font-bold uppercase text-sm tracking-widest flex items-center justify-center gap-2 hover:bg-surface-bright transition-all active:scale-95">
+<span class="material-symbols-outlined">refresh</span> Manual Refresh
+                </button>
+<button class="flex-1 py-4 bg-primary text-on-primary font-headline font-black uppercase text-sm tracking-widest flex items-center justify-center gap-2 hover:bg-primary-dim transition-all active:scale-95">
+<span class="material-symbols-outlined">keyboard</span> ID Input
+                </button>
+</div>
+</section>
+<!-- Right Panel: Member Profile -->
+<section class="w-full md:w-[420px] bg-surface-container-low flex flex-col border-l border-outline-variant/10 shadow-2xl z-20">
+<div class="p-8 flex-1 overflow-y-auto">
+<!-- Profile Header (Editorial Style) -->
+<div class="relative mb-12">
+<span class="absolute -top-6 -left-2 text-8xl font-black text-surface-container-highest/30 font-headline select-none">MEMBER</span>
+<div class="relative z-10 mt-10">
+<div class="w-48 h-48 bg-surface-container-highest rounded-lg overflow-hidden border-2 border-primary-container/20 group">
+<img alt="Member Profile Photo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Cinematic low-key portrait of an athletic man in gym wear looking focused, dramatic high-contrast lighting on charcoal background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBekFzzl8C8lk_8f1q1VxHo-u1MBHXVDCUaIe42zlD3GhmB8uAtvOCWY-GR8Y-fFplev_oudPAkthiYQxz7AZ5Pwy64GuNVLwh6K8OMEUs1fINo6lIvenpMciVMj3AGBSz8lahcqNopTAWJ-yV9dyXFS5itsdifd15VL5j_gzGVAMUqPTltvzDKZfFZJp4ai7p4U2fO0K2Z57nyQ5UosaFwr58z5BnvwYo64khqPWmJUNFp56sOSiEgJG-ViTm0-qdwlIqJEag7hcrQ"/>
+</div>
+<div class="mt-6">
+<h3 class="font-headline text-5xl font-black text-on-surface leading-[0.8] uppercase">ADRIÁN <br/> <span class="text-primary-container">CASTILLO</span></h3>
+<p class="mt-4 text-xs font-label tracking-[0.2em] text-outline font-bold">ID: GP-8821033</p>
+</div>
+</div>
+</div>
+<!-- Status Monoliths -->
+<div class="space-y-6">
+<!-- Membership Status -->
+<div class="p-6 bg-surface-container-highest rounded-lg flex items-center justify-between group overflow-hidden relative">
+<div class="absolute inset-y-0 left-0 w-1 bg-primary-container"></div>
+<div>
+<p class="text-[10px] font-label text-outline uppercase tracking-widest mb-1">Status</p>
+<p class="text-2xl font-headline font-bold text-primary-container uppercase">ACTIVE</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-primary-container opacity-20" data-icon="verified_user">verified_user</span>
+</div>
+<!-- Financial Status -->
+<div class="p-6 bg-surface-container-highest rounded-lg flex items-center justify-between">
+<div>
+<p class="text-[10px] font-label text-outline uppercase tracking-widest mb-1">Balance Due</p>
+<p class="text-2xl font-headline font-bold text-white uppercase tracking-tighter">$0.00 MXN</p>
+</div>
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-surface-bright">
+<span class="material-symbols-outlined text-primary-container" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+<!-- Metrics Bento Section -->
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container rounded-lg">
+<p class="text-[10px] font-label text-outline uppercase tracking-widest mb-1">Attendance</p>
+<p class="text-xl font-headline font-bold text-on-surface">14/20 <span class="text-[10px] text-outline font-normal">MTD</span></p>
+</div>
+<div class="p-4 bg-surface-container rounded-lg">
+<p class="text-[10px] font-label text-outline uppercase tracking-widest mb-1">Expires</p>
+<p class="text-xl font-headline font-bold text-on-surface">OCT 24</p>
+</div>
+</div>
+</div>
+<!-- Notes Section -->
+<div class="mt-8">
+<div class="flex items-center justify-between mb-4">
+<p class="text-xs font-label text-outline uppercase tracking-[0.2em] font-bold">Admin Notes</p>
+<span class="text-[10px] text-primary underline cursor-pointer hover:text-white transition-colors">Edit</span>
+</div>
+<div class="p-4 bg-surface-container rounded-lg italic text-sm text-on-surface-variant leading-relaxed">
+                        "Elite plan member. Personal training session scheduled for tomorrow 08:00 AM with Trainer Alex."
+                    </div>
+</div>
+</div>
+<!-- Footer Quick Actions -->
+<div class="p-8 pt-0 mt-auto grid grid-cols-2 gap-4">
+<button class="py-4 border border-outline-variant/20 text-white text-[10px] font-bold uppercase tracking-widest hover:bg-surface-bright transition-all">
+                    DENY ACCESS
+                </button>
+<button class="py-4 bg-primary text-on-primary text-[10px] font-bold uppercase tracking-widest hover:bg-primary-dim transition-all">
+                    GRANT ACCESS
+                </button>
+</div>
+</section>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GYM POWER CDMX | LOGIN</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Inter:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#516700",
+                        "surface-dim": "#0e0e0e",
+                        "secondary-fixed-dim": "#d6d4d3",
+                        "surface": "#0e0e0e",
+                        "error-dim": "#d53d18",
+                        "secondary-dim": "#d6d4d3",
+                        "inverse-surface": "#fcf9f8",
+                        "on-primary": "#516700",
+                        "background": "#0e0e0e",
+                        "surface-container-high": "#20201f",
+                        "surface-tint": "#f3ffca",
+                        "tertiary-fixed-dim": "#edd13a",
+                        "on-surface-variant": "#adaaaa",
+                        "on-secondary": "#525151",
+                        "tertiary-dim": "#edd13a",
+                        "primary-dim": "#beee00",
+                        "surface-container-highest": "#262626",
+                        "on-error": "#450900",
+                        "tertiary-fixed": "#fce047",
+                        "on-surface": "#ffffff",
+                        "surface-container-lowest": "#000000",
+                        "on-primary-fixed-variant": "#526900",
+                        "primary-container": "#cafd00",
+                        "on-tertiary-container": "#5d5000",
+                        "surface-container": "#1a1a1a",
+                        "on-secondary-fixed": "#403f3f",
+                        "surface-variant": "#262626",
+                        "primary": "#f3ffca",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "on-error-container": "#ffd2c8",
+                        "on-primary-fixed": "#3a4a00",
+                        "primary-fixed": "#cafd00",
+                        "error-container": "#b92902",
+                        "secondary-container": "#474746",
+                        "tertiary": "#ffeea5",
+                        "on-secondary-container": "#d2d0cf",
+                        "tertiary-container": "#fce047",
+                        "surface-container-low": "#131313",
+                        "primary-fixed-dim": "#beee00",
+                        "on-primary-container": "#4a5e00",
+                        "surface-bright": "#2c2c2c",
+                        "on-tertiary": "#665800",
+                        "secondary-fixed": "#e5e2e1",
+                        "outline-variant": "#484847",
+                        "on-background": "#ffffff",
+                        "error": "#ff7351",
+                        "inverse-on-surface": "#565555",
+                        "secondary": "#e5e2e1",
+                        "on-tertiary-fixed": "#483d00",
+                        "outline": "#767575",
+                        "on-tertiary-fixed-variant": "#685900"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #0e0e0e
+    }
+h1, h2, h3, .brand-font {
+    font-family: "Space Grotesk", sans-serif;
+    letter-spacing: -0.04em
+    }
+.kinetic-bg {
+    background-image: linear-gradient(rgba(14, 14, 14, 0.8), rgba(14, 14, 14, 0.95)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuB_zdaGZFHRsbyvv3KuL7oRxZSOavI8H7LVqsUz4HFraK514JjYyOSl9OQmXQjgGmM--v1lsCm7N3JIDwQZ5EYRj8xpAT2vFzu86Akgp70QP9wIuaktZJPdUmUps0jf6rAQuLcsGcQalqQCaF0njw72hzPydNYIKVWMqIC0ZGSMxwBvWD2dKQqI_2WDgyTuvJxzIhICrxbCadhL3eXPBgjnTJ68QFTOOI4o6otm_jWayS8ZZ8ts6duCbrYxlXG2fC1P_EyKFH4emg6p);
+    background-size: cover;
+    background-position: center
+    }
+.text-glow {
+    text-shadow: 0 0 20px rgba(202, 253, 0, 0.3)
+    }</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar Shell -->
+<header class="flex justify-between items-center px-6 py-4 w-full bg-[#0e0e0e] top-0 z-50 fixed">
+<div class="text-2xl font-black text-[#cafd00] italic font-space-grotesk tracking-tighter uppercase">
+            GYM POWER CDMX
+        </div>
+<div class="hidden md:flex gap-8">
+<span class="text-[#262626] font-headline uppercase tracking-widest text-xs">Membership</span>
+<span class="text-[#262626] font-headline uppercase tracking-widest text-xs">Locations</span>
+<span class="text-[#262626] font-headline uppercase tracking-widest text-xs">Performance</span>
+</div>
+<div>
+<button class="text-[#cafd00] font-space-grotesk tracking-tighter uppercase font-bold hover:text-[#f3ffca] transition-colors scale-95 active:duration-100">
+                Support
+            </button>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center relative overflow-hidden kinetic-bg" data-alt="High-contrast black and white photography of a gritty industrial gym with heavy iron weights and atmospheric overhead lighting">
+<!-- Large Decorative Background Text -->
+<div class="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/4 opacity-5 pointer-events-none select-none">
+<h2 class="text-[20rem] font-black italic brand-font text-white leading-none">POWER</h2>
+</div>
+<div class="w-full max-w-md px-6 py-12 relative z-10 mt-16">
+<!-- Login Card -->
+<div class="bg-surface-container-low backdrop-blur-md bg-opacity-70 border-l-4 border-primary-fixed p-8 lg:p-12 shadow-2xl">
+<div class="mb-10">
+<h1 class="text-5xl font-extrabold uppercase text-white mb-2 leading-tight">
+                        Log <span class="text-primary-fixed italic">In</span>
+</h1>
+<p class="text-on-surface-variant text-sm font-label uppercase tracking-widest">Access the kinetic monolith</p>
+</div>
+<form class="space-y-6">
+<!-- Email Input -->
+<div class="space-y-1">
+<label class="text-[10px] font-bold uppercase tracking-widest text-primary-fixed/60 block px-1">Email Terminal</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary-fixed transition-colors">alternate_email</span>
+<input class="w-full bg-surface-container-highest border-none focus:ring-0 focus:ring-offset-0 text-white pl-12 pr-4 py-4 font-body placeholder:text-outline transition-all focus:bg-surface-container-high border-b-2 border-transparent focus:border-primary-fixed" placeholder="demo@gympowercdmx.mx" type="email"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-1">
+<label class="text-[10px] font-bold uppercase tracking-widest text-primary-fixed/60 block px-1">Security Key</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary-fixed transition-colors">lock</span>
+<input class="w-full bg-surface-container-highest border-none focus:ring-0 focus:ring-offset-0 text-white pl-12 pr-4 py-4 font-body placeholder:text-outline transition-all focus:bg-surface-container-high border-b-2 border-transparent focus:border-primary-fixed" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded-none bg-surface-container-highest border-none text-primary-fixed focus:ring-0 w-4 h-4" type="checkbox"/>
+<span class="text-on-surface-variant group-hover:text-white transition-colors uppercase tracking-tighter">Remember Session</span>
+</label>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors uppercase tracking-tighter decoration-primary-fixed/30 underline-offset-4 underline" href="#">Forgot Password?</a>
+</div>
+<button class="w-full bg-primary-fixed text-on-primary-fixed font-black font-headline text-xl py-5 uppercase tracking-tighter hover:bg-primary transition-all active:scale-[0.98] flex items-center justify-center gap-3" type="submit">
+                        LOGIN
+                        <span class="material-symbols-outlined">arrow_forward_ios</span>
+</button>
+</form>
+<div class="mt-8 pt-8 border-t border-outline-variant/20">
+<p class="text-center text-on-surface-variant text-xs mb-4 uppercase tracking-widest">New Performance Athlete?</p>
+<button class="w-full bg-transparent border border-outline-variant text-white font-headline font-bold py-4 hover:bg-surface-container-highest transition-all uppercase tracking-tighter">
+                        Request Membership
+                    </button>
+</div>
+</div>
+<!-- Demo Credentials Disclosure -->
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low/50 backdrop-blur p-4">
+<div class="text-[9px] font-bold text-primary-fixed/40 uppercase tracking-widest mb-1">Admin Access</div>
+<div class="text-[10px] text-on-surface-variant font-mono break-all">demo@gympowercdmx.mx</div>
+</div>
+<div class="bg-surface-container-low/50 backdrop-blur p-4">
+<div class="text-[9px] font-bold text-primary-fixed/40 uppercase tracking-widest mb-1">Member Access</div>
+<div class="text-[10px] text-on-surface-variant font-mono break-all">miembro@gympowercdmx.mx</div>
+</div>
+</div>
+</div>
+<!-- Right Side Accents -->
+<div class="hidden lg:block absolute right-12 bottom-12 rotate-90">
+<div class="flex items-center gap-4">
+<div class="w-24 h-[1px] bg-primary-fixed"></div>
+<span class="text-primary-fixed font-headline text-sm tracking-[0.5em] uppercase">Built for Power</span>
+</div>
+</div>
+</main>
+<!-- Footer Credit -->
+<footer class="bg-surface py-6 px-12 flex justify-between items-center text-[10px] uppercase tracking-[0.2em] text-outline">
+<div>© 2024 GYM POWER CDMX</div>
+<div class="flex gap-6">
+<a class="hover:text-primary-fixed transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary-fixed transition-colors" href="#">Terms</a>
+<a class="hover:text-primary-fixed transition-colors" href="#">System Status: Active</a>
+</div>
+</footer>
+</body></html>

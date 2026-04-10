@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GYM POWER CDMX | Trainers Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#665800",
+                        "inverse-primary": "#516700",
+                        "inverse-surface": "#fcf9f8",
+                        "secondary-dim": "#d6d4d3",
+                        "surface-container-highest": "#262626",
+                        "secondary-fixed-dim": "#d6d4d3",
+                        "secondary-container": "#474746",
+                        "tertiary-container": "#fce047",
+                        "surface-bright": "#2c2c2c",
+                        "on-primary-fixed-variant": "#526900",
+                        "on-surface": "#ffffff",
+                        "primary": "#f3ffca",
+                        "primary-container": "#cafd00",
+                        "on-primary": "#516700",
+                        "on-error-container": "#ffd2c8",
+                        "outline": "#767575",
+                        "secondary": "#e5e2e1",
+                        "on-error": "#450900",
+                        "on-secondary-fixed": "#403f3f",
+                        "on-background": "#ffffff",
+                        "outline-variant": "#484847",
+                        "surface": "#0e0e0e",
+                        "error-dim": "#d53d18",
+                        "surface-container-low": "#131313",
+                        "on-secondary": "#525151",
+                        "on-primary-fixed": "#3a4a00",
+                        "inverse-on-surface": "#565555",
+                        "surface-container-high": "#20201f",
+                        "tertiary": "#ffeea5",
+                        "secondary-fixed": "#e5e2e1",
+                        "tertiary-fixed": "#fce047",
+                        "surface-container-lowest": "#000000",
+                        "primary-fixed-dim": "#beee00",
+                        "surface-variant": "#262626",
+                        "surface-dim": "#0e0e0e",
+                        "on-secondary-container": "#d2d0cf",
+                        "background": "#0e0e0e",
+                        "surface-tint": "#f3ffca",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "primary-fixed": "#cafd00",
+                        "error": "#ff7351",
+                        "on-primary-container": "#4a5e00",
+                        "tertiary-dim": "#edd13a",
+                        "on-tertiary-fixed-variant": "#685900",
+                        "on-tertiary-container": "#5d5000",
+                        "tertiary-fixed-dim": "#edd13a",
+                        "on-tertiary-fixed": "#483d00",
+                        "error-container": "#b92902",
+                        "primary-dim": "#beee00",
+                        "on-surface-variant": "#adaaaa",
+                        "surface-container": "#1a1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(202, 253, 0, 0.4);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar Shared Component -->
+<header class="flex justify-between items-center w-full px-8 h-20 sticky top-0 z-50 bg-[#0e0e0e]/70 backdrop-blur-xl">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black text-[#cafd00] font-['Space_Grotesk'] uppercase tracking-tighter">GYM POWER CDMX</span>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-gray-400 font-['Space_Grotesk'] uppercase tracking-tighter hover:text-[#f3ffca] transition-colors" href="#">Dashboard</a>
+<a class="text-gray-400 font-['Space_Grotesk'] uppercase tracking-tighter hover:text-[#f3ffca] transition-colors" href="#">Members</a>
+<a class="text-gray-400 font-['Space_Grotesk'] uppercase tracking-tighter hover:text-[#f3ffca] transition-colors" href="#">Classes</a>
+<a class="text-[#cafd00] font-['Space_Grotesk'] uppercase tracking-tighter border-b-2 border-[#cafd00] pb-1" href="#">Trainers</a>
+<a class="text-gray-400 font-['Space_Grotesk'] uppercase tracking-tighter hover:text-[#f3ffca] transition-colors" href="#">Payments</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-gray-400 hover:text-[#f3ffca] transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-gray-400 hover:text-[#f3ffca] transition-colors"><span class="material-symbols-outlined">settings</span></button>
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-outline-variant/30">
+<img alt="Admin Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFQ7mgJC3frB8tCQzY8gmq9NjbZWcpiE3gemDmDJVlfRK5JD_TFqbUMTzV8QmnmDcLMA4vEvJQdITet5tLllgEPp3pKYCmZuCOVNqjXeQ5Py09qaJa5SLOdix0lEv4xI320rNQNztunyUlp8mSVMRM_dcstDV4tBOavkZwyw2023fyGyE--gE9lp-yAzg4_c2b2DvmQTGDOJnADw1aVLZCuhwy8ejhVckUXg-s-EZzl4yiJQAF_AgcbuMHMHuy2hRPWvF0PmiNmwXL"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar Shared Component -->
+<aside class="fixed left-0 top-0 h-screen w-64 border-r-0 bg-[#131313] hidden lg:flex flex-col py-8 px-4 z-40 pt-28">
+<div class="flex items-center gap-3 mb-10 px-2">
+<div class="w-10 h-10 bg-surface-container-highest flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-[#cafd00]">fitness_center</span>
+</div>
+<div>
+<h3 class="text-2xl font-black tracking-tighter text-[#cafd00] font-['Space_Grotesk'] leading-none">GYM POWER</h3>
+<p class="text-gray-500 text-[10px] font-bold uppercase tracking-widest">ADMIN PORTAL</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 font-['Space_Grotesk'] tracking-tight" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 font-['Space_Grotesk'] tracking-tight" href="#">
+<span class="material-symbols-outlined">group</span> Members
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 font-['Space_Grotesk'] tracking-tight" href="#">
+<span class="material-symbols-outlined">calendar_today</span> Classes
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#cafd00] font-bold border-l-4 border-[#cafd00] bg-[#262626] transition-transform active:scale-[0.98] font-['Space_Grotesk'] tracking-tight" href="#">
+<span class="material-symbols-outlined">fitness_center</span> Trainers
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 font-['Space_Grotesk'] tracking-tight" href="#">
+<span class="material-symbols-outlined">payments</span> Payments
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 font-['Space_Grotesk'] tracking-tight" href="#">
+<span class="material-symbols-outlined">qr_code_scanner</span> Scan
+        </a>
+</nav>
+<button class="mt-auto w-full bg-primary-container text-on-primary py-3 px-4 rounded-lg font-headline font-black uppercase tracking-tighter flex items-center justify-center gap-2 hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">add</span> Add Member
+    </button>
+</aside>
+<!-- Main Content -->
+<main class="lg:ml-64 pt-8 pb-20 lg:pb-8 px-8 min-h-screen bg-background">
+<div class="max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div>
+<h1 class="font-headline text-5xl md:text-7xl font-black text-white leading-none tracking-tighter uppercase mb-4">
+                    ELITE <span class="text-[#cafd00] italic">COACHES</span>
+</h1>
+<p class="text-white/60 font-body max-w-lg text-lg">
+                    Managing the technical force behind Gym Power CDMX. High-performance oversight and roster optimization.
+                </p>
+</div>
+<div class="flex gap-4">
+<div class="bg-surface-container-low px-6 py-4 rounded-lg border-l-4 border-primary">
+<span class="block text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Active Trainers</span>
+<span class="text-3xl font-headline font-black text-white leading-none">24</span>
+</div>
+<div class="bg-surface-container-low px-6 py-4 rounded-lg border-l-4 border-outline-variant">
+<span class="block text-[10px] text-white/40 uppercase font-bold tracking-widest mb-1">Slots Open</span>
+<span class="text-3xl font-headline font-black text-white leading-none">128</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Trainers -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Trainer Card 1 -->
+<div class="bg-surface-container-low overflow-hidden group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100" data-alt="professional powerlifter coach in industrial gym setting with raw concrete walls and intense dramatic shadow play" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB-tLdPT2xplSMiUycOQsqkI6bVXT1OLo3PTmu5FjSNTOnhqkcCdL9ehvHAy27znaeGFaMNamaUHZcBihaPnRO9KJMZoVThIWI765WbKNMVEvpHWacoc3Vjhly7ZliOx8DFaM9asGzeiSXYOHpA7qGh5UZsQy8T4-jYmiVt8IclnRqSCe13SQkqUEUV0-yVmJgE2wKHrewEEL7AA5ZNaq65O2gDDBYErSJtZoxecQ838WCcEW8A5m7pkdkPIxbj046wMxUwkjOnYKw"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary-container text-on-primary px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm">POWERLIFTING</span>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-surface-container-low to-transparent">
+<h2 class="text-3xl font-headline font-black text-white tracking-tighter uppercase leading-none">MARCO VEGA</h2>
+</div>
+</div>
+<div class="p-6">
+<p class="text-white/60 text-sm leading-relaxed mb-6 font-body">
+                        Specializing in explosive strength and competitive preparation. Former national champion with 10+ years of technical instruction.
+                    </p>
+<div class="space-y-4">
+<h3 class="text-[10px] font-black text-primary uppercase tracking-[0.2em] flex items-center gap-2">
+<span class="w-8 h-[1px] bg-primary"></span> WEEKLY AVAILABILITY
+                        </h3>
+<div class="grid grid-cols-4 gap-2">
+<div class="bg-surface-container-highest p-2 rounded-sm text-center">
+<span class="block text-[10px] text-white/40 font-bold uppercase mb-1">MON</span>
+<span class="text-[11px] text-white font-mono">06-12</span>
+</div>
+<div class="bg-surface-container-highest p-2 rounded-sm text-center">
+<span class="block text-[10px] text-white/40 font-bold uppercase mb-1">WED</span>
+<span class="text-[11px] text-white font-mono">06-12</span>
+</div>
+<div class="bg-surface-container-highest p-2 rounded-sm text-center">
+<span class="block text-[10px] text-white/40 font-bold uppercase mb-1">FRI</span>
+<span class="text-[11px] text-white font-mono">06-12</span>
+</div>
+<div class="bg-primary-container/10 border border-primary/20 p-2 rounded-sm text-center">
+<span class="block text-[10px] text-primary/60 font-bold uppercase mb-1">SAT</span>
+<span class="text-[11px] text-primary font-mono font-bold">08-14</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-6 pb-6 flex justify-between items-center">
+<button class="text-white/40 hover:text-white transition-colors"><span class="material-symbols-outlined">more_horiz</span></button>
+<button class="text-[12px] font-headline font-bold uppercase text-primary border-b border-primary/30 hover:border-primary transition-all pb-1">Edit Profile</button>
+</div>
+</div>
+<!-- Trainer Card 2 -->
+<div class="bg-surface-container-low overflow-hidden group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100" data-alt="yoga instructor in a minimalist zen concrete studio with soft natural light streaming through large industrial windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs5czwXIWACD28RydPXZEWfjQAIQvC9pk6G0opaXy40X8sZKr08UTmTgtP5MPFrTzfpACPmmCDtnHV54_vnALNWJC_bWdZdDOO2Na8Hhhys3bQKMcijSAdB4a8bma8m4cxBzn6YYp0qre3OCZR-ZFx9qjNXB4Pa7I2Tdqlz2DqT1JXVcHH5BjcZkTjvmPtrfu1gOGa8hXmTfRaj38FKTdyl2qaD1mKi-58chC5egZW-Yx_EeeEZWsGQMHV2xc9syO239hpWRDQsuDL"/>
+<div class="absolute top-4 left-4">
+<span class="bg-surface-container-highest text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm">YOGA &amp; FLOW</span>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-surface-container-low to-transparent">
+<h2 class="text-3xl font-headline font-black text-white tracking-tighter uppercase leading-none">ELENA RIOS</h2>
+</div>
+</div>
+<div class="p-6">
+<p class="text-white/60 text-sm leading-relaxed mb-6 font-body">
+                        Advanced vinyasa and athletic recovery specialist. Integrating structural mobility with mental high-performance coaching.
+                    </p>
+<div class="space-y-4">
+<h3 class="text-[10px] font-black text-primary uppercase tracking-[0.2em] flex items-center gap-2">
+<span class="w-8 h-[1px] bg-primary"></span> WEEKLY AVAILABILITY
+                        </h3>
+<div class="grid grid-cols-4 gap-2">
+<div class="bg-surface-container-highest p-2 rounded-sm text-center">
+<span class="block text-[10px] text-white/40 font-bold uppercase mb-1">TUE</span>
+<span class="text-[11px] text-white font-mono">17-21</span>
+</div>
+<div class="bg-surface-container-highest p-2 rounded-sm text-center">
+<span class="block text-[10px] text-white/40 font-bold uppercase mb-1">THU</span>
+<span class="text-[11px] text-white font-mono">17-21</span>
+</div>
+<div class="bg-surface-container-highest p-2 rounded-sm text-center">
+<span class="block text-[10px] text-white/40 font-bold uppercase mb-1">FRI</span>
+<span class="text-[11px] text-white font-mono">17-21</span>
+</div>
+<div class="bg-primary-container/10 border border-primary/20 p-2 rounded-sm text-center">
+<span class="block text-[10px] text-primary/60 font-bold uppercase mb-1">SUN</span>
+<span class="text-[11px] text-primary font-mono font-bold">09-12</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-6 pb-6 flex justify-between items-center">
+<button class="text-white/40 hover:text-white transition-colors"><span class="material-symbols-outlined">more_horiz</span></button>
+<button class="text-[12px] font-headline font-bold uppercase text-primary border-b border-primary/30 hover:border-primary transition-all pb-1">Edit Profile</button>
+</div>
+</div>
+<!-- Trainer Card 3 -->
+<div class="bg-surface-container-low overflow-hidden group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100" data-alt="fitness coach in a high-intensity interval training session with metallic equipment and neon accents in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj5d7Uwr7NAbU1Xg6HnNkiAUCQvdhuQi-TgAaEez-Ce3RhoYXSPBHyCLyXQTdqrhzbFZqg7QjTYAnYqi1skA-tIDhDA3OAPVxBJxIKDBMgGYaU9u6diIBk4FRgp7Fw7lZpgsf0wu7t7wTISk2DlGQS9Cmo3tpXi-oJZBY1Dg2L-VLJJ-ytQeW0m921kYObEbVetiwM1DqkSd_Vhha6D23nVcL0TV-YTandd-cHpMruqBq4oi8CcTFEhui1nMTsnoSNZbrBDLqqG9u_"/>
+<div class="absolute top-4 left-4">
+<span class="bg-surface-container-highest text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-sm">HIIT / METCON</span>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-surface-container-low to-transparent">
+<h2 class="text-3xl font-headline font-black text-white tracking-tighter uppercase leading-none">AXEL ORTIZ</h2>
+</div>
+</div>
+<div class="p-6">
+<p class="text-white/60 text-sm leading-relaxed mb-6 font-body">
+                        High-velocity metabolic conditioning. Axel pushes the limits of human endurance through science-based programming and grit.
+                    </p>
+<div class="space-y-4">
+<h3 class="text-[10px] font-black text-primary uppercase tracking-[0.2em] flex items-center gap-2">
+<span class="w-8 h-[1px] bg-primary"></span> WEEKLY AVAILABILITY
+                        </h3>
+<div class="grid grid-cols-4 gap-2">
+<div class="bg-surface-container-highest p-2 rounded-sm text-center">
+<span class="block text-[10px] text-white/40 font-bold uppercase mb-1">MON</span>
+<span class="text-[11px] text-white font-mono">12-18</span>
+</div>
+<div class="bg-surface-container-highest p-2 rounded-sm text-center">
+<span class="block text-[10px] text-white/40 font-bold uppercase mb-1">TUE</span>
+<span class="text-[11px] text-white font-mono">12-18</span>
+</div>
+<div class="bg-surface-container-highest p-2 rounded-sm text-center">
+<span class="block text-[10px] text-white/40 font-bold uppercase mb-1">WED</span>
+<span class="text-[11px] text-white font-mono">12-18</span>
+</div>
+<div class="bg-primary-container/10 border border-primary/20 p-2 rounded-sm text-center">
+<span class="block text-[10px] text-primary/60 font-bold uppercase mb-1">THU</span>
+<span class="text-[11px] text-primary font-mono font-bold">12-18</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-6 pb-6 flex justify-between items-center">
+<button class="text-white/40 hover:text-white transition-colors"><span class="material-symbols-outlined">more_horiz</span></button>
+<button class="text-[12px] font-headline font-bold uppercase text-primary border-b border-primary/30 hover:border-primary transition-all pb-1">Edit Profile</button>
+</div>
+</div>
+<!-- Stats/CTA Card -->
+<div class="bg-[#cafd00] p-8 flex flex-col justify-between relative overflow-hidden group">
+<div class="relative z-10">
+<span class="text-[10px] font-black text-on-primary uppercase tracking-widest mb-4 block">MANAGEMENT ACTIONS</span>
+<h2 class="text-4xl font-headline font-black text-on-primary tracking-tighter uppercase mb-6 leading-[0.9]">RECRUIT NEW ELITE TALENT</h2>
+<button class="bg-on-primary text-primary-container px-6 py-3 font-headline font-black uppercase tracking-tighter flex items-center gap-2 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">add_circle</span> OPEN DIRECTORY
+                    </button>
+</div>
+<span class="absolute -right-12 -bottom-12 text-[180px] font-black text-on-primary/10 font-headline pointer-events-none group-hover:text-on-primary/20 transition-colors">GP</span>
+</div>
+<!-- Activity Log Card -->
+<div class="bg-surface-container-low p-6 md:col-span-2 flex flex-col">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-[10px] font-black text-primary uppercase tracking-[0.2em] flex items-center gap-2">
+<span class="w-8 h-[1px] bg-primary"></span> RECENT ACTIVITY
+                    </h3>
+<span class="text-[10px] text-white/40 font-bold uppercase">LIVE FEED</span>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-4">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-primary">edit_calendar</span>
+</div>
+<div>
+<p class="text-sm text-white font-medium">Marco Vega updated Saturday block</p>
+<p class="text-[10px] text-white/40 uppercase font-bold">2 HOURS AGO</p>
+</div>
+</div>
+<span class="text-[11px] font-mono text-white/60">#MV-9021</span>
+</div>
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-4">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-[#ff7351]">person_add</span>
+</div>
+<div>
+<p class="text-sm text-white font-medium">New trainer profile created: Sofia Luna</p>
+<p class="text-[10px] text-white/40 uppercase font-bold">YESTERDAY</p>
+</div>
+</div>
+<span class="text-[11px] font-mono text-white/60">#SL-4412</span>
+</div>
+</div>
+<button class="mt-auto w-full py-4 text-center text-white/40 font-headline font-bold text-[10px] uppercase tracking-widest hover:text-white transition-colors">View All Logs</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full bg-[#0e0e0e]/80 backdrop-blur-2xl flex justify-around items-center px-4 py-3 lg:hidden z-50 rounded-t-lg shadow-[0_-4px_30px_rgba(202,253,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-white/50 hover:text-[#cafd00] transition-all duration-300" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-bold tracking-widest mt-1">Dash</span>
+</a>
+<a class="flex flex-col items-center justify-center text-white/50 hover:text-[#cafd00] transition-all duration-300" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-bold tracking-widest mt-1">Users</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#cafd00] text-[#0e0e0e] rounded-sm px-4 py-1 scale-110 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-bold tracking-widest">Coaches</span>
+</a>
+<a class="flex flex-col items-center justify-center text-white/50 hover:text-[#cafd00] transition-all duration-300" href="#">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-bold tracking-widest mt-1">Scan</span>
+</a>
+</nav>
+</body></html>

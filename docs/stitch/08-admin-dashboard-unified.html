@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gym Power CDMX | Admin Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#ffffff",
+                        "primary": "#f3ffca",
+                        "surface-container-lowest": "#000000",
+                        "secondary": "#e5e2e1",
+                        "surface-tint": "#f3ffca",
+                        "error": "#ff7351",
+                        "secondary-container": "#474746",
+                        "on-surface": "#ffffff",
+                        "outline": "#767575",
+                        "surface": "#0e0e0e",
+                        "error-dim": "#d53d18",
+                        "surface-container": "#1a1a1a",
+                        "on-error-container": "#ffd2c8",
+                        "on-tertiary-fixed-variant": "#685900",
+                        "primary-container": "#cafd00",
+                        "tertiary-fixed-dim": "#edd13a",
+                        "on-primary-fixed-variant": "#526900",
+                        "tertiary-dim": "#edd13a",
+                        "on-tertiary": "#665800",
+                        "tertiary": "#ffeea5",
+                        "on-tertiary-fixed": "#483d00",
+                        "primary-fixed-dim": "#beee00",
+                        "on-secondary-container": "#d2d0cf",
+                        "surface-variant": "#262626",
+                        "secondary-fixed": "#e5e2e1",
+                        "secondary-fixed-dim": "#d6d4d3",
+                        "surface-dim": "#0e0e0e",
+                        "surface-container-low": "#131313",
+                        "inverse-on-surface": "#565555",
+                        "on-tertiary-container": "#5d5000",
+                        "on-primary-fixed": "#3a4a00",
+                        "surface-bright": "#2c2c2c",
+                        "outline-variant": "#484847",
+                        "surface-container-highest": "#262626",
+                        "inverse-surface": "#fcf9f8",
+                        "secondary-dim": "#d6d4d3",
+                        "on-primary": "#516700",
+                        "primary-dim": "#beee00",
+                        "error-container": "#b92902",
+                        "on-secondary": "#525151",
+                        "on-surface-variant": "#adaaaa",
+                        "tertiary-container": "#fce047",
+                        "surface-container-high": "#20201f",
+                        "tertiary-fixed": "#fce047",
+                        "on-primary-container": "#4a5e00",
+                        "on-secondary-fixed": "#403f3f",
+                        "background": "#0e0e0e",
+                        "inverse-primary": "#516700",
+                        "primary-fixed": "#cafd00",
+                        "on-error": "#450900",
+                        "on-secondary-fixed-variant": "#5c5b5b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0e0e0e;
+            color: #ffffff;
+        }
+        .font-headline {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen bg-background overflow-x-hidden">
+<!-- SideNavBar Component: Refactored based on COMPONENTS_16 -->
+<nav class="fixed left-0 top-0 z-40 hidden md:flex flex-col h-full py-8 px-4 h-screen w-64 border-r-0 bg-[#0e0e0e] font-['Space_Grotesk'] tracking-tight">
+<div class="px-2 mb-12">
+<h1 class="text-2xl font-black tracking-tighter text-[#cafd00] italic uppercase">GYM POWER</h1>
+<p class="text-[10px] tracking-[0.2em] text-white/40 uppercase mt-1">ADMIN PORTAL</p>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center px-4 py-3 space-x-4 text-[#cafd00] font-bold border-l-4 border-[#cafd00] bg-[#262626] uppercase transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-4 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 uppercase active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Members</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-4 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 uppercase active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span>Classes</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-4 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 uppercase active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span>Trainers</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-4 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 uppercase active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Payments</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-4 text-gray-500 font-medium hover:text-white hover:bg-[#262626] transition-colors duration-200 uppercase active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span>Scan</span>
+</a>
+</div>
+<div class="px-2 mt-auto pt-8 border-t border-outline-variant/15">
+<div class="flex items-center space-x-3 group cursor-pointer">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest overflow-hidden">
+<img alt="Gym Power CDMX Admin Logo" class="w-full h-full object-cover" data-alt="professional portrait of a confident male fitness club administrator in a modern dark interior studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC56GVuTqB-5OssmeSGvjlPjpxz0DjW-d6CaobW5KwwODGkcnAvsMPLJpM699mu-BpoaAUFY5kiIfKlkeZ0uFHamjND0hu1QXc3msYzbSqHCmyIrgJrkqBovdRJ7ZRwU-BX2YiB4GS7aulM_Ur7euctnZaFC5eaFmHeyRS2f1La1jlqX7hcEEskyo57lTYE4esGANVyMQOmnjDN4Y8LA3Bf1c0Czq-JocEaxh8xTDmR76G9l7eaU8cV2yJL5c-5e6kyEIQOOgOHNgl2"/>
+</div>
+<div>
+<p class="text-xs font-bold text-white">Admin Name</p>
+<p class="text-[10px] text-white/40 uppercase tracking-widest">Superuser</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 min-h-screen relative flex flex-col">
+<!-- TopAppBar Component: Integrated from COMPONENTS_16 -->
+<header class="flex justify-between items-center w-full px-8 h-20 sticky top-0 z-50 bg-[#0e0e0e]/70 backdrop-blur-xl font-['Space_Grotesk'] uppercase tracking-tighter">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-black text-[#cafd00]">GYM POWER CDMX</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center bg-[#131313] px-4 py-2 rounded-lg border border-transparent focus-within:border-[#cafd00] transition-all">
+<span class="material-symbols-outlined text-gray-500 text-xl mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs w-48 text-white uppercase tracking-widest placeholder:text-gray-600" placeholder="SEARCH ATHLETES..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-[#f3ffca] transition-colors rounded-lg">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-[#f3ffca] transition-colors rounded-lg">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/30">
+<img alt="Admin Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC56GVuTqB-5OssmeSGvjlPjpxz0DjW-d6CaobW5KwwODGkcnAvsMPLJpM699mu-BpoaAUFY5kiIfKlkeZ0uFHamjND0hu1QXc3msYzbSqHCmyIrgJrkqBovdRJ7ZRwU-BX2YiB4GS7aulM_Ur7euctnZaFC5eaFmHeyRS2f1La1jlqX7hcEEskyo57lTYE4esGANVyMQOmnjDN4Y8LA3Bf1c0Czq-JocEaxh8xTDmR76G9l7eaU8cV2yJL5c-5e6kyEIQOOgOHNgl2"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-6 md:p-12">
+<!-- Header section original content below TopAppBar -->
+<div class="mb-12">
+<h2 class="text-5xl md:text-7xl font-black font-headline tracking-tighter text-white uppercase -ml-1">
+                    DASHBOARD<span class="text-primary-fixed">.</span>
+</h2>
+<p class="text-white/40 font-headline tracking-[0.3em] text-sm mt-2">CDMX PERFORMANCE METRICS</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Retention KPIs -->
+<div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+<!-- KPI: Retention Rate -->
+<div class="bg-surface-container-low p-6 flex flex-col justify-between relative overflow-hidden group">
+<span class="absolute -right-4 -bottom-4 text-8xl font-black font-headline text-white/[0.03] group-hover:text-primary-fixed/5 transition-colors">01</span>
+<div>
+<p class="text-xs font-headline tracking-widest text-white/40 uppercase mb-2">Retention Rate</p>
+<h3 class="text-4xl font-black font-headline text-primary-fixed">94.2%</h3>
+</div>
+<div class="mt-4 flex items-center text-primary-fixed text-xs font-bold">
+<span class="material-symbols-outlined text-sm mr-1" data-icon="trending_up">trending_up</span>
+                            +2.4% THIS MONTH
+                        </div>
+</div>
+<!-- KPI: Active Members -->
+<div class="bg-surface-container-low p-6 flex flex-col justify-between relative overflow-hidden group">
+<span class="absolute -right-4 -bottom-4 text-8xl font-black font-headline text-white/[0.03] group-hover:text-primary-fixed/5 transition-colors">02</span>
+<div>
+<p class="text-xs font-headline tracking-widest text-white/40 uppercase mb-2">Active Members</p>
+<h3 class="text-4xl font-black font-headline text-white">1,284</h3>
+</div>
+<div class="mt-4 h-1 w-full bg-surface-container-highest">
+<div class="h-full bg-primary-fixed w-[85%]"></div>
+</div>
+</div>
+<!-- KPI: Churn Prediction -->
+<div class="bg-surface-container-low p-6 flex flex-col justify-between relative overflow-hidden group">
+<span class="absolute -right-4 -bottom-4 text-8xl font-black font-headline text-white/[0.03] group-hover:text-primary-fixed/5 transition-colors">03</span>
+<div>
+<p class="text-xs font-headline tracking-widest text-white/40 uppercase mb-2">Churn Risk</p>
+<h3 class="text-4xl font-black font-headline text-error">3.1%</h3>
+</div>
+<p class="mt-4 text-[10px] text-white/40 leading-tight">PREDICTIVE AI ANALYSIS BASED ON ATTENDANCE DROPS</p>
+</div>
+</div>
+<!-- Quick Action: Registration -->
+<div class="md:col-span-4 bg-primary-fixed p-8 flex flex-col justify-between">
+<div>
+<h4 class="text-3xl font-black font-headline text-on-primary leading-none uppercase mb-2">Registration<br/>Portal</h4>
+<p class="text-on-primary/60 text-sm font-medium">Onboard new athletes into the system in under 60 seconds.</p>
+</div>
+<button class="bg-on-background text-primary-fixed py-4 px-6 font-headline font-bold text-sm tracking-widest uppercase flex items-center justify-between mt-8 hover:scale-105 active:scale-95 transition-transform">
+                        Register New Member
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Today's Classes Summary -->
+<div class="md:col-span-7 bg-surface-container-low p-8">
+<div class="flex justify-between items-center mb-8">
+<h4 class="text-xl font-black font-headline text-white uppercase tracking-tighter">Today's Class Schedule</h4>
+<span class="text-xs font-headline tracking-[0.2em] text-white/40">MARCH 24, 2024</span>
+</div>
+<div class="space-y-4">
+<!-- Class Item -->
+<div class="flex items-center p-4 bg-surface-container-highest group hover:bg-primary-fixed transition-colors duration-300">
+<div class="w-12 text-center border-r border-outline-variant/30 pr-4">
+<p class="text-xs font-bold font-headline group-hover:text-on-primary">08:00</p>
+<p class="text-[10px] text-white/40 group-hover:text-on-primary/60 uppercase">AM</p>
+</div>
+<div class="flex-1 px-6">
+<h5 class="font-headline font-black text-white group-hover:text-on-primary uppercase tracking-tight">HIIT Performance</h5>
+<p class="text-xs text-white/40 group-hover:text-on-primary/60">Coach: Marco Antonio</p>
+</div>
+<div class="text-right">
+<div class="flex items-center gap-1 mb-1">
+<span class="w-2 h-2 rounded-full bg-primary-fixed group-hover:bg-on-primary"></span>
+<p class="text-xs font-bold font-headline group-hover:text-on-primary">24 / 25</p>
+</div>
+<p class="text-[10px] font-headline text-white/40 group-hover:text-on-primary/60 uppercase tracking-widest">ALMOST FULL</p>
+</div>
+</div>
+<div class="flex items-center p-4 bg-surface-container-highest group hover:bg-primary-fixed transition-colors duration-300">
+<div class="w-12 text-center border-r border-outline-variant/30 pr-4">
+<p class="text-xs font-bold font-headline group-hover:text-on-primary">12:30</p>
+<p class="text-[10px] text-white/40 group-hover:text-on-primary/60 uppercase">PM</p>
+</div>
+<div class="flex-1 px-6">
+<h5 class="font-headline font-black text-white group-hover:text-on-primary uppercase tracking-tight">Heavy Lifting Tech</h5>
+<p class="text-xs text-white/40 group-hover:text-on-primary/60">Coach: Elena Vazquez</p>
+</div>
+<div class="text-right">
+<div class="flex items-center gap-1 mb-1">
+<span class="w-2 h-2 rounded-full bg-white/20 group-hover:bg-on-primary/40"></span>
+<p class="text-xs font-bold font-headline group-hover:text-on-primary">12 / 20</p>
+</div>
+<p class="text-[10px] font-headline text-white/40 group-hover:text-on-primary/60 uppercase tracking-widest">SPOTS OPEN</p>
+</div>
+</div>
+<div class="flex items-center p-4 bg-surface-container-highest group hover:bg-primary-fixed transition-colors duration-300">
+<div class="w-12 text-center border-r border-outline-variant/30 pr-4">
+<p class="text-xs font-bold font-headline group-hover:text-on-primary">18:00</p>
+<p class="text-[10px] text-white/40 group-hover:text-on-primary/60 uppercase">PM</p>
+</div>
+<div class="flex-1 px-6">
+<h5 class="font-headline font-black text-white group-hover:text-on-primary uppercase tracking-tight">Box &amp; Burn</h5>
+<p class="text-xs text-white/40 group-hover:text-on-primary/60">Coach: "Toro" Rodriguez</p>
+</div>
+<div class="text-right">
+<div class="flex items-center gap-1 mb-1">
+<span class="w-2 h-2 rounded-full bg-primary-fixed group-hover:bg-on-primary"></span>
+<p class="text-xs font-bold font-headline group-hover:text-on-primary">30 / 30</p>
+</div>
+<p class="text-[10px] font-headline text-white/40 group-hover:text-on-primary/60 uppercase tracking-widest">BOOKED OUT</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Payments -->
+<div class="md:col-span-5 bg-surface-container-low p-8 flex flex-col">
+<h4 class="text-xl font-black font-headline text-white uppercase tracking-tighter mb-8">Recent Payments</h4>
+<div class="flex-1 space-y-6">
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-primary-fixed" data-icon="person">person</span>
+</div>
+<div>
+<p class="text-xs font-bold font-headline text-white uppercase">S. Mendoza</p>
+<p class="text-[10px] text-white/40">PRO ANNUAL</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-black font-headline text-white">$14,500.00</p>
+<p class="text-[10px] text-primary-fixed uppercase font-bold tracking-widest">SUCCESS</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-primary-fixed" data-icon="person">person</span>
+</div>
+<div>
+<p class="text-xs font-bold font-headline text-white uppercase">L. Ramirez</p>
+<p class="text-[10px] text-white/40">MONTHLY BASIC</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-black font-headline text-white">$1,850.00</p>
+<p class="text-[10px] text-primary-fixed uppercase font-bold tracking-widest">SUCCESS</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-primary-fixed" data-icon="person">person</span>
+</div>
+<div>
+<p class="text-xs font-bold font-headline text-white uppercase">D. Gomez</p>
+<p class="text-[10px] text-white/40">COACHING PACK</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-black font-headline text-white">$4,200.00</p>
+<p class="text-[10px] text-primary-fixed uppercase font-bold tracking-widest">SUCCESS</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-4 opacity-50">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-error" data-icon="person">person</span>
+</div>
+<div>
+<p class="text-xs font-bold font-headline text-white uppercase">R. Torres</p>
+<p class="text-[10px] text-white/40">MONTHLY BASIC</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-black font-headline text-white">$1,850.00</p>
+<p class="text-[10px] text-error uppercase font-bold tracking-widest">FAILED</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 bg-surface-container-highest text-white/60 font-headline text-[10px] tracking-[0.3em] uppercase hover:text-white transition-colors">View All Transactions</button>
+</div>
+</div>
+<!-- System Status Footer -->
+<footer class="mt-12 flex flex-col md:flex-row justify-between items-center text-white/20 border-t border-outline-variant/10 pt-8 gap-4">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-fixed"></span>
+<span class="text-[10px] uppercase font-headline tracking-widest font-bold">Cloud Sync Active</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-fixed"></span>
+<span class="text-[10px] uppercase font-headline tracking-widest font-bold">Access Terminal Online</span>
+</div>
+</div>
+<div class="text-[10px] uppercase font-headline tracking-widest">
+                    Gym Power CDMX © 2024 Administrative Engine v4.0.2
+                </div>
+</footer>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pb-safe pt-2 bg-[#0e0e0e]/80 backdrop-blur-lg shadow-[0_-10px_40px_rgba(0,0,0,0.4)]">
+<a class="flex flex-col items-center justify-center text-[#cafd00] bg-[#262626] rounded-sm px-6 py-2 transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 opacity-50 hover:opacity-100 transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Classes</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 opacity-50 hover:opacity-100 transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="qr_code">qr_code</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1">Access</span>
+</a>
+</nav>
+</body></html>
