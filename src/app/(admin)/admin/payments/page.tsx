@@ -30,13 +30,13 @@ function memberName(row: PaymentListRow): string {
 
 function txnSubtitle(row: PaymentListRow): string {
   const d = new Date(row.created_at)
-  const time = d.toLocaleTimeString('en-US', {
+  const time = d.toLocaleTimeString('es-MX', {
     timeZone: MX,
     hour: 'numeric',
     minute: '2-digit',
     hour12: true,
   })
-  return `${row.concept} • ${time}`
+  return `${row.concept} · ${time}`
 }
 
 export default async function AdminPaymentsPage() {
@@ -75,7 +75,7 @@ export default async function AdminPaymentsPage() {
         <div className="md:col-span-8 bg-surface-container-low p-8 rounded-lg relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#cafd00]/5 rounded-full blur-[100px] -mr-32 -mt-32" />
           <p className="text-white/40 uppercase tracking-[0.2em] text-[10px] font-bold mb-2">
-            Monthly Recurring Revenue
+            Ingresos del mes (MRR aprox.)
           </p>
           <div className="flex items-baseline gap-4 flex-wrap">
             <h3 className="text-6xl lg:text-8xl font-black font-headline tracking-tighter text-[#cafd00]">
@@ -106,7 +106,7 @@ export default async function AdminPaymentsPage() {
         </div>
         <div className="md:col-span-4 flex flex-col gap-6">
           <div className="bg-surface-container-high p-6 rounded-lg flex-1">
-            <p className="text-white/40 uppercase tracking-[0.2em] text-[10px] font-bold mb-1">Average Ticket</p>
+            <p className="text-white/40 uppercase tracking-[0.2em] text-[10px] font-bold mb-1">Ticket promedio</p>
             <h4 className="text-4xl font-headline font-black text-white">
               ${avgTicket.toLocaleString('es-MX', { maximumFractionDigits: 0 })}
             </h4>
@@ -117,9 +117,9 @@ export default async function AdminPaymentsPage() {
             </div>
           </div>
           <div className="bg-surface-container-high p-6 rounded-lg flex-1 border-l-4 border-error">
-            <p className="text-white/40 uppercase tracking-[0.2em] text-[10px] font-bold mb-1">Churn Rate</p>
+            <p className="text-white/40 uppercase tracking-[0.2em] text-[10px] font-bold mb-1">Tasa de baja (demo)</p>
             <h4 className="text-4xl font-headline font-black text-white">2.4%</h4>
-            <p className="text-[10px] text-error mt-2 font-bold uppercase">+0.3% vs Last Month</p>
+            <p className="text-[10px] text-error mt-2 font-bold uppercase">+0.3 % vs mes anterior</p>
           </div>
         </div>
       </section>
@@ -127,13 +127,13 @@ export default async function AdminPaymentsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <section className="lg:col-span-2 space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-headline font-black uppercase tracking-tighter">Recent Transactions</h2>
-            <span className="text-[10px] uppercase font-black tracking-widest text-white/30">Last 20</span>
+            <h2 className="text-2xl font-headline font-black uppercase tracking-tighter">Movimientos recientes</h2>
+            <span className="text-[10px] uppercase font-black tracking-widest text-white/30">Últimos 20</span>
           </div>
           <div className="space-y-4">
             {recent.length === 0 ? (
               <div className="bg-surface-container-low p-8 rounded-lg text-white/40 text-sm text-center">
-                No transactions yet.
+                Sin movimientos aún.
               </div>
             ) : (
               recent.map((row) => {
@@ -183,7 +183,7 @@ export default async function AdminPaymentsPage() {
         <aside className="space-y-6">
           <RegisterPaymentForm members={members} />
           <div className="bg-surface-container-low p-6 rounded-lg border-l-2 border-[#cafd00]">
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-4">Unpaid Dues Alert</h4>
+            <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-4">Adeudos pendientes</h4>
             <div className="flex items-center justify-between">
               <span className="text-3xl font-headline font-black">
                 ${totalUnpaid.toLocaleString('es-MX', { maximumFractionDigits: 0 })}
@@ -191,7 +191,8 @@ export default async function AdminPaymentsPage() {
               <span className="material-symbols-outlined text-[#cafd00] scale-125">info</span>
             </div>
             <p className="text-[10px] text-white/40 mt-2 uppercase">
-              {unpaidCount} {unpaidCount === 1 ? 'record' : 'records'} requiring attention
+              {unpaidCount}{' '}
+              {unpaidCount === 1 ? 'cargo pendiente' : 'cargos pendientes'}
             </p>
           </div>
         </aside>

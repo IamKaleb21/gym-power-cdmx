@@ -64,9 +64,9 @@ export default function RegisterPaymentForm({
   return (
     <div className="bg-surface-container-high p-8 rounded-lg relative">
       <div className="absolute -top-3 -left-3 bg-[#cafd00] text-[#0e0e0e] px-3 py-1 font-headline font-black text-xs uppercase italic">
-        Manual Entry
+        Registro manual
       </div>
-      <h2 className="text-xl font-headline font-black uppercase tracking-tighter mb-6">Register Payment</h2>
+      <h2 className="text-xl font-headline font-black uppercase tracking-tighter mb-6">Registrar pago</h2>
       <form className="space-y-4" onSubmit={handleSubmit}>
         {error && (
           <p className="text-error text-sm font-medium" role="alert">
@@ -78,7 +78,7 @@ export default function RegisterPaymentForm({
             htmlFor="payment-member"
             className="block text-[10px] uppercase font-bold tracking-widest text-white/40 mb-2"
           >
-            Member
+            Miembro
           </label>
           <select
             id="payment-member"
@@ -87,7 +87,7 @@ export default function RegisterPaymentForm({
             onChange={(e) => setMemberId(e.target.value)}
             className="w-full bg-surface-container-highest border-none focus:ring-0 focus:border-b-2 border-[#cafd00] text-white py-3 px-4 text-sm rounded-sm"
           >
-            <option value="">Select member…</option>
+            <option value="">Selecciona un miembro…</option>
             {members.map((m) => (
               <option key={m.id} value={m.id}>
                 {m.full_name} — {m.email}
@@ -97,7 +97,7 @@ export default function RegisterPaymentForm({
         </div>
         <div>
           <label htmlFor="payment-amount" className="block text-[10px] uppercase font-bold tracking-widest text-white/40 mb-2">
-            Amount (MXN)
+            Importe (MXN)
           </label>
           <input
             id="payment-amount"
@@ -117,7 +117,7 @@ export default function RegisterPaymentForm({
             htmlFor="payment-concept"
             className="block text-[10px] uppercase font-bold tracking-widest text-white/40 mb-2"
           >
-            Concept
+            Concepto
           </label>
           <input
             id="payment-concept"
@@ -125,12 +125,12 @@ export default function RegisterPaymentForm({
             required
             value={concept}
             onChange={(e) => setConcept(e.target.value)}
-            placeholder="e.g. Monthly membership"
+            placeholder="Ej. mensualidad abril"
             className="w-full bg-surface-container-highest border-none focus:ring-0 focus:border-b-2 border-[#cafd00] text-white py-3 px-4 text-sm rounded-sm"
           />
         </div>
         <div>
-          <p className="block text-[10px] uppercase font-bold tracking-widest text-white/40 mb-2">Method / Status</p>
+          <p className="block text-[10px] uppercase font-bold tracking-widest text-white/40 mb-2">Método / estado</p>
           <div className="grid grid-cols-3 gap-2">
             <button
               type="button"
@@ -141,7 +141,7 @@ export default function RegisterPaymentForm({
                   : 'bg-surface-container-highest text-white/60 hover:text-white'
               }`}
             >
-              Card
+              Tarjeta
             </button>
             <button
               type="button"
@@ -152,7 +152,7 @@ export default function RegisterPaymentForm({
                   : 'bg-surface-container-highest text-white/60 hover:text-white'
               }`}
             >
-              Cash
+              Efectivo
             </button>
             <button
               type="button"
@@ -163,7 +163,7 @@ export default function RegisterPaymentForm({
                   : 'bg-surface-container-highest text-white/60 hover:text-white'
               }`}
             >
-              Pending
+              Pendiente
             </button>
           </div>
         </div>
@@ -173,7 +173,7 @@ export default function RegisterPaymentForm({
               htmlFor="payment-date"
               className="block text-[10px] uppercase font-bold tracking-widest text-white/40 mb-2"
             >
-              Payment date
+              Fecha de pago
             </label>
             <input
               id="payment-date"
@@ -187,7 +187,7 @@ export default function RegisterPaymentForm({
         {!paid && (
           <div>
             <label htmlFor="due-date" className="block text-[10px] uppercase font-bold tracking-widest text-white/40 mb-2">
-              Due date
+              Fecha límite
             </label>
             <input
               id="due-date"
@@ -205,10 +205,10 @@ export default function RegisterPaymentForm({
             disabled={isPending}
             className="w-full bg-[#cafd00] hover:bg-[#f3ffca] text-[#0e0e0e] py-4 rounded-sm font-black uppercase text-sm tracking-widest transition-all disabled:opacity-60"
           >
-            {isPending ? 'Processing…' : 'Process Transaction'}
+            {isPending ? 'Procesando…' : 'Registrar movimiento'}
           </button>
           <p className="text-[9px] text-white/30 text-center mt-4 uppercase tracking-[0.15em]">
-            Securely logged via GP Admin Core v4.2
+            Registro interno · Gym Power CDMX
           </p>
         </div>
       </form>
