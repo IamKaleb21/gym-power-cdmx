@@ -104,23 +104,6 @@ Además del alcance base del [PRD](docs/PRD.md), el proyecto incluye entre otras
 
 Cómo y por qué: [docs/DECISIONS.md](docs/DECISIONS.md) y commits recientes del repositorio.
 
-## Videos Loom (entrega ReWo)
-
-Sustituir por los enlaces reales cuando estén publicados:
-
-- **Demo funcional (usuario final):** _[URL Loom — pendiente]_
-- **Detrás de escenas (técnico, IA, retos):** _[URL Loom — pendiente]_
-
-## Repositorio Git
-
-El historial de commits forma parte del entregable (commits descriptivos por avance). Añade aquí el enlace público al repositorio si aplica:
-
-- **Repositorio:** _[URL GitHub/GitLab — opcional]_
-
-## Manual de pruebas ReWo
-
-Procedimiento de evaluación de pasantía: [docs/Manual de Pruebas para Candidatos a Pasantía ReWo (1).pdf](docs/Manual%20de%20Pruebas%20para%20Candidatos%20a%20Pasantía%20ReWo%20(1).pdf)
-
 ## Licencia
 
 Proyecto privado (`"private": true` en `package.json`).
