@@ -58,6 +58,7 @@ export default async function MemberDashboardPage() {
     (supabase as any)
       .from('class_enrollments')
       .select(`
+        id,
         classes!inner (
           name,
           scheduled_at,
@@ -133,7 +134,7 @@ export default async function MemberDashboardPage() {
         <div className="space-y-3">
           {upcomingEnrollments && upcomingEnrollments.length > 0 ? (
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            upcomingEnrollments.map((enrollment: any, idx: number) => {
+            upcomingEnrollments.map((enrollment: any) => {
               const cls = enrollment.classes
               if (!cls) return null
               const { month, day, time } = formatScheduledDate(cls.scheduled_at)
@@ -142,7 +143,7 @@ export default async function MemberDashboardPage() {
                 : 'Coach TBD'
               return (
                 <div
-                  key={idx}
+                  key={enrollment.id}
                   className="flex items-center gap-4 bg-surface-container-low p-4 rounded-lg border border-outline-variant hover:border-[#CCFF00] transition-colors group"
                 >
                   <div className="flex flex-col items-center justify-center bg-surface-container-highest rounded px-3 py-2 border border-outline-variant">

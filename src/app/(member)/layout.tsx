@@ -23,7 +23,7 @@ export default function MemberLayout({ children }: { children: React.ReactNode }
       </nav>
 
       {/* Main content */}
-      <main>{children}</main>
+      <div>{children}</div>
 
       {/* Bottom nav */}
       <MemberNav />
