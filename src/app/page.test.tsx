@@ -6,10 +6,10 @@ describe("Home landing page", () => {
     render(<Home />);
 
     expect(
-      screen.getByRole("heading", { name: /unleash raw power/i }),
+      screen.getByRole("heading", { name: /desata\s+poder puro/i }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /join the tribe/i }),
+      screen.getByRole("link", { name: /ver planes/i }),
     ).toBeInTheDocument();
   });
 });

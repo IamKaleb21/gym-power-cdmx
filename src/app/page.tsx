@@ -1,10 +1,46 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "GYM POWER CDMX | The Kinetic Monolith",
+  title: "Gym Power CDMX | Entrenamiento y clases en Ciudad de México",
   description:
-    "Mexico City's definitive third space for elite performance and recovery.",
+    "Gimnasio en CDMX: planes de membresía, clases grupales y seguimiento para miembros y staff.",
 };
+
+type LandingPlan = {
+  name: string;
+  price: number;
+  durationDays: number;
+  blurb: string;
+  perks: readonly string[];
+  featured?: boolean;
+};
+
+/** Catálogo alineado con `buildSeedBlueprint` en scripts/seed.ts */
+const MEMBERSHIP_PLANS: LandingPlan[] = [
+  {
+    name: "Plan Mensual",
+    price: 799,
+    durationDays: 30,
+    blurb: "Ideal para probar el ambiente y mantener rutina sin compromiso largo.",
+    perks: ["Acceso al gimnasio", "Clases grupales incluidas", "App miembro y QR de acceso"],
+  },
+  {
+    name: "Plan Trimestral",
+    price: 2099,
+    durationDays: 90,
+    blurb: "Mejor relación precio por mes; perfecto para ciclos de 3 meses.",
+    perks: ["Todo lo del mensual", "Ahorro vs. 3× mensual", "Prioridad en cupos de clase"],
+    featured: true,
+  },
+  {
+    name: "Plan Anual",
+    price: 6999,
+    durationDays: 365,
+    blurb: "Máximo ahorro para quien entrena todo el año.",
+    perks: ["Todo lo anterior", "Mejor precio por día", "Enfoque en constancia anual"],
+  },
+];
 
 export default function Home() {
   return (
@@ -54,24 +90,31 @@ export default function Home() {
             <div className="hidden items-center gap-6 md:flex">
               <a
                 className="text-xs font-bold uppercase tracking-widest text-[#cafd00] transition-all hover:opacity-80"
-                href="#"
+                href="#clases"
                 style={{ fontFamily: "Space Grotesk" }}
               >
-                Classes
+                Clases
               </a>
               <a
                 className="text-xs font-bold uppercase tracking-widest text-white transition-all hover:opacity-80"
-                href="#"
+                href="#entrenadores"
                 style={{ fontFamily: "Space Grotesk" }}
               >
-                Trainers
+                Entrenadores
               </a>
               <a
                 className="text-xs font-bold uppercase tracking-widest text-white transition-all hover:opacity-80"
-                href="#"
+                href="#experiencia"
                 style={{ fontFamily: "Space Grotesk" }}
               >
-                Experience
+                Experiencia
+              </a>
+              <a
+                className="text-xs font-bold uppercase tracking-widest text-white transition-all hover:opacity-80"
+                href="#planes"
+                style={{ fontFamily: "Space Grotesk" }}
+              >
+                Planes
               </a>
             </div>
           </div>
@@ -82,17 +125,18 @@ export default function Home() {
               </span>
               <input
                 className="w-48 bg-[#262626] py-1.5 pr-4 pl-10 text-[10px] tracking-widest placeholder:text-[#767575] focus:ring-1 focus:ring-[#cafd00]"
-                placeholder="EXPLORE..."
-                type="text"
+                placeholder="BUSCAR…"
+                type="search"
                 style={{ fontFamily: "Space Grotesk" }}
               />
             </div>
-            <button
+            <Link
+              href="/login"
               className="bg-[#cafd00] px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-[#4a5e00] transition-all hover:scale-95 active:scale-90"
               style={{ fontFamily: "Space Grotesk" }}
             >
-              Member Login
-            </button>
+              Iniciar sesión
+            </Link>
             <div className="flex gap-2">
               <span className="material-symbols-outlined cursor-pointer text-white transition-colors hover:text-[#cafd00]">
                 notifications
@@ -116,41 +160,44 @@ export default function Home() {
           <div className="relative z-10 max-w-5xl px-6 md:px-20">
             <div className="mb-2">
               <span className="bg-[#f3ffca] px-3 py-1 text-[10px] font-black uppercase tracking-[0.3em] text-[#516700]">
-                The Kinetic Monolith
+                CDMX · Alto rendimiento
               </span>
             </div>
             <h1
               className="mb-8 text-6xl leading-[0.85] font-black uppercase tracking-tighter text-white md:text-9xl"
               style={{ fontFamily: "Space Grotesk" }}
             >
-              UNLEASH <br /> <span className="italic text-[#cafd00]">RAW POWER</span>
+              DESATA <br />{" "}
+              <span className="italic text-[#cafd00]">PODER PURO</span>
             </h1>
             <p className="mb-10 max-w-xl border-l-2 border-[#cafd00] pl-6 text-lg leading-relaxed text-[#e5e2e1] md:text-xl">
-              Mexico City&apos;s definitive third space. Where high-velocity elite
-              performance meets brutalist precision. This is not a gym. This is a
-              sanctuary for the obsessed.
+              Tu espacio en la Ciudad de México para entrenar en serio: equipamiento
+              de primer nivel, clases grupales guiadas y membresías claras. Aquí no
+              solo &quot;vas al gym&quot;: construyes constancia.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
-              <button
+              <a
+                href="#planes"
                 className="group flex items-center justify-between bg-[#cafd00] px-10 py-5 text-lg font-black uppercase tracking-tighter text-[#0e0e0e] transition-all hover:bg-[#f3ffca]"
                 style={{ fontFamily: "Space Grotesk" }}
               >
-                Join the Tribe
+                Ver planes
                 <span className="material-symbols-outlined ml-4 transition-transform group-hover:translate-x-2">
                   arrow_forward
                 </span>
-              </button>
-              <button
+              </a>
+              <a
+                href="#experiencia"
                 className="border border-white/20 px-10 py-5 text-lg font-black uppercase tracking-tighter text-white transition-all hover:bg-white hover:text-black"
                 style={{ fontFamily: "Space Grotesk" }}
               >
-                Explore Experience
-              </button>
+                Conocer la experiencia
+              </a>
             </div>
           </div>
           <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 opacity-50">
             <span className="vertical-text text-[10px] font-black uppercase tracking-widest">
-              Scroll
+              Desliza
             </span>
             <div className="relative h-12 w-px overflow-hidden bg-white/30">
               <div className="absolute top-0 left-0 h-1/2 w-full animate-pulse bg-[#cafd00]" />
@@ -158,7 +205,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-[#0e0e0e] px-6 py-24 md:px-20">
+        <section
+          id="experiencia"
+          className="bg-[#0e0e0e] px-6 py-24 md:px-20"
+        >
           <div className="grid h-full grid-cols-1 gap-6 md:grid-cols-12">
             <div className="group relative flex min-h-[400px] flex-col justify-end overflow-hidden bg-[#131313] p-12 md:col-span-8">
               <img
@@ -171,12 +221,11 @@ export default function Home() {
                   className="mb-4 text-5xl font-black uppercase text-[#cafd00]"
                   style={{ fontFamily: "Space Grotesk" }}
                 >
-                  The Third Space
+                  El tercer espacio
                 </h2>
                 <p className="max-w-md text-[#e5e2e1]">
-                  Beyond work and home, we provide the architectural foundation for
-                  your transformation. A community of elite mindset and physical
-                  mastery.
+                  Entre el trabajo y el hogar: un lugar diseñado para tu
+                  transformación física y mental, con comunidad y estándares claros.
                 </p>
               </div>
             </div>
@@ -191,15 +240,18 @@ export default function Home() {
                 className="mt-[-40px] text-center text-3xl font-black uppercase"
                 style={{ fontFamily: "Space Grotesk" }}
               >
-                Precision Recovery
+                Recuperación
               </h3>
               <p className="mt-4 text-center font-medium">
-                Cryotherapy, Infrared Saunas, and Hyperbaric chambers designed for
-                the 1%.
+                Zonas de descanso y protocolos para bajar la carga y volver al piso
+                con energía.
               </p>
-              <button className="mt-8 border-b-2 border-[#4a5e00] pb-1 text-xs font-black uppercase tracking-widest transition-all hover:opacity-70">
-                Book Session
-              </button>
+              <a
+                href="#planes"
+                className="mt-8 inline-block border-b-2 border-[#4a5e00] pb-1 text-xs font-black uppercase tracking-widest transition-all hover:opacity-70"
+              >
+                Ver membresías
+              </a>
             </div>
             <div className="group flex flex-col justify-between bg-[#262626] p-12 md:col-span-4">
               <span
@@ -213,11 +265,11 @@ export default function Home() {
                   className="mb-2 text-2xl font-black uppercase text-white"
                   style={{ fontFamily: "Space Grotesk" }}
                 >
-                  Elite Arsenal
+                  Equipo de élite
                 </h3>
                 <p className="text-sm text-[#adaaaa]">
-                  Hand-picked equipment from across the globe. Calibrated for
-                  maximum hypertrophy.
+                  Máquinas y peso libre seleccionados para fuerza, hipertrofia y
+                  acondicionamiento.
                 </p>
               </div>
             </div>
@@ -232,37 +284,45 @@ export default function Home() {
                   className="text-3xl font-black uppercase text-white"
                   style={{ fontFamily: "Space Grotesk" }}
                 >
-                  The Tribe
+                  La tribu
                 </h3>
                 <p className="mt-2 max-w-sm text-[#e5e2e1]">
-                  Access exclusive networking events, metabolic workshops, and
-                  performance seminars.
+                  Talleres, retos y una comunidad que empuja en la misma dirección.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="overflow-hidden bg-black py-24">
+        <section id="clases" className="overflow-hidden bg-black py-24 scroll-mt-20">
+          <div className="px-6 pb-6 md:px-20">
+            <p
+              id="entrenadores"
+              className="max-w-2xl scroll-mt-24 text-sm leading-relaxed text-[#adaaaa]"
+            >
+              Entrenadores en sala: Cross Training, HIIT, yoga y box. Clases
+              grupales para todos los niveles.
+            </p>
+          </div>
           <div className="mb-12 flex items-end justify-between px-6 md:px-20">
             <div>
               <span className="text-xs font-black uppercase tracking-[0.4em] text-[#cafd00]">
-                Live Sessions
+                En vivo
               </span>
               <h2
                 className="mt-2 text-6xl font-black uppercase text-white"
                 style={{ fontFamily: "Space Grotesk" }}
               >
-                Class Previews
+                Muestra de clases
               </h2>
             </div>
-            <a
+            <Link
+              href="/login"
               className="border-b-2 border-[#cafd00] pb-1 font-black uppercase tracking-widest text-[#cafd00] transition-all hover:border-white hover:text-white"
-              href="#"
               style={{ fontFamily: "Space Grotesk" }}
             >
-              View All Classes
-            </a>
+              Reservar en la app
+            </Link>
           </div>
           <div className="no-scrollbar flex gap-6 overflow-x-auto px-6 pb-12 md:px-20">
             <div className="group w-[350px] shrink-0 bg-[#131313]">
@@ -273,14 +333,14 @@ export default function Home() {
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDX_4i1eDb8aJhk_SQRUWhZW70hHvu05wzZ7DE3nW_HqIplENzJcee851cTiGtIBShfwpA4-_L3QIT83rUOIvrqb1U-rqcZxqgvOx4fknos94S75qgxqYzQLiIYBQaWCeIO8dEpvwDaNvG8yXEnX4yATJiFVo-jXO3BZdxr7AHKtsp-v-g9iqSC_s1Zg1Mb9ZTm8uC4wkQbU8FIPIWNnphGU3q5JDgt0HT-XgMwhgfr-df2LBIfFuICeL_NsVzuMI6ThSwMTWAmbUS"
                 />
                 <div className="absolute top-4 left-4 bg-[#f3ffca] px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#516700]">
-                  Live Now
+                  En curso
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
               </div>
               <div className="p-8">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-[10px] uppercase tracking-widest text-[#adaaaa]">
-                    60 MIN • High Intensity
+                    60 MIN · Alta intensidad
                   </span>
                   <span
                     className="material-symbols-outlined text-sm text-[#cafd00]"
@@ -293,11 +353,11 @@ export default function Home() {
                   className="text-2xl font-black uppercase text-white transition-colors group-hover:text-[#cafd00]"
                   style={{ fontFamily: "Space Grotesk" }}
                 >
-                  METABOLIC PEAK
+                  Pico metabólico
                 </h3>
                 <p className="mt-2 text-sm text-[#adaaaa]">
-                  The ultimate fat-burning protocol. Designed to spike your heart
-                  rate and push your VO2 Max.
+                  HIIT para quemar calorías y subir el ritmo cardíaco con
+                  seguridad.
                 </p>
               </div>
             </div>
@@ -309,14 +369,14 @@ export default function Home() {
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8WI03jBa3HN3ZNM7N-OfXxUhOjDNN2a538k7wExk4HECqVAYIuPfvBUkdhRFm5j9cFjQEMkT0LrQykIDry48DTVidOmj6DZEIcRFADf0u6k2Qk7GoFHXGIAv1i5YWxm6-HmWx5RW3PRCZndpQsb84yakXjgD4sHI_Mg_zbirZjvbuxjpMJ-uyOLo7PDzguZUsmkxp-TjGlIck7OJ3WnxJdRNFwOO3cdJcBid9SqKvIBVndSjYsdlV0TebmQIT0mbL4s20B-g47XaY"
                 />
                 <div className="absolute top-4 left-4 bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white backdrop-blur-md">
-                  Starts in 20m
+                  En 20 min
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
               </div>
               <div className="p-8">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-[10px] uppercase tracking-widest text-[#adaaaa]">
-                    75 MIN • Mobility
+                    75 MIN · Movilidad
                   </span>
                   <span
                     className="material-symbols-outlined text-sm text-[#cafd00]"
@@ -329,11 +389,11 @@ export default function Home() {
                   className="text-2xl font-black uppercase text-white transition-colors group-hover:text-[#cafd00]"
                   style={{ fontFamily: "Space Grotesk" }}
                 >
-                  ZEN ARCHITECTURE
+                  Arquitectura zen
                 </h3>
                 <p className="mt-2 text-sm text-[#adaaaa]">
-                  Dynamic structural mobility focusing on spinal decompression and
-                  nervous system regulation.
+                  Yoga y movilidad para columna, core y regulación del sistema
+                  nervioso.
                 </p>
               </div>
             </div>
@@ -345,14 +405,14 @@ export default function Home() {
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXxh8LBSBWmOAglfPGyuASS4UFnJn0y7pzaVfKOEB1Jkips9LwGSDJfCJwLip4d6bhKR-ZcTDOTfdrsRTU9OO_F9neMDq4Uhr5NjkHv1-VRwUT7jwLC7zze4b7xNdn6MOrfSBqfC2FIWW1UBmLxpvsVUk_c07PqoERM4yjLedY5LuNBHaFF3DpzfFE5lUXaZFIraRj6ZMCMa2nQ03p9pNS8PdJqlPIaLIu3uLhgayBeHUlT3fzHDNNXXjKpgLJjx4u7v_wJrBSqrh8"
                 />
                 <div className="absolute top-4 left-4 bg-[#f3ffca] px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#516700]">
-                  Full Capacity
+                  Cupo lleno
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
               </div>
               <div className="p-8">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-[10px] uppercase tracking-widest text-[#adaaaa]">
-                    50 MIN • Combat
+                    50 MIN · Combate
                   </span>
                   <span
                     className="material-symbols-outlined text-sm text-[#cafd00]"
@@ -365,18 +425,20 @@ export default function Home() {
                   className="text-2xl font-black uppercase text-white transition-colors group-hover:text-[#cafd00]"
                   style={{ fontFamily: "Space Grotesk" }}
                 >
-                  STRIKE LAB
+                  Laboratorio de golpes
                 </h3>
                 <p className="mt-2 text-sm text-[#adaaaa]">
-                  Technical boxing meets high-power anaerobic conditioning.
-                  Sharpen your edge.
+                  Box y acondicionamiento anaeróbico para técnica y resistencia.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-[#cafd00] py-32">
+        <section
+          id="planes"
+          className="relative scroll-mt-20 overflow-hidden bg-[#cafd00] py-32"
+        >
           <div className="pointer-events-none absolute inset-0 select-none overflow-hidden opacity-10">
             <div
               className="translate-x-[-10%] translate-y-[20%] -rotate-12 text-[20rem] leading-none font-black uppercase text-[#4a5e00]"
@@ -385,17 +447,19 @@ export default function Home() {
               POWER
             </div>
           </div>
-          <div className="relative z-10 flex flex-col items-center justify-between gap-12 px-6 md:flex-row md:px-20">
-            <div className="max-w-2xl">
+          <div className="relative z-10 flex flex-col gap-12 px-6 md:px-20">
+            <div className="max-w-3xl">
               <h2
-                className="mb-8 text-7xl leading-[0.9] font-black uppercase text-[#4a5e00] md:text-8xl"
+                className="mb-6 text-5xl leading-[0.9] font-black uppercase text-[#4a5e00] md:text-7xl"
                 style={{ fontFamily: "Space Grotesk" }}
               >
-                Ready to <br /> Evolve?
+                ¿Listo para <br /> dar el siguiente paso?
               </h2>
-              <p className="mb-8 text-xl leading-relaxed font-medium text-[#4a5e00]/80">
-                Stop exercising. Start training. Join the collective of
-                high-performers in the heart of CDMX.
+              <p className="mb-6 text-lg leading-relaxed font-medium text-[#4a5e00]/90 md:text-xl">
+                Membresías reales del catálogo Gym Power CDMX (mismos montos que
+                verás en el panel admin). El alta la gestiona el equipo en
+                recepción; tú entras con tu cuenta para reservar y escanear tu
+                QR.
               </p>
               <div className="flex flex-wrap gap-4">
                 <div className="flex items-center gap-2 rounded-full bg-[#4a5e00]/10 px-4 py-2">
@@ -406,7 +470,7 @@ export default function Home() {
                     check_circle
                   </span>
                   <span className="text-[10px] font-black uppercase tracking-widest text-[#4a5e00]">
-                    All Access Pass
+                    Acceso + clases grupales
                   </span>
                 </div>
                 <div className="flex items-center gap-2 rounded-full bg-[#4a5e00]/10 px-4 py-2">
@@ -417,7 +481,7 @@ export default function Home() {
                     check_circle
                   </span>
                   <span className="text-[10px] font-black uppercase tracking-widest text-[#4a5e00]">
-                    Precision Biometrics
+                    Portal miembro y QR
                   </span>
                 </div>
                 <div className="flex items-center gap-2 rounded-full bg-[#4a5e00]/10 px-4 py-2">
@@ -428,52 +492,71 @@ export default function Home() {
                     check_circle
                   </span>
                   <span className="text-[10px] font-black uppercase tracking-widest text-[#4a5e00]">
-                    Guest Lounge Access
+                    Precios en MXN IVA incluido
                   </span>
                 </div>
               </div>
             </div>
-            <div className="w-full bg-[#0e0e0e] p-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] md:w-[400px]">
-              <h3
-                className="text-center text-3xl font-black uppercase text-white"
-                style={{ fontFamily: "Space Grotesk" }}
-              >
-                Elite Tier
-              </h3>
-              <div className="text-center">
-                <span className="text-5xl font-black text-[#cafd00]">$2,499</span>
-                <span className="text-sm text-[#adaaaa]">/ MXN MONTH</span>
-              </div>
-              <div className="space-y-4 border-y border-white/10 py-6">
-                <p className="flex items-center justify-between text-sm font-medium text-white">
-                  Unlimited HIIT &amp; Yoga
-                  <span className="material-symbols-outlined text-[#cafd00]">
-                    done
-                  </span>
-                </p>
-                <p className="flex items-center justify-between text-sm font-medium text-white">
-                  Personal Training Intro
-                  <span className="material-symbols-outlined text-[#cafd00]">
-                    done
-                  </span>
-                </p>
-                <p className="flex items-center justify-between text-sm font-medium text-white">
-                  Sauna &amp; Cold Plunge
-                  <span className="material-symbols-outlined text-[#cafd00]">
-                    done
-                  </span>
-                </p>
-              </div>
-              <button
-                className="w-full bg-[#cafd00] py-4 font-black uppercase tracking-widest text-[#4a5e00] transition-all hover:scale-[1.02]"
-                style={{ fontFamily: "Space Grotesk" }}
-              >
-                Claim Membership
-              </button>
-              <p className="text-center text-[10px] uppercase tracking-widest text-[#adaaaa]">
-                Limited slots available for Q3
-              </p>
+            <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-3">
+              {MEMBERSHIP_PLANS.map((plan) => (
+                <div
+                  key={plan.name}
+                  className={`flex flex-col bg-[#0e0e0e] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.3)] ${
+                    plan.featured
+                      ? "ring-2 ring-[#cafd00] ring-offset-4 ring-offset-[#cafd00] md:scale-[1.02]"
+                      : ""
+                  }`}
+                >
+                  {plan.featured ? (
+                    <span className="mb-3 inline-block w-fit bg-[#cafd00] px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-[#4a5e00]">
+                      Más elegido
+                    </span>
+                  ) : null}
+                  <h3
+                    className="text-2xl font-black uppercase text-white"
+                    style={{ fontFamily: "Space Grotesk" }}
+                  >
+                    {plan.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-[#adaaaa]">{plan.blurb}</p>
+                  <div className="mt-6 text-center">
+                    <span className="text-4xl font-black text-[#cafd00] md:text-5xl">
+                      $
+                      {plan.price.toLocaleString("es-MX", {
+                        maximumFractionDigits: 0,
+                      })}
+                    </span>
+                    <span className="mt-1 block text-xs font-medium uppercase tracking-widest text-[#adaaaa]">
+                      MXN · vigencia {plan.durationDays} días
+                    </span>
+                  </div>
+                  <ul className="mt-6 flex-1 space-y-3 border-y border-white/10 py-6">
+                    {plan.perks.map((perk) => (
+                      <li
+                        key={perk}
+                        className="flex items-start justify-between gap-2 text-sm font-medium text-white"
+                      >
+                        <span>{perk}</span>
+                        <span className="material-symbols-outlined shrink-0 text-[#cafd00] text-lg">
+                          done
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href="/login"
+                    className="mt-6 block w-full bg-[#cafd00] py-4 text-center font-black uppercase tracking-widest text-[#4a5e00] transition-all hover:scale-[1.02]"
+                    style={{ fontFamily: "Space Grotesk" }}
+                  >
+                    Iniciar sesión
+                  </Link>
+                </div>
+              ))}
             </div>
+            <p className="text-center text-[10px] font-medium uppercase tracking-widest text-[#4a5e00]/80">
+              Contratación en recepción · Demo técnica: credenciales en README o
+              seed
+            </p>
           </div>
         </section>
 
@@ -487,8 +570,8 @@ export default function Home() {
                 GYM POWER
               </span>
               <p className="mt-6 max-w-xs text-xs leading-relaxed text-[#adaaaa]">
-                Mexico City&apos;s premium destination for physical and mental peak
-                performance.
+                Gimnasio premium en CDMX: fuerza, clases grupales y seguimiento
+                digital para miembros.
               </p>
               <div className="mt-8 flex gap-4">
                 <span className="material-symbols-outlined cursor-pointer text-white hover:text-[#cafd00]">
@@ -507,22 +590,31 @@ export default function Home() {
                 className="mb-6 font-black uppercase tracking-widest text-white"
                 style={{ fontFamily: "Space Grotesk" }}
               >
-                Navigation
+                Navegación
               </h4>
               <ul className="space-y-3">
                 <li>
-                  <a className="text-xs uppercase tracking-widest text-[#adaaaa] transition-colors hover:text-[#cafd00]" href="#">
-                    The Space
+                  <a
+                    className="text-xs uppercase tracking-widest text-[#adaaaa] transition-colors hover:text-[#cafd00]"
+                    href="#experiencia"
+                  >
+                    El espacio
                   </a>
                 </li>
                 <li>
-                  <a className="text-xs uppercase tracking-widest text-[#adaaaa] transition-colors hover:text-[#cafd00]" href="#">
-                    Performance Arsenal
+                  <a
+                    className="text-xs uppercase tracking-widest text-[#adaaaa] transition-colors hover:text-[#cafd00]"
+                    href="#clases"
+                  >
+                    Clases
                   </a>
                 </li>
                 <li>
-                  <a className="text-xs uppercase tracking-widest text-[#adaaaa] transition-colors hover:text-[#cafd00]" href="#">
-                    Pricing Tiers
+                  <a
+                    className="text-xs uppercase tracking-widest text-[#adaaaa] transition-colors hover:text-[#cafd00]"
+                    href="#planes"
+                  >
+                    Planes
                   </a>
                 </li>
               </ul>
@@ -532,23 +624,29 @@ export default function Home() {
                 className="mb-6 font-black uppercase tracking-widest text-white"
                 style={{ fontFamily: "Space Grotesk" }}
               >
-                Support
+                Soporte
               </h4>
               <ul className="space-y-3">
                 <li>
-                  <a className="text-xs uppercase tracking-widest text-[#adaaaa] transition-colors hover:text-[#cafd00]" href="#">
-                    Contact Us
+                  <a
+                    className="text-xs uppercase tracking-widest text-[#adaaaa] transition-colors hover:text-[#cafd00]"
+                    href="mailto:hola@gympower.demo"
+                  >
+                    Contacto
                   </a>
                 </li>
                 <li>
-                  <a className="text-xs uppercase tracking-widest text-[#adaaaa] transition-colors hover:text-[#cafd00]" href="#">
-                    Member Portal
-                  </a>
+                  <Link
+                    href="/login"
+                    className="text-xs uppercase tracking-widest text-[#adaaaa] transition-colors hover:text-[#cafd00]"
+                  >
+                    Portal miembros
+                  </Link>
                 </li>
                 <li>
-                  <a className="text-xs uppercase tracking-widest text-[#adaaaa] transition-colors hover:text-[#cafd00]" href="#">
-                    Privacy Policy
-                  </a>
+                  <span className="text-xs uppercase tracking-widest text-[#adaaaa] opacity-60">
+                    Aviso de privacidad
+                  </span>
                 </li>
               </ul>
             </div>
@@ -557,7 +655,7 @@ export default function Home() {
                 className="mb-6 font-black uppercase tracking-widest text-white"
                 style={{ fontFamily: "Space Grotesk" }}
               >
-                Location
+                Ubicación
               </h4>
               <p className="text-xs leading-relaxed uppercase tracking-widest text-[#adaaaa]">
                 Av. Paseo de la Reforma 296,
@@ -569,37 +667,46 @@ export default function Home() {
               <div className="mt-4 flex items-center gap-2 text-[#cafd00]">
                 <span className="material-symbols-outlined text-sm">location_on</span>
                 <span className="text-[10px] font-black uppercase tracking-widest">
-                  Open 24/7 Elite Access
+                  Horario ampliado · acceso miembros
                 </span>
               </div>
             </div>
           </div>
           <div className="flex flex-col items-center justify-between border-t border-white/5 pt-10 md:flex-row">
             <span className="text-[10px] uppercase tracking-[0.3em] text-[#adaaaa]">
-              © 2024 GYM POWER MEXICO CITY. NO EXCUSES.
+              © {new Date().getFullYear()} Gym Power CDMX. Sin excusas.
             </span>
             <span
               className="mt-4 text-[10px] font-black uppercase italic tracking-[0.2em] text-white md:mt-0"
               style={{ fontFamily: "Space Grotesk" }}
             >
-              Built for the Obsessed
+              Hecho para quienes entrenan en serio
             </span>
           </div>
         </footer>
 
         <nav className="fixed bottom-0 left-0 z-50 flex w-full items-center justify-around bg-[#0e0e0e]/80 pt-2 pb-[max(env(safe-area-inset-bottom),0.5rem)] shadow-[0_-10px_40px_rgba(0,0,0,0.4)] backdrop-blur-lg md:hidden">
-          <div className="flex flex-col items-center justify-center py-2 text-[10px] uppercase tracking-widest text-gray-400 opacity-50">
+          <Link
+            href="/login"
+            className="flex flex-col items-center justify-center py-2 text-[10px] uppercase tracking-widest text-[#cafd00]"
+          >
             <span className="material-symbols-outlined">person</span>
-            <span className="mt-1">Profile</span>
-          </div>
-          <div className="flex flex-col items-center justify-center rounded-sm bg-[#262626] px-6 py-2 text-[10px] uppercase tracking-widest text-[#cafd00]">
+            <span className="mt-1">Entrar</span>
+          </Link>
+          <a
+            href="#clases"
+            className="flex flex-col items-center justify-center rounded-sm bg-[#262626] px-6 py-2 text-[10px] uppercase tracking-widest text-[#cafd00]"
+          >
             <span className="material-symbols-outlined">calendar_today</span>
-            <span className="mt-1">Classes</span>
-          </div>
-          <div className="flex flex-col items-center justify-center py-2 text-[10px] uppercase tracking-widest text-gray-400 opacity-50">
+            <span className="mt-1">Clases</span>
+          </a>
+          <Link
+            href="/login"
+            className="flex flex-col items-center justify-center py-2 text-[10px] uppercase tracking-widest text-gray-400"
+          >
             <span className="material-symbols-outlined">qr_code</span>
-            <span className="mt-1">Access</span>
-          </div>
+            <span className="mt-1">Mi QR</span>
+          </Link>
         </nav>
       </div>
     </>
