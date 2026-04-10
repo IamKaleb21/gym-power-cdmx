@@ -129,9 +129,9 @@ react-qr-code          → generación de QR
 
 | Email | Contraseña | Rol |
 |---|---|---|
-| `admin@gympower.demo` | `Admin1234!` | admin |
-| `member.demo@gympower.demo` | `Member1234!` | member |
-| `member01..10@gympower.demo` | `Member1234!` | member |
+| `admin@gympower.demo` | `Demo1234!` | admin |
+| `member.demo@gympower.demo` | `Demo1234!` | member |
+| `member01..35@gympower.demo` | `Demo1234!` | member |
 
 ---
 

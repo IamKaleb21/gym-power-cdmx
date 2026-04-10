@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gym Power CDMX
 
-## Getting Started
+Sistema web para gestión de gimnasio: **panel de administración** (miembros, clases, entrenadores, pagos, escaneo QR) y **portal del miembro** (agenda, pagos, perfil). Stack: **Next.js** (App Router), **Supabase** (Auth + Postgres + RLS), **Tailwind CSS**.
 
-First, run the development server:
+## Demo en vivo (entrega ReWo)
+
+| | |
+| --- | --- |
+| **URL pública** | [https://gym-power-cdmx.vercel.app/](https://gym-power-cdmx.vercel.app/) |
+
+### Credenciales de prueba (usuarios generados por seed)
+
+Tras ejecutar `pnpm seed` contra tu proyecto Supabase, existen cuentas demo. **Contraseña única del seed:** `Demo1234!`
+
+| Rol | Email | Contraseña |
+| --- | --- | --- |
+| Admin | `admin@gympower.demo` | `Demo1234!` |
+| Miembro | `member.demo@gympower.demo` | `Demo1234!` |
+
+Otros miembros de ejemplo: `member01@gympower.demo` … `member35@gympower.demo` (misma contraseña).
+
+**Nota:** La demo en Vercel debe apuntar a un proyecto Supabase donde se haya corrido el seed al menos una vez; en local, configura `.env.local` y ejecuta `pnpm seed` antes de probar login.
+
+---
+
+## Stack
+
+- **Next.js** 16.x, **React** 19.x
+- **Supabase** (`@supabase/ssr`, `@supabase/supabase-js`)
+- **Estilos:** Tailwind CSS 4, componentes propios / shadcn
+- **PWA:** Serwist (service worker, manifest)
+- **Gráficos:** Recharts (dashboard admin)
+- **Gestor de paquetes:** `pnpm`
+
+## Requisitos
+
+- **Node.js** LTS (20+ recomendado)
+- Proyecto **Supabase** (URL + anon key + service role para seed y acciones admin)
+- Cuenta en **Vercel** (u otro host) para el despliegue público
+
+## Variables de entorno
+
+Crea `.env.local` en la raíz (no commitear secretos). Nombres esperados:
+
+| Variable | Uso |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | URL del proyecto Supabase |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clave anónima (cliente y servidor) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Solo servidor: seed, operaciones admin que bypass RLS |
+
+Valores: panel del proyecto Supabase → Settings → API. Detalles de decisiones: [docs/DECISIONS.md](docs/DECISIONS.md).
+
+## Setup local
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+# Configurar .env.local (ver tabla anterior)
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- App: [http://localhost:3000](http://localhost:3000)
+- Poblar datos demo: `pnpm seed` (requiere `SUPABASE_SERVICE_ROLE_KEY` en `.env.local`)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Otros comandos útiles:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm build      # compilación de producción
+pnpm test       # Vitest
+pnpm test:e2e    # Playwright (requiere entorno preparado)
+```
 
-## Learn More
+## Arquitectura (resumen)
 
-To learn more about Next.js, take a look at the following resources:
+- **Rutas:** grupos `(auth)` (login), `(admin)` (panel), `(member)` (portal). El middleware y helpers en `src/lib/auth/` redirigen según rol.
+- **Datos:** Postgres en Supabase; políticas **RLS** documentadas en [docs/SCHEMA.md](docs/SCHEMA.md).
+- **Mutaciones:** preferentemente **Server Actions** en `src/app/actions/` (ver [`.cursor/skills/server-action-pattern/SKILL.md`](.cursor/skills/server-action-pattern/SKILL.md) en el repo).
+- **Fechas CDMX:** utilidades en `src/lib/dates/mexico-city.ts` donde aplica.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Documentación ampliada:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Documento | Contenido |
+| --- | --- |
+| [docs/PLAN.md](docs/PLAN.md) | Plan por fases |
+| [docs/DECISIONS.md](docs/DECISIONS.md) | Decisiones técnicas |
+| [docs/SCHEMA.md](docs/SCHEMA.md) | Esquema de tablas y RLS |
+| [docs/PRD.md](docs/PRD.md) | Requisitos de producto |
 
-## Deploy on Vercel
+## API y servidor
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+No hay OpenAPI único. La superficie principal es:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Páginas** bajo `/admin/*`, `/member/*`, `/login`
+- **Server Actions** en `src/app/actions/` (miembros, clases, pagos, QR, etc.)
+- **libs** en `src/lib/` (Supabase admin/cliente, analytics, pagos, validaciones)
+
+Para contratos de datos, ver tablas y relaciones en [docs/SCHEMA.md](docs/SCHEMA.md).
+
+## Aportación extra (criterio ReWo)
+
+Además del alcance base del [PRD](docs/PRD.md), el proyecto incluye entre otras:
+
+- **PWA** (Serwist): instalación, offline parcial; detalles en decisiones y planes en `docs/plans/` (fase PWA).
+- **Dashboard de analytics** ampliado: KPIs de membresías, ingresos por mes, flujo altas vs bajas, métricas de retención con lógica documentada en código y tests (`src/lib/analytics/`, `src/tests/retention.test.ts`).
+
+Cómo y por qué: [docs/DECISIONS.md](docs/DECISIONS.md) y commits recientes del repositorio.
+
+## Videos Loom (entrega ReWo)
+
+Sustituir por los enlaces reales cuando estén publicados:
+
+- **Demo funcional (usuario final):** _[URL Loom — pendiente]_
+- **Detrás de escenas (técnico, IA, retos):** _[URL Loom — pendiente]_
+
+## Repositorio Git
+
+El historial de commits forma parte del entregable (commits descriptivos por avance). Añade aquí el enlace público al repositorio si aplica:
+
+- **Repositorio:** _[URL GitHub/GitLab — opcional]_
+
+## Manual de pruebas ReWo
+
+Procedimiento de evaluación de pasantía: [docs/Manual de Pruebas para Candidatos a Pasantía ReWo (1).pdf](docs/Manual%20de%20Pruebas%20para%20Candidatos%20a%20Pasantía%20ReWo%20(1).pdf)
+
+## Licencia
+
+Proyecto privado (`"private": true` en `package.json`).
