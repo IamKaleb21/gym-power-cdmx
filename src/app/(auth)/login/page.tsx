@@ -22,6 +22,7 @@ export default function LoginPage() {
   const router = useRouter();
   const supabase = createClient();
   const [apiError, setApiError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<LoginForm>({
     defaultValues: {
@@ -133,12 +134,17 @@ export default function LoginPage() {
                 <label className="block px-1 text-[10px] font-bold uppercase tracking-widest text-[#cafd00]/60">
                   Email Terminal
                 </label>
-                <input
-                  type="email"
-                  placeholder="demo@gympowercdmx.mx"
-                  className="w-full border-b-2 border-transparent bg-[#262626] py-4 pr-4 pl-4 text-white placeholder:text-[#767575] transition-all focus:border-[#cafd00] focus:bg-[#20201f] focus:outline-none"
-                  {...form.register("email")}
-                />
+                <div className="relative group">
+                  <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#484847] group-focus-within:text-[#cafd00] transition-colors pointer-events-none select-none">
+                    alternate_email
+                  </span>
+                  <input
+                    type="email"
+                    placeholder="demo@gympowercdmx.mx"
+                    className="w-full border-b-2 border-transparent bg-[#262626] py-4 pr-4 pl-12 text-white placeholder:text-[#767575] transition-all focus:border-[#cafd00] focus:bg-[#20201f] focus:outline-none"
+                    {...form.register("email")}
+                  />
+                </div>
                 {form.formState.errors.email && (
                   <p className="text-xs text-red-400">{form.formState.errors.email.message}</p>
                 )}
@@ -148,12 +154,27 @@ export default function LoginPage() {
                 <label className="block px-1 text-[10px] font-bold uppercase tracking-widest text-[#cafd00]/60">
                   Security Key
                 </label>
-                <input
-                  type="password"
-                  placeholder="••••••••"
-                  className="w-full border-b-2 border-transparent bg-[#262626] py-4 pr-4 pl-4 text-white placeholder:text-[#767575] transition-all focus:border-[#cafd00] focus:bg-[#20201f] focus:outline-none"
-                  {...form.register("password")}
-                />
+                <div className="relative group">
+                  <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#484847] group-focus-within:text-[#cafd00] transition-colors pointer-events-none select-none">
+                    lock
+                  </span>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    className="w-full border-b-2 border-transparent bg-[#262626] py-4 pr-12 pl-12 text-white placeholder:text-[#767575] transition-all focus:border-[#cafd00] focus:bg-[#20201f] focus:outline-none"
+                    {...form.register("password")}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((v) => !v)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#484847] hover:text-[#cafd00] transition-colors"
+                    aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                  >
+                    <span className="material-symbols-outlined text-sm">
+                      {showPassword ? "visibility_off" : "visibility"}
+                    </span>
+                  </button>
+                </div>
                 {form.formState.errors.password && (
                   <p className="text-xs text-red-400">{form.formState.errors.password.message}</p>
                 )}
@@ -182,7 +203,7 @@ export default function LoginPage() {
                 className={`${spaceGrotesk.className} flex w-full items-center justify-center gap-3 bg-[#cafd00] py-5 text-xl font-black uppercase tracking-tight text-[#3a4a00] transition-all hover:bg-[#f3ffca] active:scale-[0.98] disabled:opacity-60`}
               >
                 {form.formState.isSubmitting ? "Ingresando..." : "LOGIN"}
-                <span>→</span>
+                <span className="material-symbols-outlined">arrow_forward_ios</span>
               </button>
             </form>
 
@@ -225,7 +246,7 @@ export default function LoginPage() {
       </main>
 
       <footer className="flex items-center justify-between bg-[#0e0e0e] px-12 py-6 text-[10px] uppercase tracking-[0.2em] text-[#767575]">
-        <div>© 2024 GYM POWER CDMX</div>
+        <div>© 2026 GYM POWER CDMX</div>
         <div className="flex gap-6">
           <a className="transition-colors hover:text-[#cafd00]" href="#">
             Privacy
