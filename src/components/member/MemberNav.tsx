@@ -2,7 +2,13 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-const NAV_ITEMS = [
+type NavItem = {
+  href: string
+  icon: string
+  label: string
+}
+
+const NAV_ITEMS: NavItem[] = [
   { href: '/member/dashboard', icon: 'dashboard', label: 'Dashboard' },
   { href: '/member/classes', icon: 'event_note', label: 'Classes' },
   { href: '/member/payments', icon: 'payments', label: 'Payments' },
@@ -12,9 +18,9 @@ const NAV_ITEMS = [
 export function MemberNav() {
   const pathname = usePathname()
   return (
-    <nav className="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-[#121212] border-t border-[#212121] rounded-t-lg shadow-[0_-4px_10px_rgba(0,0,0,0.5)]">
+    <nav className="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-[#121212] border-t border-[#212121] rounded-t-lg shadow-[0_-4px_10px_rgba(0,0,0,0.5)]">
       {NAV_ITEMS.map(({ href, icon, label }) => {
-        const isActive = pathname === href
+        const isActive = pathname.startsWith(href)
         return (
           <Link
             key={href}

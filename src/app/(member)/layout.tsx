@@ -13,7 +13,12 @@ export default function MemberLayout({ children }: { children: React.ReactNode }
           </span>
         </Link>
         <div className="flex items-center gap-4">
-          <span className="material-symbols-outlined text-gray-400">notifications</span>
+          <span className="material-symbols-outlined text-gray-400 hover:opacity-80 transition-opacity">
+            notifications
+          </span>
+          <div className="w-8 h-8 rounded-full bg-[#212121] border border-[#2a2a2a] flex items-center justify-center overflow-hidden">
+            <span className="material-symbols-outlined text-gray-500 text-sm">person</span>
+          </div>
         </div>
       </nav>
 
