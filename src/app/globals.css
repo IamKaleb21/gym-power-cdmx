@@ -7,6 +7,18 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  /* MD3 surface tokens — always dark */
+  --color-on-background: var(--color-on-background);
+  --color-surface-container-lowest: var(--color-surface-container-lowest);
+  --color-surface-container-low: var(--color-surface-container-low);
+  --color-surface-container: var(--color-surface-container);
+  --color-surface-container-high: var(--color-surface-container-high);
+  --color-surface-container-highest: var(--color-surface-container-highest);
+  --color-on-surface: var(--color-on-surface);
+  --color-on-surface-variant: var(--color-on-surface-variant);
+  --color-outline-variant: var(--color-outline-variant);
+  --color-outline: var(--color-outline);
+  --color-error: var(--color-error);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
@@ -117,6 +129,22 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* Material Design 3 surface tokens — Gym Power dark palette (from stitch theme) */
+:root,
+.dark {
+  --color-on-background: #ffffff;
+  --color-surface-container-lowest: #000000;
+  --color-surface-container-low: #131313;
+  --color-surface-container: #1a1a1a;
+  --color-surface-container-high: #20201f;
+  --color-surface-container-highest: #262626;
+  --color-on-surface: #ffffff;
+  --color-on-surface-variant: #adaaaa;
+  --color-outline-variant: #484847;
+  --color-outline: #767575;
+  --color-error: #ff7351;
 }
 
 @layer base {

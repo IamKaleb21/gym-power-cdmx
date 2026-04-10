@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Profile - Gym Power CDMX</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#f3ffca",
+                    "tertiary-dim": "#edd13a",
+                    "on-primary-fixed-variant": "#526900",
+                    "inverse-surface": "#fcf9f8",
+                    "secondary-dim": "#d6d4d3",
+                    "secondary": "#e5e2e1",
+                    "surface-container-high": "#20201f",
+                    "on-secondary": "#525151",
+                    "on-error": "#450900",
+                    "outline-variant": "#484847",
+                    "secondary-fixed": "#e5e2e1",
+                    "surface-variant": "#262626",
+                    "outline": "#767575",
+                    "on-tertiary": "#665800",
+                    "on-primary": "#516700",
+                    "on-surface": "#ffffff",
+                    "tertiary-fixed": "#fce047",
+                    "primary-dim": "#beee00",
+                    "surface-container-highest": "#262626",
+                    "on-background": "#ffffff",
+                    "primary-container": "#cafd00",
+                    "error-dim": "#d53d18",
+                    "tertiary-fixed-dim": "#edd13a",
+                    "surface-container": "#1a1a1a",
+                    "primary-fixed-dim": "#beee00",
+                    "on-secondary-fixed": "#403f3f",
+                    "background": "#0e0e0e",
+                    "inverse-primary": "#516700",
+                    "on-secondary-fixed-variant": "#5c5b5b",
+                    "surface-dim": "#0e0e0e",
+                    "secondary-fixed-dim": "#d6d4d3",
+                    "tertiary-container": "#fce047",
+                    "on-tertiary-container": "#5d5000",
+                    "on-secondary-container": "#d2d0cf",
+                    "on-tertiary-fixed-variant": "#685900",
+                    "on-error-container": "#ffd2c8",
+                    "surface-bright": "#2c2c2c",
+                    "primary-fixed": "#cafd00",
+                    "error-container": "#b92902",
+                    "tertiary": "#ffeea5",
+                    "surface-container-lowest": "#000000",
+                    "surface": "#0e0e0e",
+                    "on-tertiary-fixed": "#483d00",
+                    "on-surface-variant": "#adaaaa",
+                    "on-primary-container": "#4a5e00",
+                    "inverse-on-surface": "#565555",
+                    "on-primary-fixed": "#3a4a00",
+                    "secondary-container": "#474746",
+                    "primary": "#f3ffca",
+                    "error": "#ff7351",
+                    "surface-container-low": "#131313"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #CCFF00;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body min-h-screen pb-24">
+<!-- TopAppBar Navigation Shell -->
+<header class="bg-[#121212] flex justify-between items-center px-6 h-16 w-full fixed top-0 z-50 border-b border-[#212121]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#CCFF00]" data-icon="fitness_center">fitness_center</span>
+<h1 class="text-xl font-black text-[#CCFF00] uppercase tracking-widest font-['Space_Grotesk']">GYM PORTAL</h1>
+</div>
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-150 text-gray-400">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</header>
+<main class="pt-24 px-6 max-w-md mx-auto">
+<!-- Page Title -->
+<div class="mb-8">
+<h2 class="font-headline text-3xl font-bold tracking-tighter uppercase text-white">Edit Profile</h2>
+<p class="text-on-surface-variant text-sm mt-1">Update your personal information below.</p>
+</div>
+<!-- Change Photo Section -->
+<section class="mb-10 flex flex-col items-center">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full border-2 border-[#CCFF00] p-1 overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover rounded-full" data-alt="Athletic man with a short beard looking confidently into the camera, dramatic gym lighting with shadows and highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzUp2w2Il35HoL5PEqI54b18VMDd6Ks-GwjmrjhqFTYdPILOzlWV1yQjAe8OwNgjYDS-m6ueKD2W5FSWFHoXptw_o_gw32Unxw1WU0EBB5Vcj4Z2NyD4M8EhKM5gzB1o4uM94hTxaXs6KBqBToSdUTZ6qfhq1i10ZMq03Fu0HSNqJ6xwrNvXLxBcp8rIqEgVU9jOrey-aDbgsuOHrehVXhyCzTJiUs4JO5CfI4YObjnCCjadTiUSLjDk2aHEPLzYE_zcQw_yMLW5A1"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-[#CCFF00] text-[#121212] w-10 h-10 rounded-full flex items-center justify-center border-4 border-[#121212] shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined font-bold text-xl" data-icon="photo_camera">photo_camera</span>
+</button>
+</div>
+<p class="font-headline font-bold text-[#CCFF00] text-xs uppercase tracking-widest mt-4">Change Photo</p>
+</section>
+<!-- Form Section -->
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Full Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xl" data-icon="person">person</span>
+<input class="w-full bg-surface-container-highest border border-[#212121] rounded-xl py-4 pl-12 pr-4 text-white font-headline font-medium focus:border-[#CCFF00] transition-colors" placeholder="Enter your name" type="text" value="CARLOS RODRIGUEZ"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Phone Number</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xl" data-icon="phone_iphone">phone_iphone</span>
+<input class="w-full bg-surface-container-highest border border-[#212121] rounded-xl py-4 pl-12 pr-4 text-white font-headline font-medium focus:border-[#CCFF00] transition-colors" placeholder="+52 ..." type="tel" value="+52 55 1234 5678"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Location</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xl" data-icon="location_on">location_on</span>
+<input class="w-full bg-surface-container border border-[#212121] rounded-xl py-4 pl-12 pr-4 text-gray-400 font-headline font-medium cursor-not-allowed" readonly="" type="text" value="CDMX, MEXICO"/>
+</div>
+<p class="text-[10px] text-gray-600 px-1 italic">Location is managed by gym branch assignment.</p>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-[#CCFF00] text-[#121212] font-headline font-black py-5 rounded-xl uppercase tracking-widest mt-10 hover:opacity-90 active:scale-[0.98] transition-all shadow-[0_4px_20px_rgba(204,255,0,0.2)]" type="submit">
+                Save Changes
+            </button>
+</form>
+<!-- Danger Zone -->
+<div class="mt-12 pt-8 border-t border-[#212121]">
+<button class="w-full flex items-center justify-between px-4 py-4 rounded-xl border border-error/20 bg-error/5 group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error" data-icon="delete">delete</span>
+<span class="font-headline text-sm font-bold text-error uppercase tracking-tighter">Deactivate Membership</span>
+</div>
+<span class="material-symbols-outlined text-error/40 group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-[#121212] border-t border-[#212121] shadow-[0_-4px_10px_rgba(0,0,0,0.5)] rounded-t-lg">
+<a class="flex flex-col items-center justify-center text-gray-500 hover:text-gray-300 hover:bg-[#212121] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 hover:text-gray-300 hover:bg-[#212121] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider mt-1">Classes</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 hover:text-gray-300 hover:bg-[#212121] transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider mt-1">Payments</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#CCFF00] bg-[#212121] rounded-xl px-3 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

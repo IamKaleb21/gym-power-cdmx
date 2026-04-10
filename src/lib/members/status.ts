@@ -12,3 +12,18 @@ export function getMemberStatus(endDate: string): MemberStatus {
   if (end <= threshold) return "expiring_soon";
   return "active";
 }
+
+export function formatDaysRemaining(endDate: string): string {
+  const today = new Date();
+  today.setUTCHours(0, 0, 0, 0);
+  const end = new Date(endDate);
+  end.setUTCHours(0, 0, 0, 0);
+  const diff = Math.round(
+    (end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
+  );
+
+  if (diff < 0) return "Expired";
+  if (diff === 0) return "Today";
+  if (diff === 1) return "1 Day Remaining";
+  return `${diff} Days Remaining`;
+}
