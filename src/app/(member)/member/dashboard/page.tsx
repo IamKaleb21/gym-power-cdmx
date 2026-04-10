@@ -87,28 +87,28 @@ export default async function MemberDashboardPage() {
   return (
     <main className="px-5 pt-6 space-y-8">
       {/* Welcome Hero */}
-      <header className="relative overflow-hidden rounded-xl bg-surface-container p-6 border-l-4 border-[#CCFF00]">
-        <div className="relative z-10">
+      <header className="relative overflow-hidden rounded-xl bg-surface-container p-6 border-l-4 border-[#CCFF00] min-w-0">
+        <div className="relative z-10 min-w-0">
           <p className="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-1">
             Welcome back,
           </p>
-          <h1 className="font-headline text-4xl font-black text-[#CCFF00] leading-none mb-6">
+          <h1 className="font-headline text-4xl font-black text-[#CCFF00] leading-none mb-6 break-words">
             {displayName}
           </h1>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-surface-container-high p-4 rounded-lg">
+          <div className="grid grid-cols-2 gap-4 min-w-0">
+            <div className="bg-surface-container-high p-4 rounded-lg min-w-0">
               <p className="font-label text-[10px] uppercase text-on-surface-variant mb-1">
                 Current Plan
               </p>
-              <p className="font-headline font-bold text-sm text-on-surface">
+              <p className="font-headline font-bold text-sm text-on-surface truncate">
                 {planName ?? 'No active plan'}
               </p>
             </div>
-            <div className="bg-[#CCFF00] p-4 rounded-lg">
+            <div className="bg-[#CCFF00] p-4 rounded-lg min-w-0">
               <p className="font-label text-[10px] uppercase text-[#121212] font-bold mb-1">
                 Expiry
               </p>
-              <p className="font-headline font-black text-sm text-[#121212]">
+              <p className="font-headline font-black text-sm text-[#121212] truncate">
                 {expiryDisplay ?? 'No active plan'}
               </p>
             </div>
@@ -144,24 +144,24 @@ export default async function MemberDashboardPage() {
               return (
                 <div
                   key={enrollment.id}
-                  className="flex items-center gap-4 bg-surface-container-low p-4 rounded-lg border border-outline-variant hover:border-[#CCFF00] transition-colors group"
+                  className="flex items-center gap-4 bg-surface-container-low p-4 rounded-lg border border-outline-variant hover:border-[#CCFF00] transition-colors group min-w-0"
                 >
-                  <div className="flex flex-col items-center justify-center bg-surface-container-highest rounded px-3 py-2 border border-outline-variant">
+                  <div className="flex flex-col items-center justify-center bg-surface-container-highest rounded px-3 py-2 border border-outline-variant shrink-0">
                     <span className="font-headline text-xs font-bold text-on-surface">{month}</span>
                     <span className="font-headline text-lg font-black text-[#CCFF00] leading-none">
                       {day}
                     </span>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-headline font-bold text-on-surface text-base uppercase leading-tight group-hover:text-[#CCFF00] transition-colors">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-headline font-bold text-on-surface text-base uppercase leading-tight group-hover:text-[#CCFF00] transition-colors truncate">
                       {cls.name}
                     </h3>
-                    <p className="text-xs text-on-surface-variant flex items-center gap-1">
-                      <span className="material-symbols-outlined text-[14px]">schedule</span>{' '}
-                      {time}
-                      <span className="mx-1">•</span>
-                      <span className="material-symbols-outlined text-[14px]">person</span>{' '}
-                      {trainerName}
+                    <p className="text-xs text-on-surface-variant flex items-center gap-1 min-w-0">
+                      <span className="material-symbols-outlined text-[14px] shrink-0">schedule</span>{' '}
+                      <span className="shrink-0">{time}</span>
+                      <span className="mx-1 shrink-0">•</span>
+                      <span className="material-symbols-outlined text-[14px] shrink-0">person</span>{' '}
+                      <span className="truncate">{trainerName}</span>
                     </p>
                   </div>
                   <span className="material-symbols-outlined text-[#CCFF00] opacity-0 group-hover:opacity-100 transition-opacity">
@@ -188,14 +188,14 @@ export default async function MemberDashboardPage() {
             recentPayments.map((payment, idx) => (
               <div
                 key={idx}
-                className="p-4 border-b border-outline-variant last:border-b-0 flex justify-between items-center"
+                className="p-4 border-b border-outline-variant last:border-b-0 flex justify-between items-center gap-3 min-w-0"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <div className="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[#CCFF00]">payments</span>
                   </div>
-                  <div>
-                    <p className="font-headline font-bold text-sm text-on-surface">
+                  <div className="min-w-0">
+                    <p className="font-headline font-bold text-sm text-on-surface truncate">
                       {payment.concept}
                     </p>
                     <p className="font-label text-[10px] text-on-surface-variant uppercase">
@@ -203,7 +203,7 @@ export default async function MemberDashboardPage() {
                     </p>
                   </div>
                 </div>
-                <div className="text-right">
+                <div className="text-right shrink-0 min-w-0">
                   <p className="font-headline font-black text-on-surface">
                     {formatAmount(payment.amount)}
                   </p>

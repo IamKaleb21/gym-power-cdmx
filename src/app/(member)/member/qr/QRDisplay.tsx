@@ -15,10 +15,10 @@ export function QRDisplay({ memberId, memberName }: QRDisplayProps) {
         <h1 className="text-2xl font-black font-headline text-[#CCFF00] tracking-tight uppercase">
           Código QR
         </h1>
-        <p className="mt-2 text-sm text-gray-400 font-body">{memberName}</p>
+        <p className="mt-2 text-sm text-gray-400 font-body max-w-full truncate px-1">{memberName}</p>
       </div>
 
-      <div className="p-6 bg-white rounded-2xl shadow-[0_0_40px_rgba(204,255,0,0.15)] border border-[#CCFF00]/30">
+      <div className="w-full max-w-[min(220px,calc(100vw-2.5rem))] p-4 sm:p-6 bg-white rounded-2xl shadow-[0_0_40px_rgba(204,255,0,0.15)] border border-[#CCFF00]/30 [&_svg]:h-auto [&_svg]:max-w-full [&_svg]:w-full">
         <QRCode value={memberId} size={220} level="M" />
       </div>
 

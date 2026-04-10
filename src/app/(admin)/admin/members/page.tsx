@@ -69,7 +69,7 @@ export default async function MembersPage() {
       </section>
 
       {/* Table Container */}
-      <div className="grid grid-cols-1 gap-1">
+      <div className="grid grid-cols-1 gap-1 overflow-x-auto min-w-0">
         {/* Table Header */}
         <div className="bg-[#131313] px-8 py-4 rounded-t-xl hidden md:grid grid-cols-12 items-center text-[10px] uppercase tracking-widest font-black text-white/40">
           <div className="col-span-4">Member Identity</div>
@@ -104,7 +104,7 @@ export default async function MembersPage() {
                   className={`${isEven ? 'bg-[#1a1a1a]' : 'bg-[#131313]'} group hover:bg-[#262626] transition-colors px-6 lg:px-8 py-6 md:grid md:grid-cols-12 items-center flex flex-col gap-4`}
                 >
                   {/* Member Identity */}
-                  <div className="col-span-4 flex items-center gap-4 w-full">
+                  <div className="col-span-4 flex items-center gap-4 w-full min-w-0">
                     <div className="relative flex-shrink-0">
                       {member.avatar_url ? (
                         <img
@@ -124,11 +124,11 @@ export default async function MembersPage() {
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#fce047] rounded-full border-4 border-[#0e0e0e]" />
                       )}
                     </div>
-                    <div>
-                      <h3 className="font-headline font-black text-lg leading-tight uppercase">
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-headline font-black text-lg leading-tight uppercase truncate">
                         {member.full_name ?? '—'}
                       </h3>
-                      <p className="text-xs text-white/40">{member.email}</p>
+                      <p className="text-xs text-white/40 truncate">{member.email}</p>
                     </div>
                   </div>
 
@@ -138,11 +138,11 @@ export default async function MembersPage() {
                   </div>
 
                   {/* Plan Type */}
-                  <div className="col-span-3 w-full">
+                  <div className="col-span-3 w-full min-w-0">
                     {planName ? (
                       <>
                         <p
-                          className={`text-sm font-bold font-headline uppercase tracking-tight ${
+                          className={`text-sm font-bold font-headline uppercase tracking-tight truncate ${
                             member.status === 'expired' ? 'text-white/40 line-through' : ''
                           }`}
                         >
@@ -172,7 +172,7 @@ export default async function MembersPage() {
                   </div>
 
                   {/* Contact */}
-                  <div className="col-span-2 w-full text-white/40 font-mono text-sm">
+                  <div className="col-span-2 w-full min-w-0 text-white/40 font-mono text-sm truncate">
                     {member.phone ?? '—'}
                   </div>
 
@@ -180,7 +180,7 @@ export default async function MembersPage() {
                   <div className="col-span-1 flex justify-end gap-3 w-full">
                     <Link
                       href={`/admin/members/${member.id}`}
-                      className="p-2 hover:bg-[#cafd00] hover:text-[#516700] rounded-sm transition-colors"
+                      className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center p-2 hover:bg-[#cafd00] hover:text-[#516700] rounded-sm transition-colors"
                     >
                       <span className="material-symbols-outlined text-sm">edit</span>
                     </Link>

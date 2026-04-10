@@ -13,7 +13,7 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   webServer: {
-    command: "PORT=3010 pnpm dev",
+    command: "PORT=3010 pnpm exec next dev --webpack",
     url: "http://localhost:3010",
     reuseExistingServer: true,
     timeout: 120_000,
