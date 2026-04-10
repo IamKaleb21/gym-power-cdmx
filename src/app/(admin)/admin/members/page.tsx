@@ -40,29 +40,29 @@ export default async function MembersPage() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <h1 className="text-6xl md:text-8xl font-black font-headline tracking-tighter uppercase leading-none mb-2">
-              Members<span className="text-[#cafd00]">.</span>
+              Miembros<span className="text-[#cafd00]">.</span>
             </h1>
             <div className="flex items-center gap-4 text-white/50 text-sm">
               <span className="flex items-center gap-1">
-                <b className="text-white">{totalActive}</b> Total Active
+                <b className="text-white">{totalActive}</b> activos
               </span>
               <span className="w-1 h-1 bg-white/20 rounded-full" />
               <span className="flex items-center gap-1">
-                <b className="text-[#ff7351]">{totalExpiringSoon}</b> Expiring Soon
+                <b className="text-[#ff7351]">{totalExpiringSoon}</b> por vencer
               </span>
             </div>
           </div>
           <div className="flex gap-3">
             <button className="bg-[#262626] text-white px-6 py-3 font-headline font-bold rounded-lg flex items-center gap-2 hover:bg-[#484847] transition-colors">
               <span className="material-symbols-outlined text-sm">filter_list</span>
-              Filters
+              Filtros
             </button>
             <Link
               href="/admin/members/new"
               className="bg-[#cafd00] text-[#516700] px-8 py-3 font-headline font-black rounded-lg flex items-center gap-2 hover:bg-[#f3ffca] transition-colors shadow-[0_0_20px_rgba(202,253,0,0.3)]"
             >
               <span className="material-symbols-outlined text-sm">add</span>
-              Register New Member
+              Registrar miembro
             </Link>
           </div>
         </div>
@@ -72,18 +72,18 @@ export default async function MembersPage() {
       <div className="grid grid-cols-1 gap-1 overflow-x-auto min-w-0">
         {/* Table Header */}
         <div className="bg-[#131313] px-8 py-4 rounded-t-xl hidden md:grid grid-cols-12 items-center text-[10px] uppercase tracking-widest font-black text-white/40">
-          <div className="col-span-4">Member Identity</div>
-          <div className="col-span-2 text-center">Status</div>
-          <div className="col-span-3">Plan Type</div>
-          <div className="col-span-2">Contact</div>
-          <div className="col-span-1 text-right">Actions</div>
+          <div className="col-span-4">Miembro</div>
+          <div className="col-span-2 text-center">Estado</div>
+          <div className="col-span-3">Plan</div>
+          <div className="col-span-2">Contacto</div>
+          <div className="col-span-1 text-right">Acciones</div>
         </div>
 
         {/* Member Rows */}
         <div className="space-y-1">
           {membersWithStatus.length === 0 ? (
             <div className="bg-[#1a1a1a] px-8 py-12 text-center text-white/40 text-sm font-headline uppercase tracking-widest">
-              No members found
+              No hay miembros
             </div>
           ) : (
             membersWithStatus.map((member, index) => {
@@ -91,9 +91,9 @@ export default async function MembersPage() {
               const planName = member.latestMembership?.membership_plans?.name
               const endDate = member.latestMembership?.end_date
               const formattedEndDate = endDate
-                ? new Date(endDate).toLocaleDateString('en-US', {
+                ? new Date(endDate).toLocaleDateString('es-MX', {
                     month: 'short',
-                    day: '2-digit',
+                    day: 'numeric',
                     year: 'numeric',
                   })
                 : null
@@ -109,7 +109,7 @@ export default async function MembersPage() {
                       {member.avatar_url ? (
                         <img
                           src={member.avatar_url}
-                          alt={member.full_name ?? 'Member'}
+                          alt={member.full_name ?? 'Miembro'}
                           className="w-14 h-14 rounded-lg object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                         />
                       ) : (
@@ -159,15 +159,15 @@ export default async function MembersPage() {
                             }`}
                           >
                             {member.status === 'expired'
-                              ? `Expired ${formattedEndDate}`
+                              ? `Venció ${formattedEndDate}`
                               : member.status === 'expiring_soon'
-                                ? `Due ${formattedEndDate}`
-                                : `Renews ${formattedEndDate}`}
+                                ? `Vence ${formattedEndDate}`
+                                : `Renueva ${formattedEndDate}`}
                           </p>
                         )}
                       </>
                     ) : (
-                      <p className="text-sm text-white/30 font-headline uppercase tracking-tight">No plan</p>
+                      <p className="text-sm text-white/30 font-headline uppercase tracking-tight">Sin plan</p>
                     )}
                   </div>
 
@@ -194,7 +194,8 @@ export default async function MembersPage() {
         {/* Footer */}
         <div className="bg-[#1a1a1a] py-4 px-8 rounded-b-xl flex justify-between items-center">
           <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">
-            {membersWithStatus.length} Member{membersWithStatus.length !== 1 ? 's' : ''}
+            {membersWithStatus.length}{' '}
+            {membersWithStatus.length !== 1 ? 'miembros' : 'miembro'}
           </span>
         </div>
       </div>

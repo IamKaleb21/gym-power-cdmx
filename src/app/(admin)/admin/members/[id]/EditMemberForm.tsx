@@ -55,7 +55,7 @@ export function EditMemberForm({ memberId, initialData }: Props) {
         disabled={isPending}
         className="bg-[#cafd00] text-black text-xs font-black uppercase tracking-widest px-6 py-2.5 rounded-lg font-headline disabled:opacity-50 transition-opacity"
       >
-        {isPending ? 'Guardando...' : 'Guardar cambios'}
+        {isPending ? 'Guardando…' : 'Guardar cambios'}
       </button>
     </form>
   )
