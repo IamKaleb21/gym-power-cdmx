@@ -19,6 +19,11 @@ export function MemberProfileForm({ initialData }: Props) {
     { success: false },
   )
 
+  const fieldErrors =
+    state?.error && typeof state.error === 'object'
+      ? (state.error as Record<string, string[]>)
+      : {}
+
   return (
     <main className="pt-8 px-6 max-w-md mx-auto">
       {/* Page Title */}
@@ -87,6 +92,9 @@ export function MemberProfileForm({ initialData }: Props) {
               className="w-full bg-surface-container-highest border border-[#212121] rounded-xl py-4 pl-12 pr-4 text-white font-headline font-medium focus:border-[#CCFF00] transition-colors focus:outline-none"
             />
           </div>
+          {fieldErrors.full_name && (
+            <p className="text-red-400 text-xs mt-1 px-1">{fieldErrors.full_name[0]}</p>
+          )}
         </div>
 
         {/* Phone */}
@@ -106,6 +114,9 @@ export function MemberProfileForm({ initialData }: Props) {
               className="w-full bg-surface-container-highest border border-[#212121] rounded-xl py-4 pl-12 pr-4 text-white font-headline font-medium focus:border-[#CCFF00] transition-colors focus:outline-none"
             />
           </div>
+          {fieldErrors.phone && (
+            <p className="text-red-400 text-xs mt-1 px-1">{fieldErrors.phone[0]}</p>
+          )}
         </div>
 
         {/* Location (read-only) */}
