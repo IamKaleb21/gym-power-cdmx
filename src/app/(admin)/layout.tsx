@@ -29,7 +29,7 @@ export default function AdminLayout({
               GYM POWER
             </h2>
             <p className="text-white/40 text-[10px] uppercase tracking-widest font-bold font-headline">
-              ADMIN PORTAL
+              Panel administración
             </p>
           </div>
         </div>
@@ -43,7 +43,7 @@ export default function AdminLayout({
           className="mt-auto bg-[#cafd00] text-[#516700] font-headline font-black py-4 rounded-sm flex items-center justify-center gap-2 hover:bg-[#f3ffca] transition-colors active:scale-[0.98]"
         >
           <span className="material-symbols-outlined">person_add</span>
-          Add Member
+          Nuevo miembro
         </Link>
       </aside>
 
