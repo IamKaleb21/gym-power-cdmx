@@ -18,6 +18,7 @@ type SeedBlueprint = {
   trainers: { fullName: string; specialty: string; bio: string }[];
   availability: { trainerEmailKey: string; dayOfWeek: number; startTime: string; endTime: string }[];
   classes: { name: string; description: string; trainerEmailKey: string; daysOffset: number; hour: number }[];
+  memberships: { memberIndex: number; startDaysOffset: number; planName: string }[];
   payments: { memberIndex: number; amount: number; concept: string; status: PaymentStatus; daysOffset: number }[];
   enrollments: { classIndex: number; memberIndex: number; status: EnrollmentStatus }[];
 };
@@ -38,7 +39,7 @@ export function buildSeedBlueprint(now: Date): SeedBlueprint {
   const users: SeedUser[] = [
     { email: "admin@gympower.demo", fullName: "Admin Gym Power", role: "admin" },
     { email: "member.demo@gympower.demo", fullName: "Miembro Demo", role: "member" },
-    ...Array.from({ length: 10 }, (_, i) => ({
+    ...Array.from({ length: 35 }, (_, i) => ({
       email: `member${String(i + 1).padStart(2, "0")}@gympower.demo`,
       fullName: `Miembro ${i + 1}`,
       role: "member" as const,
@@ -74,22 +75,117 @@ export function buildSeedBlueprint(now: Date): SeedBlueprint {
     { name: "Box Conditioning", description: "[SEED] Acondicionamiento", trainerEmailKey: "Carlos Vega", daysOffset: 5, hour: 10 },
   ];
 
-  const payments = Array.from({ length: 20 }, (_, i) => ({
-    memberIndex: (i % 11) + 1,
-    amount: 500 + (i % 4) * 150,
-    concept: `[SEED] Pago ${i + 1}`,
-    status: i % 3 === 0 ? "pending" : "paid" as PaymentStatus,
-    daysOffset: -20 + i,
-  }));
+  // memberIndex 1 = member.demo, 2 = member01, …, 36 = member35
+  // Membresías históricas distribuidas en 12 meses para poblar el dashboard analítico
+  const memberships: SeedBlueprint["memberships"] = [
+    // Abr 2025 (-365): 2 nuevos → Mensual (vence May 2025, baja)
+    { memberIndex: 2,  startDaysOffset: -365, planName: "Plan Mensual" },
+    { memberIndex: 3,  startDaysOffset: -362, planName: "Plan Mensual" },
+    // May 2025 (-335): 2 nuevos → Trimestral (vence Ago 2025, baja)
+    { memberIndex: 4,  startDaysOffset: -335, planName: "Plan Trimestral" },
+    { memberIndex: 5,  startDaysOffset: -330, planName: "Plan Trimestral" },
+    // Jun 2025 (-304): 3 nuevos → Mensual (vence Jul 2025, baja)
+    { memberIndex: 6,  startDaysOffset: -304, planName: "Plan Mensual" },
+    { memberIndex: 7,  startDaysOffset: -300, planName: "Plan Mensual" },
+    { memberIndex: 8,  startDaysOffset: -295, planName: "Plan Mensual" },
+    // Jul 2025 (-274): 2 nuevos → Trimestral (vence Oct 2025, baja)
+    { memberIndex: 9,  startDaysOffset: -274, planName: "Plan Trimestral" },
+    { memberIndex: 10, startDaysOffset: -270, planName: "Plan Trimestral" },
+    // Ago 2025 (-243): 3 nuevos → mix
+    { memberIndex: 11, startDaysOffset: -243, planName: "Plan Anual" },    // activo hasta Ago 2026
+    { memberIndex: 12, startDaysOffset: -240, planName: "Plan Mensual" },  // baja Sep 2025
+    { memberIndex: 13, startDaysOffset: -238, planName: "Plan Mensual" },  // baja Sep 2025
+    // Sep 2025 (-213): 3 nuevos
+    { memberIndex: 14, startDaysOffset: -213, planName: "Plan Anual" },    // activo hasta Sep 2026
+    { memberIndex: 15, startDaysOffset: -210, planName: "Plan Anual" },    // activo hasta Sep 2026
+    { memberIndex: 16, startDaysOffset: -208, planName: "Plan Mensual" },  // baja Oct 2025
+    // Oct 2025 (-182): 2 nuevos → Trimestral (baja Ene 2026)
+    { memberIndex: 17, startDaysOffset: -182, planName: "Plan Trimestral" },
+    { memberIndex: 18, startDaysOffset: -178, planName: "Plan Trimestral" },
+    // Nov 2025 (-152): 2 nuevos → Mensual (baja Dic 2025)
+    { memberIndex: 19, startDaysOffset: -152, planName: "Plan Mensual" },
+    { memberIndex: 20, startDaysOffset: -148, planName: "Plan Mensual" },
+    // Dic 2025 (-121): 3 nuevos
+    { memberIndex: 21, startDaysOffset: -121, planName: "Plan Anual" },    // activo hasta Dic 2026
+    { memberIndex: 22, startDaysOffset: -118, planName: "Plan Anual" },    // activo hasta Dic 2026
+    { memberIndex: 23, startDaysOffset: -115, planName: "Plan Mensual" },  // baja Ene 2026
+    // Ene 2026 (-91): 3 nuevos
+    { memberIndex: 24, startDaysOffset: -91, planName: "Plan Trimestral" }, // activo hasta Abr 2026
+    { memberIndex: 25, startDaysOffset: -88, planName: "Plan Trimestral" }, // activo hasta Abr 2026
+    { memberIndex: 26, startDaysOffset: -85, planName: "Plan Mensual" },    // baja Feb 2026
+    // Feb 2026 (-60): 3 nuevos
+    { memberIndex: 27, startDaysOffset: -60, planName: "Plan Mensual" },    // baja Mar 2026
+    { memberIndex: 28, startDaysOffset: -57, planName: "Plan Mensual" },    // baja Mar 2026
+    { memberIndex: 29, startDaysOffset: -55, planName: "Plan Trimestral" }, // activo hasta May 2026
+    // Mar 2026 (-30): 4 nuevos
+    { memberIndex: 30, startDaysOffset: -30, planName: "Plan Trimestral" }, // activo hasta Jun 2026
+    { memberIndex: 31, startDaysOffset: -28, planName: "Plan Trimestral" }, // activo hasta Jun 2026
+    { memberIndex: 32, startDaysOffset: -25, planName: "Plan Trimestral" }, // activo hasta Jun 2026
+    { memberIndex: 33, startDaysOffset: -22, planName: "Plan Mensual" },    // activo hasta Abr 2026
+    // Abr 2026 (últimos días): 4 nuevos
+    { memberIndex: 1,  startDaysOffset: -8,  planName: "Plan Trimestral" }, // member.demo, activo
+    { memberIndex: 34, startDaysOffset: -7,  planName: "Plan Mensual" },    // activo
+    { memberIndex: 35, startDaysOffset: -5,  planName: "Plan Anual" },      // activo hasta Abr 2027
+    { memberIndex: 36, startDaysOffset: -3,  planName: "Plan Mensual" },    // activo
+  ];
 
-  const enrollments = Array.from({ length: 20 }, (_, i) => ({
+  // Pagos distribuidos en 12 meses (para Finance dashboard)
+  const payments: SeedBlueprint["payments"] = [
+    // Abr-Jun 2025
+    { memberIndex: 2,  amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -365 },
+    { memberIndex: 3,  amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -362 },
+    { memberIndex: 4,  amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -335 },
+    { memberIndex: 5,  amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -330 },
+    { memberIndex: 6,  amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -304 },
+    { memberIndex: 7,  amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -300 },
+    { memberIndex: 8,  amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -295 },
+    // Jul-Sep 2025
+    { memberIndex: 9,  amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -274 },
+    { memberIndex: 10, amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -270 },
+    { memberIndex: 11, amount: 6999, concept: "[SEED] Plan Anual",      status: "paid",    daysOffset: -243 },
+    { memberIndex: 12, amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -240 },
+    { memberIndex: 13, amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -238 },
+    { memberIndex: 14, amount: 6999, concept: "[SEED] Plan Anual",      status: "paid",    daysOffset: -213 },
+    { memberIndex: 15, amount: 6999, concept: "[SEED] Plan Anual",      status: "paid",    daysOffset: -210 },
+    { memberIndex: 16, amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -208 },
+    // Oct-Dic 2025
+    { memberIndex: 17, amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -182 },
+    { memberIndex: 18, amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -178 },
+    { memberIndex: 19, amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -152 },
+    { memberIndex: 20, amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -148 },
+    { memberIndex: 21, amount: 6999, concept: "[SEED] Plan Anual",      status: "paid",    daysOffset: -121 },
+    { memberIndex: 22, amount: 6999, concept: "[SEED] Plan Anual",      status: "paid",    daysOffset: -118 },
+    { memberIndex: 23, amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -115 },
+    // Ene-Mar 2026
+    { memberIndex: 24, amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -91 },
+    { memberIndex: 25, amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -88 },
+    { memberIndex: 26, amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -85 },
+    { memberIndex: 27, amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -60 },
+    { memberIndex: 28, amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -57 },
+    { memberIndex: 29, amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -55 },
+    { memberIndex: 30, amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -30 },
+    { memberIndex: 31, amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -28 },
+    { memberIndex: 32, amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -25 },
+    { memberIndex: 33, amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -22 },
+    // Abr 2026 + pendientes
+    { memberIndex: 1,  amount: 2099, concept: "[SEED] Plan Trimestral", status: "paid",    daysOffset: -8 },
+    { memberIndex: 34, amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -7 },
+    { memberIndex: 35, amount: 6999, concept: "[SEED] Plan Anual",      status: "paid",    daysOffset: -5 },
+    { memberIndex: 36, amount: 799,  concept: "[SEED] Plan Mensual",    status: "paid",    daysOffset: -3 },
+    // Adeudos pendientes varios
+    { memberIndex: 24, amount: 2099, concept: "[SEED] Renovación Trimestral", status: "pending", daysOffset: 5 },
+    { memberIndex: 25, amount: 2099, concept: "[SEED] Renovación Trimestral", status: "pending", daysOffset: 8 },
+    { memberIndex: 33, amount: 799,  concept: "[SEED] Renovación Mensual",    status: "pending", daysOffset: 10 },
+  ];
+
+  const enrollments = Array.from({ length: 30 }, (_, i) => ({
     classIndex: i % 8,
-    memberIndex: (i % 11) + 1,
+    memberIndex: (i % 35) + 1,
     status: i % 5 === 0 ? "cancelled" : "active" as EnrollmentStatus,
   }));
 
   void now;
-  return { plans, users, trainers, availability, classes, payments, enrollments };
+  return { plans, users, trainers, availability, classes, memberships, payments, enrollments };
 }
 
 export async function runSeed() {
@@ -217,12 +313,13 @@ export async function runSeed() {
   const memberEmails = blueprint.users.filter((u) => u.role === "member").map((u) => u.email);
   const memberIds = memberEmails.map((email) => profileByEmail.get(email)).filter(Boolean) as string[];
 
-  const membershipRows = memberIds.map((memberId, index) => {
-    const plan = blueprint.plans[index % blueprint.plans.length];
-    const planMeta = planByName.get(plan.name);
-    if (!planMeta) throw new Error(`Missing plan ${plan.name}`);
-    const start = isoDate(now, -5 * (index % 4));
-    const end = isoDate(now, planMeta.durationDays - 5 * (index % 4));
+  // memberIndex 1-based: 1 = member.demo, 2 = member01, …
+  const membershipRows = blueprint.memberships.map((m) => {
+    const memberId = memberIds[(m.memberIndex - 1) % memberIds.length];
+    const planMeta = planByName.get(m.planName);
+    if (!planMeta) throw new Error(`Missing plan: ${m.planName}`);
+    const start = isoDate(now, m.startDaysOffset);
+    const end = isoDate(now, m.startDaysOffset + planMeta.durationDays);
     return {
       member_id: memberId,
       plan_id: planMeta.id,
@@ -242,6 +339,7 @@ export async function runSeed() {
       amount: p.amount,
       concept: p.concept,
       status: p.status,
+      // paid → payment_date = date of payment; pending → due_date = due date
       payment_date: p.status === "paid" ? date : null,
       due_date: p.status === "pending" ? date : null,
     };
