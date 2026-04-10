@@ -31,6 +31,9 @@ test.describe("route guards", () => {
 
     await page.goto("/admin/dashboard");
     await expect(page).toHaveURL(/\/member\/dashboard$/);
+
+    await page.goto("/admin/scan");
+    await expect(page).toHaveURL(/\/member\/dashboard$/);
   });
 
   test("redirects admin away from member routes", async ({ page }) => {
@@ -38,6 +41,9 @@ test.describe("route guards", () => {
     await expect(page).toHaveURL(/\/admin\/dashboard$/);
 
     await page.goto("/member/dashboard");
+    await expect(page).toHaveURL(/\/admin\/dashboard$/);
+
+    await page.goto("/member/qr");
     await expect(page).toHaveURL(/\/admin\/dashboard$/);
   });
 });
