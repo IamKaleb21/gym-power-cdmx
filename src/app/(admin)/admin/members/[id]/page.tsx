@@ -1,5 +1,6 @@
 import { createAdminClient } from '@/lib/supabase/admin'
 import { notFound } from 'next/navigation'
+import { getMemberBalance } from '@/lib/payments/utils'
 import { getMemberStatus } from '@/lib/members/status'
 import { MemberStatusBadge } from '@/components/members/MemberStatusBadge'
 import { AvatarUpload } from './AvatarUpload'
@@ -41,6 +42,14 @@ export default async function MemberDetailPage({ params }: { params: Promise<{ i
   const payments = [...(member.payments ?? [])].sort(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  )
+
+  const pendingBalance = getMemberBalance(
+    payments.map((p: { amount: unknown; status: string; payment_date: string | null }) => ({
+      amount: Number(p.amount),
+      status: p.status,
+      payment_date: p.payment_date,
+    })),
   )
 
   return (
@@ -117,6 +126,15 @@ export default async function MemberDetailPage({ params }: { params: Promise<{ i
         <h2 className="text-xs font-black uppercase tracking-widest text-white/40 font-headline mb-4">
           Pagos
         </h2>
+        {pendingBalance > 0 && (
+          <div className="flex items-center gap-2 mb-4 p-3 bg-error/10 border border-error/30 rounded-lg">
+            <span className="material-symbols-outlined text-error text-sm">warning</span>
+            <span className="text-error text-sm font-bold">
+              Adeudo pendiente:{' '}
+              {pendingBalance.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}
+            </span>
+          </div>
+        )}
         {payments.length === 0 ? (
           <div className="bg-[#1a1a1a] rounded-xl p-6 text-white/30 text-sm">
             Sin pagos registrados.
@@ -138,11 +156,11 @@ export default async function MemberDetailPage({ params }: { params: Promise<{ i
                   </span>
                   <span
                     className={`px-3 py-1 text-[10px] font-black uppercase tracking-tighter rounded-sm ${
-                      p.status === 'completed'
+                      p.status === 'paid'
                         ? 'bg-[#cafd00]/10 text-[#cafd00] border border-[#cafd00]/20'
                         : p.status === 'pending'
-                        ? 'bg-[#fce047]/10 text-[#fce047] border border-[#fce047]/20'
-                        : 'bg-[#ff7351]/10 text-[#ff7351] border border-[#ff7351]/20'
+                          ? 'bg-error/10 text-error border border-error/20'
+                          : 'bg-white/10 text-white/60 border border-white/10'
                     }`}
                   >
                     {p.status}
