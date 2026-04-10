@@ -56,12 +56,12 @@ export function ScannerShell() {
         <section className="flex-1 relative flex flex-col items-stretch justify-center p-4 lg:p-8 min-h-[50vh] lg:min-h-0">
           <div className="absolute top-4 left-4 lg:top-8 lg:left-8 z-10 pointer-events-none">
             <h1 className="font-headline text-3xl lg:text-4xl font-black text-white leading-none uppercase tracking-tight">
-              Access
+              Escáner de
               <br />
-              <span className="text-[#cafd00]">Scanner</span>
+              <span className="text-[#cafd00]">acceso</span>
             </h1>
             <p className="mt-2 text-[10px] font-body tracking-widest text-white/40 uppercase">
-              Terminal · check-in
+              Recepción · check-in
             </p>
           </div>
 
@@ -73,7 +73,7 @@ export function ScannerShell() {
               <div className="absolute top-3 left-3 flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-[#cafd00] animate-pulse" />
                 <span className="text-[10px] font-mono text-[#cafd00] uppercase tracking-tighter">
-                  Live
+                  En vivo
                 </span>
               </div>
             </div>
@@ -87,7 +87,7 @@ export function ScannerShell() {
               className="flex-1 py-4 bg-[#262626] text-white font-headline font-bold uppercase text-xs tracking-widest flex items-center justify-center gap-2 hover:bg-[#2c2c2c] active:scale-[0.99]"
             >
               <span className="material-symbols-outlined text-lg">refresh</span>
-              Manual refresh
+              Reiniciar escaneo
             </button>
             <button
               type="button"
