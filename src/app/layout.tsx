@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -25,6 +25,16 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Gym Power CDMX",
   description: "Sistema de administración Gym Power CDMX",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "GymPower",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0e0e0e",
 };
 
 export default function RootLayout({
