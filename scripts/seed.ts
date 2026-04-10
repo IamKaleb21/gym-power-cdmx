@@ -1,4 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
+import { existsSync, readFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 type Role = "admin" | "member";
 type PaymentStatus = "paid" | "pending";
@@ -91,6 +93,22 @@ export function buildSeedBlueprint(now: Date): SeedBlueprint {
 }
 
 export async function runSeed() {
+  const envPath = resolve(process.cwd(), ".env.local");
+  if (existsSync(envPath)) {
+    const lines = readFileSync(envPath, "utf8").split("\n");
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      if (!line || line.startsWith("#")) continue;
+      const separator = line.indexOf("=");
+      if (separator <= 0) continue;
+      const key = line.slice(0, separator).trim();
+      const value = line.slice(separator + 1).trim();
+      if (!process.env[key]) {
+        process.env[key] = value;
+      }
+    }
+  }
+
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceRole = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
