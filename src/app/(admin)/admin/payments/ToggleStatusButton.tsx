@@ -31,7 +31,11 @@ export default function ToggleStatusButton({
           : 'text-error bg-error/20 hover:bg-error/30'
       }`}
     >
-      {isPending ? '…' : currentStatus === 'paid' ? 'Success' : 'Pending Dues'}
+      {isPending
+        ? '…'
+        : currentStatus === 'paid'
+          ? 'Marcar pendiente'
+          : 'Marcar pagado'}
     </button>
   )
 }
