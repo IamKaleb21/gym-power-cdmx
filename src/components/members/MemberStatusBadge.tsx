@@ -2,15 +2,15 @@ import type { MemberStatus } from '@/lib/members/status'
 
 const config: Record<MemberStatus, { label: string; className: string }> = {
   active: {
-    label: 'Active',
+    label: 'Activo',
     className: 'bg-[#cafd00]/10 text-[#cafd00] border border-[#cafd00]/20',
   },
   expiring_soon: {
-    label: 'Expiring Soon',
+    label: 'Por vencer',
     className: 'bg-[#fce047]/10 text-[#fce047] border border-[#fce047]/20',
   },
   expired: {
-    label: 'Expired',
+    label: 'Vencido',
     className: 'bg-[#ff7351]/10 text-[#ff7351] border border-[#ff7351]/20',
   },
 }

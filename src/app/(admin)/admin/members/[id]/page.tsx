@@ -163,7 +163,7 @@ export default async function MemberDetailPage({ params }: { params: Promise<{ i
                           : 'bg-white/10 text-white/60 border border-white/10'
                     }`}
                   >
-                    {p.status}
+                    {p.status === 'paid' ? 'Pagado' : p.status === 'pending' ? 'Pendiente' : p.status}
                   </span>
                 </div>
               </div>

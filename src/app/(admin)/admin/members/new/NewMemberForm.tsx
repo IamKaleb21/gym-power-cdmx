@@ -184,7 +184,7 @@ export function NewMemberForm({ plans }: { plans: Plan[] }) {
           disabled={isPending || plans.length === 0}
           className="bg-[#cafd00] text-[#516700] font-headline font-black rounded-lg px-8 py-3 hover:bg-[#f3ffca] transition-colors shadow-[0_0_20px_rgba(202,253,0,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isPending ? 'Registrando…' : 'Registrar Miembro'}
+          {isPending ? 'Registrando…' : 'Registrar miembro'}
         </button>
       </div>
     </form>

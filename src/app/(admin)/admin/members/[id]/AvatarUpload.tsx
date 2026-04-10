@@ -37,7 +37,7 @@ export function AvatarUpload({ memberId, currentUrl }: Props) {
       onClick={() => inputRef.current?.click()}
     >
       {currentUrl ? (
-        <img src={currentUrl} alt="Avatar" className="w-24 h-24 rounded-xl object-cover" />
+        <img src={currentUrl} alt="Avatar del miembro" className="w-24 h-24 rounded-xl object-cover" />
       ) : (
         <div className="w-24 h-24 rounded-xl bg-[#262626] flex items-center justify-center">
           <span className="material-symbols-outlined text-white/30 text-4xl">person</span>

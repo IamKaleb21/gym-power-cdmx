@@ -13,7 +13,7 @@ export default async function NewMemberPage() {
     <div className="px-4 lg:px-12 py-8 max-w-4xl">
       <div className="mb-8">
         <h1 className="text-5xl md:text-7xl font-black font-headline tracking-tighter uppercase leading-none mb-2">
-          New Member<span className="text-[#cafd00]">.</span>
+          Nuevo miembro<span className="text-[#cafd00]">.</span>
         </h1>
         <p className="text-white/40 text-sm">Registrar nuevo miembro y asignar plan de membresía.</p>
       </div>
