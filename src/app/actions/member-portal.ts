@@ -27,6 +27,10 @@ export async function updateMemberProfile(formData: FormData) {
     return { error: parsed.error.flatten().fieldErrors }
   }
 
+  if (Object.keys(parsed.data).length === 0) {
+    return { success: true }
+  }
+
   const { error: updateError } = await supabase
     .from('profiles')
     .update(parsed.data)
