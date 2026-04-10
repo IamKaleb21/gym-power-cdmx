@@ -108,7 +108,7 @@ export default async function AdminDashboardPage({
       <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="font-headline text-4xl font-black tracking-tighter text-white uppercase lg:text-5xl">
-            Analytics
+            Analítica
           </h1>
         </div>
         <Suspense fallback={<div className="h-10 w-48 animate-pulse rounded-sm bg-surface-container-high" />}>
