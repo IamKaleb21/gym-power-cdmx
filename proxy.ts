@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { resolveProtectedRoute, type UserRole } from "@/lib/auth/routing";
 import { createClient } from "@/lib/supabase/middleware";
 
-export async function proxy(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   const { supabase, response } = createClient(request);
   const {
     data: { user },
