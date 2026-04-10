@@ -9,7 +9,7 @@ export function AdminBottomNav({ items }: { items: readonly AdminNavItem[] }) {
 
   return (
     <nav
-      aria-label="Admin principal"
+      aria-label="Navegación administración"
       className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/5 bg-[#0e0e0e]/95 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur-2xl lg:hidden"
     >
       <div className="flex w-full items-stretch px-0.5 py-2 sm:px-2">
